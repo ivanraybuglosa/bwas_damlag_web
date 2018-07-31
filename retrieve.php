@@ -2,21 +2,24 @@
     
     require_once 'user.php';
     
-    $username = "";
+    $name = "";
     
     $password = "";
     
     $email = "";
 
-    $contactnumber = "";
+    $contactNumber = "";
 
     $school = "";
 
     $address = "";
+
+    $sport = "";
+
     
-    if(isset($_POST['username'])){
+    if(isset($_POST['name'])){
         
-        $username = $_POST['username'];
+        $name = $_POST['name'];
         
     }
     
@@ -43,6 +46,11 @@
         $address = $_POST['address'];
         
     }
+    if(isset($_POST['sport'])){
+        
+        $sport = $_POST['sport'];
+        
+    }
 
     if(isset($_POST['contactNumber'])){
         
@@ -50,28 +58,14 @@
         
     }
     
-    $userObject = new User();
-    
-    // Registration
-    
-    if(!empty($username) && !empty($password) && !empty($email) && !empty($school) && !empty($contactNumber) && !empty($address)){
+        $userObject = new User();
         
         $hashed_password = md5($password);
         
-        $json_registration = $userObject->createNewRegisterUser($username, $hashed_password, $email, $school, $contactNumber, $address);
+        $json_registration = $userObject->createNewRegisterUser($name,$password,$email,$school,$address,$contactNumber,$sport);
         
         echo json_encode($json_registration);
         
-    }
     
-    // Login
     
-    if(!empty($username) && !empty($password) && empty($email)){
-        
-        $hashed_password = md5($password);
-        
-        $json_array = $userObject->loginUsers($username, $hashed_password);
-        
-        echo json_encode($json_array);
-    }
 ?>

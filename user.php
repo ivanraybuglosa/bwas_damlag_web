@@ -33,68 +33,18 @@
             
         }
         
-        public function isEmailUsernameExist($username, $email){
-            
-            $query = "select * from ".$this->db_table." where username = '$username' AND email = '$email'";
-            
-            $result = mysqli_query($this->db->getDb(), $query);
-            
-            if(mysqli_num_rows($result) > 0){
-                
-                mysqli_close($this->db->getDb());
-                
-                return true;
-                
-            }
-               
-            return false;
-            
-        }
-        
-        public function isValidEmail($email){
-            return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-        }
-        
-        public function createNewRegisterUser($username, $password, $email, $contactNumber, $school, $address){
+        public function createNewRegisterUser($name,$password,$email,$school,$address,$contactNumber,$sport){
               
-            $isExisting = $this->isEmailUsernameExist($username, $email);
-            
-            if($isExisting){
+                $passwordmd5 = md5($password);
+                $query = "insert into ".$this->db_table." (name, password, email, previous_school, contact, address, created_at, updated_at, type, sport, status) 
+                values ('$name', '$passwordmd5', '$email', '$school', '$contactNumber', '$address', NOW(), NOW(), 'Athlete', '$sport', 'Activated')";
                 
-                $json['success'] = 0;
-                $json['message'] = "Error in registering. Probably the username/email already exists";
-            }
-            
-            else{
-                
-            $isValid = $this->isValidEmail($email);
-                
-                if($isValid)
-                {
-                $query = "insert into ".$this->db_table." (username, password, email, contactNumber, school, address, created_at, updated_at) values ('$username', '$password', '$email', '$contactNumber', '$school', '$address', NOW(), NOW())";
-                
-                $inserted = mysqli_query($this->db->getDb(), $query);
-                
-                if($inserted == 1){
-                    
-                    $json['success'] = 1;
-                    $json['message'] = "Successfully registered the user";
-                    
-                }else{
-                    
-                    $json['success'] = 0;
-                    $json['message'] = "Error in registering. Probably the username/email already exists";
-                    
-                }
+                mysqli_query($this->db->getDb(), $query);
+                        
+                        $json['success'] = 1;
+                        $json['message'] = "Successfully Registered";
                 
                 mysqli_close($this->db->getDb());
-                }
-                else{
-                    $json['success'] = 0;
-                    $json['message'] = "Error in registering. Email Address is not valid";
-                }
-                
-            }
             
             return $json;
             
