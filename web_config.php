@@ -21,9 +21,9 @@
             }
         }
 
-        public function signup($name,$contact,$address,$school,$sport,$email,$password,$created_at,$updated_at,$type){
+        public function signup($name,$contact,$address,$school,$sport,$email,$password,$created_at,$updated_at,$type,$status){
             try{
-                $query = $this->db->prepare("INSERT INTO users(name,contact,address,school,sport,email,password,created_at,updated_at,type) VALUES(:name, :contact, :address, :school, :sport, :email, :password, :created_at, :updated_at, :type)");
+                $query = $this->db->prepare("INSERT INTO users(name,contact,address,school,sport,email,password,created_at,updated_at,type,status) VALUES(:name, :contact, :address, :school, :sport, :email, :password, :created_at, :updated_at, :type, :status)");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":contact", $contact);
                 $query->bindparam(":address", $address);
@@ -34,6 +34,7 @@
                 $query->bindparam(":created_at", $created_at);
                 $query->bindparam(":updated_at", $updated_at);
                 $query->bindparam(":type", $type);
+                $query->bindparam(":status", $status);
                 $query->execute();
                 return true;
             }catch(PDOException $e){
@@ -78,6 +79,102 @@
             try{
                 $query = $this->db->prepare("DELETE FROM users WHERE id=:id");
                 $query->bindparam(":id", $id);
+                $query->execute();
+                return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function checkEmail($email){
+            try{
+                $query = $this->db->prepare("SELECT * from users where email=:email");
+                $query->bindparam(":email", $email);
+                $query->execute();
+                return $request = $query->fetch();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function fetchUsers(){
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE type!='Admin'");
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function fetchAthletes($sport,$school){
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE sport=:sport AND school=:school AND type='Athlete'");
+                $query->bindparam(":sport", $sport);
+                $query->bindparam(":school", $school);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function fetchAllAthletes($sport){
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE sport=:sport AND type='Athlete'");
+                $query->bindparam(":sport", $sport);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function fetchCoaches(){
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE type='Coach' AND status='Deactivated'");
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function fetchSchool($school){
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE school='$school' AND status='Activated'");
+                $query->bindparam(":school", $school);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function fetchSport($sport){
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE sport='$sport' AND status='Activated'");
+                $query->bindparam(":sport", $sport);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function updateStatus($id,$status){
+            try{
+                $query = $this->db->prepare("UPDATE users SET status=:status WHERE id=:id");
+                $query->bindparam(":id", $id);
+                $query->bindparam(":status", $status);
                 $query->execute();
                 return true;
             }catch(PDOException $e){

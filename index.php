@@ -11,7 +11,7 @@
             echo "<script>alert('Unable to remove the user.');window.location.href='index.php';</script>";
         }
     }
-?>
+?>  
 <html>
     <head>
         <title>Dashboard</title>
@@ -19,73 +19,86 @@
     </head>
     <body>
         <?php include('navbar.php') ?>
-        <center>
-        <h1>List of Registered Users</h1>
-            <table id="users">
-            <tr>
-                <th>Username</th>
-                <th>E-mail</th>
-                <th>School</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Actions</th>
-            <tr>
+
         <?php 
-            $dbh = new PDO('mysql:host=localhost;dbname=android_db', 'root', '');
-            $stmt = $dbh->query("SELECT * FROM users");
-            while ($row = $stmt->fetch()) {
-        ?>
-            <tr>
-                <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['school']; ?></td>
-                <td><?php echo $row['contact']; ?></td>
-                <td><?php echo $row['address']; ?></td>
-                <td>
-                    <a class="edit-button" href="userEdit.php?id=<?php echo $row['id']?>">Edit</a>
-                    <form method="post" class="delete-form">
-                        <input type="hidden" name="id" value="<?php echo $row['id']?>"/>
-                        <button class="delete-button" type="submit" name="delete">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            <?php } ?>
-            </table>
-        </center>
-        <script>
-            /* When the user clicks on the button, 
-            toggle between hiding and showing the dropdown content */
-            function sportDropDown() {
-                document.getElementById("dropdown").classList.toggle("show");
-            }
+            if($current_user['type'] == 'Admin'){?>
+            <center>
+            <h1>List of Activated Users</h1>
+                <table id="users">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>E-mail</th>
+                            <th>School</th>
+                            <th>Contact Number</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        <tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $users = $pdo->fetchUsers();
+                        if(is_array($users) && !empty($users)){
+                            foreach($users as $user){
+                    ?>
+                    <tr>
+                        <td><?php echo $user['name']; ?></td>
+                        <td><?php echo $user['email']; ?></td>
+                        <td><?php echo $user['school']; ?></td>
+                        <td><?php echo $user['sport']; ?></td>
+                        <td><?php echo $user['type']; ?></td>
+                        <td>
+                            <a class="edit-button" href="userEdit.php?id=<?php echo $user['id']?>">Edit</a>
+                            <form method="post" class="delete-form">
+                                <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
+                                <button class="delete-button" type="submit" name="delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php } }?>
+                </tbody>
+                </table>
+            </center>
+        <?php }else{ ?>
+            <center>
+            <h1>List of Registered Users</h1>
+                <table id="users">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>E-mail</th>
+                            <th>School</th>
+                            <th>Contact Number</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        <tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $users = $pdo->fetchAllAthletes($current_user['sport']);
+                        if(is_array($users) && !empty($users)){
+                            foreach($users as $user){
+                    ?>
+                    <tr>
+                        <td><?php echo $user['name']; ?></td>
+                        <td><?php echo $user['email']; ?></td>
+                        <td><?php echo $user['school']; ?></td>
+                        <td><?php echo $user['contact']; ?></td>
+                        <td><?php echo $user['address']; ?></td>
+                        <td>
+                            <a class="edit-button" href="userEdit.php?id=<?php echo $user['id']?>">Edit</a>
+                            <form method="post" class="delete-form">
+                                <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
+                                <button class="delete-button" type="submit" name="delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php } }?>
+                </tbody>
+                </table>
+            </center>
 
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function(e) {
-                if (!e.target.matches('.dropbtn')) {
-                    var myDropdown = document.getElementById("dropdown");
-                    if (myDropdown.classList.contains('show')) {
-                        myDropdown.classList.remove('show');
-                    }
-                }
-            }
-        </script>
-        <script>
-            /* When the user clicks on the button, 
-            toggle between hiding and showing the dropdown content */
-            function schoolDropdown() {
-                document.getElementById("school-dropdown").classList.toggle("view");
-            }
-
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function(e) {
-                if (!e.target.matches('.dropbtn')) {
-                    var myDropdown = document.getElementById("school-dropdown");
-                    if (myDropdown.classList.contains('view')) {
-                        myDropdown.classList.remove('view');
-                    }
-                }
-            }
-        </script>
+        <?php } ?>
     </body>
     
 </html>

@@ -11,12 +11,18 @@
         $created_at = date('Y-m-d H:i:s');
         $updated_at = date('Y-m-d H:i:s');
         $type = $_POST['type'];
+        $status = $_POST['status'];
 
-        if($pdo->signup($name,$contact,$address,$school,$sport,$email,$password,$created_at,$updated_at,$type)){
-            echo "<script>alert('User Information has been saved successfully.');window.location.href='signin.php';</script>";
+        if(empty($pdo->checkEmail($email))){
+            if($pdo->signup($name,$contact,$address,$school,$sport,$email,$password,$created_at,$updated_at,$type,$status)){
+                echo "<script>alert('User Information has been saved successfully.');window.location.href='signin.php';</script>";
+            }else{
+                echo "<script>alert('Invalid Information');window.location.href='signup.php';</script>";
+            }
         }else{
-            echo "<script>alert('Invalid Information');window.location.href='signup.php';</script>";
+            echo "<script>alert('User email is existing.');window.location.href='signup.php';</script>";
         }
+        
     }
 ?>
 <html>
@@ -32,6 +38,7 @@
 
         <form method="post" class="signup-form">
             <input type="hidden" name="type" value="Coach">
+            <input type="hidden" name="status" value="Deactivated">
             <hr>
             <div class="container">
                 <small>Name</small>

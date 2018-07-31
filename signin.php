@@ -5,11 +5,16 @@
         $email = $_POST['email'];
         $password = md5($_POST['password']);
 
-        if($pdo->login($email,$password)){
-            $_SESSION['email'] = $email;
-            echo "<script>alert('Welcome to Bwas Damlag Web Application');window.location.href='index.php';</script>";
+        $status = $pdo->checkEmail($email);
+        if($status['status'] == 'Activated'){
+            if($pdo->login($email,$password)){
+                $_SESSION['email'] = $email;
+                echo "<script>alert('Welcome to Bwas Damlag Web Application');window.location.href='index.php';</script>";
+            }else{
+                echo "<script>alert('Invalid User Credentials');window.location.href='signin.php';</script>";
+            }
         }else{
-            echo "<script>alert('Invalid User Credentials');window.location.href='signin.php';</script>";
+            echo "<script>alert('The system administrator hasn't activated your account yet.);window.location.href='signin.php';</script>";
         }
     }
 ?>

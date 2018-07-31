@@ -39,7 +39,15 @@ input[type=email], input[type=password], input[type=text] {
 }
 
 .delete-button {
-    background-color: #4CAF50;
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.update-button {
+    background-color: rgb(255, 94, 0);
     color: white;
     padding: 14px 20px;
     border: none;
@@ -47,7 +55,7 @@ input[type=email], input[type=password], input[type=text] {
 }
 
 .edit-button{
-    background-color: #4CAF50;
+    background-color: blue;
     color: white;
     padding: 14px 20px;
     border: none;
@@ -167,7 +175,7 @@ select {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -191,4 +199,21 @@ select {
 
 .view {
     display: block;
+}
+
+.profile {
+    display: block;
+}
+
+.update-form {
+    width: 500px; 
+}
+
+.user-profile {
+    float: right;
+}
+
+.title {
+    margin: auto;
+    width: 1000px;
 }

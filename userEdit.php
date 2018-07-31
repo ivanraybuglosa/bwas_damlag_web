@@ -32,7 +32,7 @@
         <?php include_once('navbar.php'); ?>
             <center><h1>Edit User Information</h1></center>
 
-        <form method="post">
+        <form method="post" class="update-form">
             <input type="hidden" name="id" value="<?php echo $user['id']?>">
             <input type="hidden" name="updated_at" value="<?php echo date('Y-m-d H:i:s')?>">
             <hr>
@@ -62,7 +62,7 @@
                 <small>Password</small>
                 <input type="password" placeholder="Password" name="updatePassword" value="<?php echo md5($user['password'])?>">
                 <hr>  
-                <button name="update" type="submit">Update</button>
+                <button class="button" name="update" type="submit">Update</button>
             </div>
         </form>
     </body>
