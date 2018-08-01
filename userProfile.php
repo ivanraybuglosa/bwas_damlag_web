@@ -13,11 +13,8 @@
     </head>
     <body>
         <?php include_once('navbar.php'); ?>
-
-            
-                <center><h1><?php echo $user['name']?> - <?php echo $user['school']?> - <?php echo $user['sport']?></h1></center>
-            
-
+        <?php if($user['type'] ==  'Coach'){ ?>
+            <center><h1><?php echo $user['name']?> - <?php echo $user['school']?> - <?php echo $user['sport']?></h1></center>
             <div class="container">
             <center>
                 <h1>Current Athletes</h1>
@@ -48,6 +45,14 @@
                     </tbody>
                     </table>
             </center>
+        <?php }else{?>
+            <center><h1><?php echo $user['name']?> - <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?> - <?php echo $user['sport']?></h1></center>
+            <div class="container">
+            <center>   
+                    <h3>Under Maintenance</h3>
+                    <h3>[Showing stats per game]</h3>
+            </center>
+        <?php } ?>
         </div>
     </body>
 </html>

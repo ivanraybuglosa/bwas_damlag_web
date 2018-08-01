@@ -13,8 +13,13 @@
         $school = $_POST['updateSchool'];
         $sport = $_POST['updateSport'];
         $email = $_POST['updateEmail'];
-        $password = $_POST['updatePassword'];
         $updated_at = $_POST['updated_at'];
+        if($_POST['updatePassword'] == ""){
+            $password = $user['password'];
+        }else{
+            $password = md5($_POST['updatePassword']);
+        }
+        
 
         if($pdo->updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at)){
             echo "<script>alert('User Information has been saved.');window.location.href='index.php';</script>";
@@ -60,7 +65,7 @@
                 <small>Email Address</small> 
                 <input type="email" value="<?php echo $user['email']?>" name="updateEmail" required>
                 <small>Password</small>
-                <input type="password" placeholder="Password" name="updatePassword" value="<?php echo md5($user['password'])?>">
+                <input type="password" placeholder="Password" name="updatePassword">
                 <hr>  
                 <button class="button" name="update" type="submit">Update</button>
             </div>

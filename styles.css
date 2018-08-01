@@ -217,3 +217,8 @@ select {
     margin: auto;
     width: 1000px;
 }
+
+.view-profile {
+    text-decoration: none;
+    color: black;
+}

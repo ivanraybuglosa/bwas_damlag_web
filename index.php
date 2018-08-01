@@ -44,11 +44,16 @@
                     <tr>
                         <td><?php echo $user['name']; ?></td>
                         <td><?php echo $user['email']; ?></td>
-                        <td><?php echo $user['school']; ?></td>
+                        <td>
+                            <?php if(!empty($user['school'])){
+                                echo $user['school'];
+                            }else{
+                                echo $user['previous_school'];
+                            } ?></td>
                         <td><?php echo $user['sport']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td>
-                            <a class="edit-button" href="userEdit.php?id=<?php echo $user['id']?>">Edit</a>
+                            <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
                             <form method="post" class="delete-form">
                                 <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
                                 <button class="delete-button" type="submit" name="delete">Delete</button>
@@ -61,13 +66,14 @@
             </center>
         <?php }else{ ?>
             <center>
-            <h1>List of Registered Users</h1>
+            <h1>List of Registered Athletes</h1>
                 <table id="users">
                     <thead>
                         <tr>
                             <th>Username</th>
                             <th>E-mail</th>
                             <th>School</th>
+                            <th>Last School Attended</th>
                             <th>Contact Number</th>
                             <th>Address</th>
                             <th>Actions</th>
@@ -82,11 +88,14 @@
                     <tr>
                         <td><?php echo $user['name']; ?></td>
                         <td><?php echo $user['email']; ?></td>
-                        <td><?php echo $user['school']; ?></td>
+                        <td><?php if(empty($user['school'])){
+                            echo 'N/A';}
+                        ?></td>
+                        <td><?php echo $user['previous_school']; ?></td>
                         <td><?php echo $user['contact']; ?></td>
                         <td><?php echo $user['address']; ?></td>
                         <td>
-                            <a class="edit-button" href="userEdit.php?id=<?php echo $user['id']?>">Edit</a>
+                            <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
                             <form method="post" class="delete-form">
                                 <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
                                 <button class="delete-button" type="submit" name="delete">Delete</button>

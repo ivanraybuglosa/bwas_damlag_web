@@ -1,5 +1,8 @@
 <div class="navbar">
     <a href="index.php">Home</a>
+    <?php 
+        if($current_user['type'] == 'Admin'){
+    ?>
         <div class="dropdown">
             <button class="dropbtn" onclick="sportDropDown()">Sports</button>
             <div class="dropdown-content" id="dropdown">
@@ -18,10 +21,8 @@
                 <a href="school.php?school=CSAB">CSAB</a>
             </div>
         </div>
-        <?php
-            $email = $_SESSION['email'];
-            $current_user = $pdo->checkEmail($email);
-        ?>
+    <?php }?>
+        
         <?php if($current_user['type'] == 'Admin'){ ?>
             <a href="DeactivatedUsers.php" class="user-profile">Activate Coach Accounts</a>
         <?php } ?>
