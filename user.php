@@ -12,16 +12,15 @@
             $this->db = new DbConnect();
         }
         
-        public function isLoginExist($username, $password){
+        public function isLoginExist($email, $password){
             
-            $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
+            $query = "select * from ".$this->db_table." where email = '$email' AND password = '$password' Limit 1";
             
             $result = mysqli_query($this->db->getDb(), $query);
             
             if(mysqli_num_rows($result) > 0){
                 
                 mysqli_close($this->db->getDb());
-                
                 
                 return true;
                 
@@ -35,6 +34,11 @@
         
         public function createNewRegisterUser($name,$password,$email,$school,$address,$contactNumber,$sport){
               
+            if($sport == 'Select Sport'){
+                $json['success'] = 0;
+                $json['message'] = "Invalid Sport Selection";
+            }else{
+                
                 $passwordmd5 = md5($password);
                 $query = "insert into ".$this->db_table." (name, password, email, previous_school, contact, address, created_at, updated_at, type, sport, status) 
                 values ('$name', '$passwordmd5', '$email', '$school', '$contactNumber', '$address', NOW(), NOW(), 'Athlete', '$sport', 'Activated')";
@@ -45,25 +49,26 @@
                         $json['message'] = "Successfully Registered";
                 
                 mysqli_close($this->db->getDb());
+            }
             
             return $json;
-            
         }
+
         
-        public function loginUsers($username, $password){
+        public function loginUsers($email, $password){
             
-            $json = array();
             
-            $canUserLogin = $this->isLoginExist($username, $password);
+            $canUserLogin = $this->isLoginExist($email, $password);
             
-            if($canUserLogin){
+            if($canUserLogin==true){
                 
                 $json['success'] = 1;
                 $json['message'] = "Successfully logged in";
-                
             }else{
                 $json['success'] = 0;
                 $json['message'] = "Incorrect details";
+                
+            
             }
             return $json;
         }
