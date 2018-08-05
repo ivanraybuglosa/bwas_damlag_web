@@ -66,6 +66,7 @@
                 <small>Password</small>
                 <input type="password" placeholder="Password" name="password" required>
                 <hr>  
+                <small><a href="signin.php">Already have an account? Sign-in now!<a></small>
                 <button class="button" name="register" type="submit">Signup</button>
             </div>
         </form>

@@ -1,8 +1,11 @@
+
 <div class="navbar">
-    <a href="index.php">Home</a>
+    <a href="home.php">Home</a>
+    
     <?php 
         if($current_user['type'] == 'Admin'){
     ?>
+        <a href="index.php">Users</a>
         <div class="dropdown">
             <button class="dropbtn" onclick="sportDropDown()">Sports</button>
             <div class="dropdown-content" id="dropdown">
@@ -26,7 +29,7 @@
         <?php if($current_user['type'] == 'Admin'){ ?>
             <a href="DeactivatedUsers.php" class="user-profile">Activate Coach Accounts</a>
         <?php } ?>
-        
+        <input type="text" placeholder="Search..">
         <div class="dropdown user-profile">
             <button class="dropbtn" onclick="profileDropdown()"><?php echo $current_user['name']?></button>
             <div class="dropdown-content" id="profile-dropdown">

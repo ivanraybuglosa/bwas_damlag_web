@@ -15,7 +15,7 @@
 ?>
 <html>
     <head>
-        <title>Edit User</title>
+        <title>Activate Coaches</title>
         <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
@@ -49,7 +49,6 @@
                         <td><?php echo $user['contact']; ?></td>
                         <td><?php echo $user['address']; ?></td>
                         <td>
-                            <a class="edit-button" href="userEdit.php?id=<?php echo $user['id']?>">Edit</a>
                             <form method="post" class="delete-form">
                                 <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
                                 <button class="delete-button" type="submit" name="delete">Delete</button>
