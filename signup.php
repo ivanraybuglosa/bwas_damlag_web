@@ -32,7 +32,7 @@
     </head>
     <body>
             <div class="imgcontainer">
-                <img src="logo.png" alt="Avatar" class="avatar" style="width:250px; height:150px;">
+                <img src="images/logo.png" alt="Avatar" class="avatar" style="width:250px; height:150px;">
                 <h1>Coach Signup</h1>
             </div>
 

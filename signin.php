@@ -29,7 +29,7 @@
     <body>
         <div class="border">
             <div class="imgcontainer">
-                <img src="logo.png" alt="Avatar" class="avatar" style="width:350px; height:300px;">
+                <img src="images/logo.png" alt="Avatar" class="avatar" style="width:350px; height:300px;">
             </div>
             <form method="post" class="signin-form">
                 <div class="container">

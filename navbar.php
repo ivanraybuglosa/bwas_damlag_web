@@ -1,11 +1,18 @@
 
 <div class="navbar">
     <a href="home.php">Home</a>
-    
     <?php 
         if($current_user['type'] == 'Admin'){
     ?>
         <a href="index.php">Users</a>
+    <?php }else{ ?>
+        <a href="index.php"><?php echo $current_user['sport'];?> Athletes</a>
+    <?php } ?>
+
+    <?php 
+        if($current_user['type'] == 'Admin'){
+    ?>
+        
         <div class="dropdown">
             <button class="dropbtn" onclick="sportDropDown()">Sports</button>
             <div class="dropdown-content" id="dropdown">
@@ -14,6 +21,7 @@
                 <a href="sport.php?sport=Volleyball">Volleyball</a>
             </div>
         </div>
+        
         <div class="dropdown">
             <button class="dropbtn" onclick="schoolDropdown()">Schools</button>
             <div class="dropdown-content" id="school-dropdown">
@@ -25,11 +33,11 @@
             </div>
         </div>
     <?php }?>
-        
+            
         <?php if($current_user['type'] == 'Admin'){ ?>
             <a href="DeactivatedUsers.php" class="user-profile">Activate Coach Accounts</a>
         <?php } ?>
-        <input type="text" placeholder="Search..">
+        
         <div class="dropdown user-profile">
             <button class="dropbtn" onclick="profileDropdown()"><?php echo $current_user['name']?></button>
             <div class="dropdown-content" id="profile-dropdown">

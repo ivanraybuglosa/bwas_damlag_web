@@ -30,6 +30,7 @@
 
         p {
             text-indent: 50px;
+            line-height: 30px;
         }
 
         /* Hide the images by default */

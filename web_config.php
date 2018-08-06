@@ -182,5 +182,60 @@
                 return false;
             }
         }
+
+        public function searchUser($search){
+            $searched = "%$search%";
+            try{
+                $query = $this->db->prepare("SELECT * FROM users WHERE name LIKE :name AND type != 'Admin'");
+                $query->bindparam(":name", $searched);
+                $query->execute();
+                return $result = $query->fetchAll();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function searchAthlete($search,$sport){
+            $searched = "%$search%";
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE name LIKE :name AND sport=:sport AND type='Athlete'");
+                $query->bindparam(":sport", $sport);
+                $query->bindparam(":name", $searched);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function searchSportUsers($search,$sport){
+            $searched = "%$search%";
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE name LIKE :name AND sport=:sport");
+                $query->bindparam(":sport", $sport);
+                $query->bindparam(":name", $searched);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function searchSchoolUsers($search,$school){
+            $searched = "%$search%";
+            try{
+                $query = $this->db->prepare("SELECT * from users WHERE name LIKE :name AND school=:school");
+                $query->bindparam(":school", $school);
+                $query->bindparam(":name", $searched);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>
