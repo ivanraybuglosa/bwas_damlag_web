@@ -61,8 +61,9 @@
                             <th>Username</th>
                             <th>E-mail</th>
                             <th>School</th>
-                            <th>Contact Number</th>
-                            <th>Address</th>
+                            <th>Sport</th>
+                            <th>Gender</th>
+                            <th>Type</th>
                             <th>Actions</th>
                         <tr>
                 </thead>
@@ -82,6 +83,7 @@
                                 echo $searchUser['previous_school'];
                             } ?></td>
                         <td><?php echo $searchUser['sport']; ?></td>
+                        <td><?php echo $searchUser['gender']; ?></td>
                         <td><?php echo $searchUser['type']; ?></td>
                         <td>
                             <a class="view-profile" href="userProfile.php?id=<?php echo $searchUser['id']?>">View Profile</a>
@@ -103,8 +105,9 @@
                             <th>Username</th>
                             <th>E-mail</th>
                             <th>School</th>
-                            <th>Contact Number</th>
-                            <th>Address</th>
+                            <th>Sport</th>
+                            <th>Gender</th>
+                            <th>Type</th>
                             <th>Actions</th>
                         <tr>
                 </thead>
@@ -124,6 +127,7 @@
                                 echo $user['previous_school'];
                             } ?></td>
                         <td><?php echo $user['sport']; ?></td>
+                        <td><?php echo $user['gender']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td>
                             <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
@@ -157,7 +161,7 @@
                             <th>E-mail</th>
                             <th>School</th>
                             <th>Last School Attended</th>
-                            <th>Contact Number</th>
+                            <th>Gender</th>
                             <th>Address</th>
                             <th>Actions</th>
                         <tr>
@@ -175,6 +179,7 @@
                             echo 'N/A';}
                         ?></td>
                         <td><?php echo $athlete['previous_school']; ?></td>
+                        <td><?php echo $athlete['gender']; ?></td>
                         <td><?php echo $athlete['contact']; ?></td>
                         <td><?php echo $athlete['address']; ?></td>
                         <td>
@@ -196,7 +201,8 @@
                             <th>E-mail</th>
                             <th>School</th>
                             <th>Last School Attended</th>
-                            <th>Contact Number</th>
+                            <th>Gender</th>
+                            <th>Contact</th>
                             <th>Address</th>
                             <th>Actions</th>
                         <tr>
@@ -214,6 +220,7 @@
                             echo 'N/A';}
                         ?></td>
                         <td><?php echo $user['previous_school']; ?></td>
+                        <td><?php echo $user['gender']; ?></td>
                         <td><?php echo $user['contact']; ?></td>
                         <td><?php echo $user['address']; ?></td>
                         <td>

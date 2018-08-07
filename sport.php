@@ -36,55 +36,6 @@
     <body>
         <?php include('navbar.php') ?>
         <center><h1><?php echo $getSport ?></h1>
-
-        <form method="post">
-            <input type="text" name="sport" placeholder="Search All Users">
-        </form>
-            <?php 
-                if(isset($_POST['sport'])){
-                    $sport = $_POST['sport'];
-            ?>
-                <table id="users">
-                <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>E-mail</th>
-                            <th>Contact Number</th>
-                            <th>School</th>
-                            <th>Type</th>
-                            <th>Actions</th>
-                        <tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $searchSports = $pdo->searchSportUsers($sport,$getSport);
-                        if(is_array($searchSports) && !empty($searchSports)){
-                            foreach($searchSports as $searchSport){
-                    ?>
-                    <tr>
-                        <td><?php echo $searchSport['name']; ?></td>
-                        <td><?php echo $searchSport['email']; ?></td>
-                        <td><?php echo $searchSport['contact']; ?></td>
-                        <td><?php if(empty($searchSport['school'])){
-                                    echo $searchSport['previous_school'];
-                            }else{
-                                echo $searchSport['school'];
-                            } ?></td>
-                        <td><?php echo $searchSport['type']; ?></td>
-                        <td>
-                            <a class="view-profile" href="userProfile.php?id=<?php echo $searchSport['id']?>">View Profile</a>
-                            <form method="post" class="delete-form">
-                                <input type="hidden" name="id" value="<?php echo $searchSport['id']?>"/>
-                                <button class="delete-button" type="submit" name="delete">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php } }?>
-                </tbody>
-            </table>
-
-
-            <?php }else{ ?>
                 <table id="users">
                 <thead>
                         <tr>
@@ -92,6 +43,7 @@
                             <th>E-mail</th>
                             <th>Contact</th>
                             <th>School</th>
+                            <th>Gender</th>
                             <th>Type</th>
                             <th>Actions</th>
                         <tr>
@@ -111,6 +63,7 @@
                             }else{
                                 echo $user['school'];
                             } ?></td>
+                        <td><?php echo $user['gender']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td>
                             <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
@@ -123,7 +76,6 @@
                     <?php } }?>
                 </tbody>
             </table>
-            <?php } ?>
             </center>
     </body>
 </html>

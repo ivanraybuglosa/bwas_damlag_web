@@ -7,6 +7,8 @@
         $school = $_POST['school'];
         $sport = $_POST['sport'];
         $email = $_POST['email'];
+        $birthdate = $_POST['birthdate'];
+        $gender = $_POST['gender'];
         $password = md5($_POST['password']);
         $created_at = date('Y-m-d H:i:s');
         $updated_at = date('Y-m-d H:i:s');
@@ -14,7 +16,7 @@
         $status = $_POST['status'];
 
         if(empty($pdo->checkEmail($email))){
-            if($pdo->signup($name,$contact,$address,$school,$sport,$email,$password,$created_at,$updated_at,$type,$status)){
+            if($pdo->signup($name,$contact,$address,$school,$sport,$email,$birthdate,$gender,$password,$created_at,$updated_at,$type,$status)){
                 echo "<script>alert('User Information has been saved successfully.');window.location.href='signin.php';</script>";
             }else{
                 echo "<script>alert('Invalid Information');window.location.href='signup.php';</script>";
@@ -47,6 +49,8 @@
                 <input type="text" placeholder="Contact Number" name="contact" required>
                 <small>Address</small>
                 <input type="text" placeholder="Address" name="address" required>
+                <small>Birthdate</small>
+                <input type="date" name="birthdate" required>
                 <small>School</small>
                 <select name="school">
                     <option value="UNOR">University of Negros Occidental - Recoletos</option>
@@ -65,6 +69,11 @@
                 <input type="email" placeholder="Email Address" name="email" required>
                 <small>Password</small>
                 <input type="password" placeholder="Password" name="password" required>
+                
+                <center class="padding">
+                    <input type="radio" name="gender" value="Male" required>Male
+                    <input type="radio" name="gender" value="Female" required>Female
+                </center>
                 <hr>  
                 <small><a href="signin.php">Already have an account? Sign-in now!<a></small>
                 <button class="button" name="register" type="submit">Signup</button>

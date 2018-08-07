@@ -21,15 +21,17 @@
             }
         }
 
-        public function signup($name,$contact,$address,$school,$sport,$email,$password,$created_at,$updated_at,$type,$status){
+        public function signup($name,$contact,$address,$school,$sport,$email,$birthdate,$gender,$password,$created_at,$updated_at,$type,$status){
             try{
-                $query = $this->db->prepare("INSERT INTO users(name,contact,address,school,sport,email,password,created_at,updated_at,type,status) VALUES(:name, :contact, :address, :school, :sport, :email, :password, :created_at, :updated_at, :type, :status)");
+                $query = $this->db->prepare("INSERT INTO users(name,contact,address,school,sport,email,birthdate,gender,password,created_at,updated_at,type,status) VALUES(:name, :contact, :address, :school, :sport, :email, :birthdate, :gender, :password, :created_at, :updated_at, :type, :status)");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":contact", $contact);
                 $query->bindparam(":address", $address);
                 $query->bindparam(":school", $school);
                 $query->bindparam(":sport", $sport);
                 $query->bindparam(":email", $email);
+                $query->bindparam(":birthdate", $birthdate);
+                $query->bindparam(":gender", $gender);
                 $query->bindparam(":password", $password);
                 $query->bindparam(":created_at", $created_at);
                 $query->bindparam(":updated_at", $updated_at);
