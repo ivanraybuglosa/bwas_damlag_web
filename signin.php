@@ -37,7 +37,7 @@
                     <input type="email" placeholder="Email Address" name="email" required>
                     <small>Password</small>
                     <input type="password" placeholder="Password" name="password" required>
-                    <small><a href="signup.php">Create an account</a></small> 
+                    <small><a href="signup.php">Don't have an account yet? Register Now!</a></small> 
                     <button class="button" name="login" type="submit">Login</button>
                 </div>
             </form>

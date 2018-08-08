@@ -239,5 +239,16 @@
                 return false;
             }
         }
+        
+        public function retrieveSports(){
+            try{
+                $query = $this->db->prepare("SELECT * from sports");
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(Exception $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>
