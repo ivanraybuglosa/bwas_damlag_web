@@ -103,7 +103,7 @@
 
         public function fetchUsers(){
             try{
-                $query = $this->db->prepare("SELECT * from users WHERE type!='Admin'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN sports ON users.sports_id = sports.sports_id WHERE type!='Admin'");
                 $query->execute();
                 return $request = $query->fetchAll();
             }catch(Exception $e){
@@ -150,7 +150,7 @@
 
         public function fetchSchool($school){
             try{
-                $query = $this->db->prepare("SELECT * from users WHERE school='$school' AND status='Activated'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN sports ON users.sports_id = sports.sports_id WHERE school='$school' AND status='Activated'");
                 $query->bindparam(":school", $school);
                 $query->execute();
                 return $request = $query->fetchAll();
@@ -188,7 +188,7 @@
         public function searchUser($search){
             $searched = "%$search%";
             try{
-                $query = $this->db->prepare("SELECT * FROM users WHERE name LIKE :name AND type != 'Admin'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN sports ON users.sports_id = sports.sports_id WHERE name LIKE :name AND type != 'Admin'");
                 $query->bindparam(":name", $searched);
                 $query->execute();
                 return $result = $query->fetchAll();
@@ -201,7 +201,7 @@
         public function searchAthlete($search,$sport){
             $searched = "%$search%";
             try{
-                $query = $this->db->prepare("SELECT * from users WHERE name LIKE :name AND sport=:sport AND type='Athlete'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN sports ON users.sports_id = sports.sports_id WHERE name LIKE :name AND sport=:sport AND type='Athlete'");
                 $query->bindparam(":sport", $sport);
                 $query->bindparam(":name", $searched);
                 $query->execute();

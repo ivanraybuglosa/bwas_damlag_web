@@ -19,7 +19,25 @@
     </head>
     <body>
         <?php include('navbar.php') ?>
-
+        <style> 
+            input[type=text] {
+                width: 200px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                background-color: white;
+                background-image: url('images/search.png');
+                background-position: 5px 7px; 
+                background-repeat: no-repeat;
+                padding: 12px 20px 12px 40px;
+                -webkit-transition: width 0.4s ease-in-out;
+                transition: width 0.4s ease-in-out;
+            }
+            input[type=text]:focus {
+                width: 100%;
+            }
+        </style>
         <?php 
             if($current_user['type'] == 'Admin'){?>
             <center>
@@ -62,7 +80,7 @@
                             }else{
                                 echo $searchUser['previous_school'];
                             } ?></td>
-                        <td><?php echo $searchUser['sport']; ?></td>
+                        <td><?php echo $searchUser['sports_name']; ?></td>
                         <td><?php echo $searchUser['gender']; ?></td>
                         <td><?php echo $searchUser['type']; ?></td>
                         <td>
@@ -106,7 +124,7 @@
                             }else{
                                 echo $user['previous_school'];
                             } ?></td>
-                        <td><?php echo $user['sport']; ?></td>
+                        <td><?php echo $user['sports_name']; ?></td>
                         <td><?php echo $user['gender']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td>
