@@ -139,6 +139,8 @@ select {
     overflow: hidden;
     background-color: #333;
     font-family: Arial, sans-serif;
+    margin: -8px;
+    padding: 7px;
     
 }
 
@@ -239,4 +241,15 @@ select {
 
 .padding {
     padding: 15px 15px;
+}
+
+.search-button {
+    padding: 15px 18px;
+    background-color: #db4c42;
+    border: none;
+    color: white;
+}
+
+.brand-logo {
+    font-size: 25px !important;
 }

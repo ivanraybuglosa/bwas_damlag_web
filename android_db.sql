@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2018 at 04:55 PM
+-- Generation Time: Aug 11, 2018 at 07:00 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -76,70 +76,6 @@ CREATE TABLE `football` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `positions`
---
-
-CREATE TABLE `positions` (
-  `position_id` int(11) NOT NULL,
-  `position_name` text NOT NULL,
-  `sports_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `positions`
---
-
-INSERT INTO `positions` (`position_id`, `position_name`, `sports_id`) VALUES
-(1, 'Point Guard', 1),
-(2, 'Shooting Guard', 1),
-(3, 'Small Forward', 1),
-(4, 'Power Forward', 1),
-(5, 'Center', 1),
-(6, 'Point Guard', 2),
-(7, 'Shooting Guard', 1),
-(8, 'Small Forward', 1),
-(9, 'Power Forward', 1),
-(10, 'Goal Keeper', 3),
-(11, 'Center Back', 3),
-(12, 'Right Back', 3),
-(13, 'Left Back', 3),
-(14, 'Center Middle Field', 3),
-(15, 'Left Middle Field', 3),
-(16, 'Right Middle Field', 3),
-(17, 'Center Forward', 3),
-(18, 'Left Wing', 3),
-(19, 'Right Wing', 3),
-(20, 'Outside Hitter', 2),
-(21, 'Rightside Hitter', 2),
-(22, 'Opposite Hitter', 2),
-(23, 'Setter', 2),
-(24, 'Middle Blocker', 2),
-(25, 'Libero', 2),
-(26, 'Defensive Specialist', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sports`
---
-
-CREATE TABLE `sports` (
-  `sports_id` int(11) NOT NULL,
-  `sports_name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sports`
---
-
-INSERT INTO `sports` (`sports_id`, `sports_name`) VALUES
-(1, 'Basketball'),
-(2, 'Volleyball'),
-(3, 'Football');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -154,8 +90,8 @@ CREATE TABLE `users` (
   `address` varchar(100) DEFAULT NULL,
   `birthdate` date NOT NULL,
   `gender` text NOT NULL,
-  `sports_id` int(2) DEFAULT NULL,
-  `position_id` int(11) DEFAULT NULL,
+  `sport` text,
+  `position` text,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `type` text NOT NULL,
@@ -166,18 +102,18 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_school`, `contact`, `address`, `birthdate`, `gender`, `sports_id`, `position_id`, `created_at`, `updated_at`, `type`, `status`) VALUES
+INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_school`, `contact`, `address`, `birthdate`, `gender`, `sport`, `position`, `created_at`, `updated_at`, `type`, `status`) VALUES
 (24, 'Administrator', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', NULL, NULL, NULL, NULL, '1978-12-06', 'Male', NULL, NULL, '2018-07-31 23:07:32', '2018-07-31 23:07:32', 'Admin', 'Activated'),
-(25, 'Jerome Aledron', '39ea2bf6a4d98585851d2bd07f0d13d1', 'jerome@gmail.com', 'UNOR', NULL, '09123131321', 'AddressAddressAddressAddress', '1978-12-06', 'Male', 1, NULL, '2018-07-31 23:12:23', '2018-08-05 23:42:50', 'Coach', 'Activated'),
-(26, 'Ivan Ray Buglosa', '39ea2bf6a4d98585851d2bd07f0d13d1', 'ivan@gmail.com', 'USLS', NULL, '231313131', 'asdadadsa', '1978-12-06', 'Male', 2, NULL, '2018-08-01 00:24:46', '2018-08-01 00:24:46', 'Coach', 'Activated'),
-(29, 'john wick', '39ea2bf6a4d98585851d2bd07f0d13d1', 'wick@gmail.com', NULL, 'sumag ', '092412421421', 'afdasfsafasfdasfda', '1978-12-06', 'Male', 1, NULL, '2018-08-02 00:23:54', '2018-08-02 00:23:54', 'Athlete', 'Activated'),
-(31, 'Roger Jaime', 'b911af807c2df88d671bd7004c54c1c2', 'Roger@yahoo.com', NULL, 'usls', '4461039', 'Bacolod City ', '1978-12-06', 'Male', 2, NULL, '2018-08-03 00:57:30', '2018-08-03 00:57:30', 'Athlete', 'Activated'),
-(32, 'Xenon Debulgado', '43c1cb1c1cf84a689b551d8dd1b13190', 'Xenonsky@gmail.com', NULL, 'usls', '1234567890', 'Bacolod City', '1978-12-06', 'Male', 3, NULL, '2018-08-03 01:01:35', '2018-08-03 01:01:35', 'Athlete', 'Activated'),
-(33, 'coach', '39ea2bf6a4d98585851d2bd07f0d13d1', 'dsadada@gmail.com', 'LCC', NULL, '0912313', 'coach', '1978-12-06', 'Male', 3, NULL, '2018-08-05 14:26:41', '2018-08-05 14:26:41', 'Coach', 'Activated'),
-(34, 'vicmar yanson', '39ea2bf6a4d98585851d2bd07f0d13d1', 'vicmar@gmail.com', 'USLS', NULL, '09312313132131', 'address', '1978-12-06', 'Male', 2, NULL, '2018-08-07 22:42:50', '2018-08-07 22:42:50', 'Coach', 'Deactivated'),
-(35, 'vicmar yanson', '1990-08-07', 'yanson@gmail.com', 'USLS', NULL, '09321313132', 'dadasdsa', '1978-12-06', 'Male', 3, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Athlete', 'Activated'),
-(36, 'asdasdasd', '39ea2bf6a4d98585851d2bd07f0d13d1', 'asdasd@gmail.com', 'LCC', NULL, '2313131321', 'address', '1978-12-06', 'Male', 3, NULL, '2018-08-07 22:48:26', '2018-08-07 22:48:26', 'Coach', 'Deactivated'),
-(37, 'dasdad', '00924930273acce5928b1f11e4986604', 'dasdad@gmail.com', 'LCC', NULL, '12313131', 'Addresssss', '1978-12-06', 'Male', 1, NULL, '2018-08-07 22:50:32', '2018-08-07 22:50:32', 'Coach', 'Deactivated');
+(25, 'Jerome Aledron', '39ea2bf6a4d98585851d2bd07f0d13d1', 'jerome@gmail.com', 'UNOR', NULL, '09123131321', 'AddressAddressAddressAddress', '1978-12-06', 'Male', 'Basketball', NULL, '2018-07-31 23:12:23', '2018-08-05 23:42:50', 'Coach', 'Activated'),
+(26, 'Ivan Ray Buglosa', '39ea2bf6a4d98585851d2bd07f0d13d1', 'ivan@gmail.com', 'USLS', NULL, '231313131', 'asdadadsa', '1978-12-06', 'Male', 'Volleyball', NULL, '2018-08-01 00:24:46', '2018-08-01 00:24:46', 'Coach', 'Activated'),
+(29, 'john wick', '39ea2bf6a4d98585851d2bd07f0d13d1', 'wick@gmail.com', NULL, 'sumag ', '092412421421', 'afdasfsafasfdasfda', '1978-12-06', 'Male', 'Football', 'Striker', '2018-08-02 00:23:54', '2018-08-02 00:23:54', 'Athlete', 'Activated'),
+(31, 'Roger Jaime', 'b911af807c2df88d671bd7004c54c1c2', 'Roger@yahoo.com', NULL, 'usls', '4461039', 'Bacolod City ', '1978-12-06', 'Male', 'Basketball', 'Point Guard', '2018-08-03 00:57:30', '2018-08-03 00:57:30', 'Athlete', 'Activated'),
+(32, 'Xenon Debulgado', '43c1cb1c1cf84a689b551d8dd1b13190', 'Xenonsky@gmail.com', NULL, 'usls', '1234567890', 'Bacolod City', '1978-12-06', 'Male', 'Football', 'Goal Keeper', '2018-08-03 01:01:35', '2018-08-03 01:01:35', 'Athlete', 'Activated'),
+(33, 'coach', '39ea2bf6a4d98585851d2bd07f0d13d1', 'dsadada@gmail.com', 'LCC', NULL, '0912313', 'coach', '1978-12-06', 'Male', 'Volleyball', NULL, '2018-08-05 14:26:41', '2018-08-05 14:26:41', 'Coach', 'Activated'),
+(34, 'vicmar yanson', '39ea2bf6a4d98585851d2bd07f0d13d1', 'vicmar@gmail.com', 'USLS', NULL, '09312313132131', 'address', '1978-12-06', 'Male', 'Basketball', NULL, '2018-08-07 22:42:50', '2018-08-07 22:42:50', 'Coach', 'Deactivated'),
+(35, 'vicmar yanson', '1990-08-07', 'yanson@gmail.com', 'USLS', NULL, '09321313132', 'dadasdsa', '1978-12-06', 'Male', 'Football', 'Center Defender', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Athlete', 'Activated'),
+(36, 'asdasdasd', '39ea2bf6a4d98585851d2bd07f0d13d1', 'asdasd@gmail.com', 'LCC', NULL, '2313131321', 'address', '1978-12-06', 'Male', 'Volleyball', NULL, '2018-08-07 22:48:26', '2018-08-07 22:48:26', 'Coach', 'Deactivated'),
+(37, 'dasdad', '00924930273acce5928b1f11e4986604', 'dasdad@gmail.com', 'LCC', NULL, '12313131', 'Addresssss', '1978-12-06', 'Male', 'Basketball', NULL, '2018-08-07 22:50:32', '2018-08-07 22:50:32', 'Coach', 'Deactivated');
 
 -- --------------------------------------------------------
 
@@ -224,18 +160,6 @@ ALTER TABLE `football`
   ADD PRIMARY KEY (`football_id`);
 
 --
--- Indexes for table `positions`
---
-ALTER TABLE `positions`
-  ADD PRIMARY KEY (`position_id`);
-
---
--- Indexes for table `sports`
---
-ALTER TABLE `sports`
-  ADD PRIMARY KEY (`sports_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -262,18 +186,6 @@ ALTER TABLE `basketball`
 --
 ALTER TABLE `football`
   MODIFY `football_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `positions`
---
-ALTER TABLE `positions`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `sports`
---
-ALTER TABLE `sports`
-  MODIFY `sports_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

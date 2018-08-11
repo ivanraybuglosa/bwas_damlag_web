@@ -57,10 +57,10 @@
                     <option value="USA" <?php if($user['school'] == 'USA'){ echo 'selected'; } ?>>University of San Agustin</option>
                 </select>
                 <small>Sport</small> 
-                <select name="updateSport">
-                    <option value="Football" <?php if($user['sport'] == 'Football'){ echo 'selected'; } ?>>Football</option>
+                <select name="updateSchool">
                     <option value="Basketball" <?php if($user['sport'] == 'Basketball'){ echo 'selected'; } ?>>Basketball</option>
                     <option value="Volleyball" <?php if($user['sport'] == 'Volleyball'){ echo 'selected'; } ?>>Volleyball</option>
+                    <option value="Football" <?php if($user['sport'] == 'Football'){ echo 'selected'; } ?>>Football</option>
                 </select>
                 <small>Email Address</small> 
                 <input type="email" value="<?php echo $user['email']?>" name="updateEmail" required>

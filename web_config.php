@@ -103,7 +103,7 @@
 
         public function fetchUsers(){
             try{
-                $query = $this->db->prepare("SELECT * FROM users INNER JOIN sports ON users.sports_id = sports.sports_id WHERE type!='Admin'");
+                $query = $this->db->prepare("SELECT * FROM users WHERE type!='Admin'");
                 $query->execute();
                 return $request = $query->fetchAll();
             }catch(Exception $e){
@@ -127,7 +127,7 @@
 
         public function fetchAllAthletes($sport){
             try{
-                $query = $this->db->prepare("SELECT * from users WHERE sport=:sport AND type='Athlete'");
+                $query = $this->db->prepare("SELECT * FROM users WHERE sport=:sport AND type='Athlete'");
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
@@ -198,12 +198,25 @@
             }
         }
 
-        public function searchAthlete($search,$sport){
-            $searched = "%$search%";
+        public function searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$sport){
+            $Athlete = "%$searchAthlete%";
+            $Gender = "%$searchGender%";
+            $School = "%$searchSchool%";
+            $now = date('Y-m-d');
+            $date = DateTime::createFromFormat('Y-m-d',$now);
+            $date->modify("-7 years");
+            $age = $date->format('Y-m-d');
             try{
-                $query = $this->db->prepare("SELECT * FROM users INNER JOIN sports ON users.sports_id = sports.sports_id WHERE name LIKE :name AND sport=:sport AND type='Athlete'");
+                $query = $this->db->prepare("SELECT * FROM users
+                                            WHERE name LIKE :name OR 
+                                                school LIKE :school OR 
+                                                gender LIKE :gender AND
+                                                sport=:sport AND
+                                                type='Athlete'");
+                $query->bindparam(":name", $searchAthlete);
+                $query->bindparam(":gender", $searchGender);
+                $query->bindparam(":school", $searchSchool);
                 $query->bindparam(":sport", $sport);
-                $query->bindparam(":name", $searched);
                 $query->execute();
                 return $request = $query->fetchAll();
             }catch(Exception $e){

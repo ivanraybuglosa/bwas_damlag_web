@@ -20,7 +20,7 @@
     <body>
         <?php include('navbar.php') ?>
         <style> 
-            input[type=text] {
+            input[type=text], input[type=number], select{
                 width: 200px;
                 box-sizing: border-box;
                 border: 2px solid #ccc;
@@ -33,9 +33,6 @@
                 padding: 12px 20px 12px 40px;
                 -webkit-transition: width 0.4s ease-in-out;
                 transition: width 0.4s ease-in-out;
-            }
-            input[type=text]:focus {
-                width: 100%;
             }
         </style>
         <?php 
@@ -145,12 +142,25 @@
             <h1>List of Registered Athletes</h1>
 
             <form method="post">
-                <input type="text" name="searchAthlete" placeholder="Search All Athletes">
+                <input type="text" name="searchAthlete" placeholder="Athlete Name">
+                <input type="text" name="searchPosition" placeholder="Position">
+                <select name="searchGender">
+                    <option>Search Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <input type="text" name="searchSchool" placeholder="School">
+                <input type="number" name="searchAge" placeholder="Age" min="0" max="100">
+                <button class="search-button" name="search-submit" type="submit">Search</button>
             </form>
 
             <?php 
-                if(isset($_POST['searchAthlete']) && $current_user['type'] == 'Coach'){
-                    $search = $_POST['searchAthlete'];
+                if(isset($_POST['search-submit']) && $current_user['type'] == 'Coach'){
+                    $searchAthlete = $_POST['searchAthlete'];
+                    $searchPosition = $_POST['searchPosition'];
+                    $searchGender = $_POST['searchGender'];
+                    $searchSchool = $_POST['searchSchool'];
+                    $searchAge = $_POST['searchAge'];
             ?>
                 <table id="users">
                     <thead>
@@ -160,13 +170,14 @@
                             <th>School</th>
                             <th>Last School Attended</th>
                             <th>Gender</th>
+                            <th>Contact Number</th>
                             <th>Address</th>
                             <th>Actions</th>
                         <tr>
                 </thead>
                 <tbody>
                     <?php 
-                        $athletes = $pdo->searchAthlete($search,$current_user['sport']);
+                        $athletes = $pdo->searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$current_user['sport']);
                         if(is_array($athletes) && !empty($athletes)){
                             foreach($athletes as $athlete){
                     ?>
@@ -200,7 +211,7 @@
                             <th>School</th>
                             <th>Last School Attended</th>
                             <th>Gender</th>
-                            <th>Contact</th>
+                            <th>Contact Number</th>
                             <th>Address</th>
                             <th>Actions</th>
                         <tr>

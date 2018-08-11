@@ -1,5 +1,6 @@
 
-<div class="navbar">
+<nav class="navbar">
+    <strong><a class="brand-logo" href="home.php">BWAS DAMLAG</a></strong>
     <a href="home.php">Home</a>
     <?php 
         if($current_user['type'] == 'Admin'){
@@ -53,7 +54,7 @@
                 
             </div> 
         </div>
-</div>
+</nav>
 
 <script>
             /* When the user clicks on the button, 
