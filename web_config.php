@@ -199,23 +199,24 @@
         }
 
         public function searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$sport){
-            $Athlete = "%$searchAthlete%";
-            $Gender = "%$searchGender%";
-            $School = "%$searchSchool%";
+            // $Athlete = "%$searchAthlete%";
+            // $Gender = "%$searchGender%";
+            // $School = "%$searchSchool%";
             $now = date('Y-m-d');
-            $date = DateTime::createFromFormat('Y-m-d',$now);
-            $date->modify("-7 years");
-            $age = $date->format('Y-m-d');
+            $date = strtotime($now."-".$searchAge." year");
+            $age = date('Y-m-d', $date);
             try{
                 $query = $this->db->prepare("SELECT * FROM users
                                             WHERE name LIKE :name OR 
-                                                school LIKE :school OR 
+                                                school LIKE :school OR
+                                                birthdate LIKE :age OR 
                                                 gender LIKE :gender AND
                                                 sport=:sport AND
                                                 type='Athlete'");
                 $query->bindparam(":name", $searchAthlete);
                 $query->bindparam(":gender", $searchGender);
                 $query->bindparam(":school", $searchSchool);
+                $query->bindparam(":age", $age);
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
