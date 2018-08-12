@@ -199,7 +199,7 @@
             }
         }
 
-        public function searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$sport){
+        public function searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$searchPosition,$sport){
             // $Athlete = "%$searchAthlete%";
             // $Gender = "%$searchGender%";
             // $School = "%$searchSchool%";
@@ -211,11 +211,13 @@
                                             WHERE (name LIKE :name AND sport=:sport AND type='Athlete')  OR 
                                                 (school LIKE :school AND sport=:sport AND type='Athlete') OR
                                                 (birthdate LIKE :age AND sport=:sport AND type='Athlete') OR 
-                                                (gender LIKE :gender AND sport=:sport AND type='Athlete')");
+                                                (gender LIKE :gender AND sport=:sport AND type='Athlete') OR
+                                                (position LIKE :position AND sport=:sport AND type='Athlete')");
                 $query->bindparam(":name", $searchAthlete);
                 $query->bindparam(":gender", $searchGender);
                 $query->bindparam(":school", $searchSchool);
                 $query->bindparam(":age", $age);
+                $query->bindparam(":position", $searchPosition);
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
