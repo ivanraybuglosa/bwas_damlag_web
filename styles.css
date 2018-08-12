@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 form {
@@ -25,6 +25,7 @@ input[type=email], input[type=password], input[type=text], input[type=date] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 
 .button {
@@ -39,19 +40,24 @@ input[type=email], input[type=password], input[type=text], input[type=date] {
 }
 
 .delete-button {
-    background-color: red;
+    background-color: #d13333;
     color: white;
-    padding: 14px 20px;
+    padding: 15px 20px;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif;
+    
 }
 
 .update-button {
-    background-color: rgb(255, 94, 0);
+    background-color: #2faf6b;
     color: white;
-    padding: 14px 20px;
+    padding: 15px 20px;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif;
 }
 
 .edit-button{
@@ -84,8 +90,10 @@ img.avatar {
 }
 
 .container {
-    padding: 16px;
+    width:1200px;
+    margin: auto;
 }
+
 
 span.psw {
     float: right;
@@ -113,7 +121,7 @@ select {
 }
 
 #users {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
@@ -138,7 +146,7 @@ select {
 .navbar {
     overflow: hidden;
     background-color: #333;
-    font-family: Arial, sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin: -8px;
     padding: 7px;
     
@@ -163,6 +171,10 @@ select {
     text-decoration: none;
 }
 
+.navbar .list {
+    margin-top: 5px;
+}
+
 .dropdown {
     float: left;
     overflow: hidden;
@@ -180,9 +192,7 @@ select {
     margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-    background-color: red;
-}
+
 
 .dropdown-content {
     display: none;
@@ -234,9 +244,10 @@ select {
 .view-profile {
     text-decoration: none;
     color: white;
-    background-color: blue;
+    background-color: #3470d1;
     border: 1px solid;
     padding: 12px 12px;
+    border-radius: 5px;
 }
 
 .padding {
@@ -244,12 +255,27 @@ select {
 }
 
 .search-button {
-    padding: 15px 18px;
+    padding: 16px 21px;
     background-color: #db4c42;
     border: none;
     color: white;
+    border-radius: 5px;
 }
 
 .brand-logo {
     font-size: 25px !important;
+}
+
+.table {
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.image {
+    height: 200px;
+    width: 200px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 50%;
+    
 }

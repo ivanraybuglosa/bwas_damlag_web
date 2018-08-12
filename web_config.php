@@ -57,9 +57,9 @@
             }
         }
 
-        public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at){
+        public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$image){
             try{
-                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at WHERE id=:id");
+                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at, image=:image WHERE id=:id");
                 $query->bindparam(":id", $id);
                 $query->bindparam(":name", $name);
                 $query->bindparam(":contact", $contact);
@@ -69,6 +69,7 @@
                 $query->bindparam(":email", $email);
                 $query->bindparam(":password", $password);
                 $query->bindparam(":updated_at", $updated_at);
+                $query->bindparam(":image", $image);
                 $query->execute();
                 return true;
             }catch(PDOException $e){
@@ -207,12 +208,10 @@
             $age = date('Y-m-d', $date);
             try{
                 $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE name LIKE :name OR 
-                                                school LIKE :school OR
-                                                birthdate LIKE :age OR 
-                                                gender LIKE :gender AND
-                                                sport=:sport AND
-                                                type='Athlete'");
+                                            WHERE (name LIKE :name AND sport=:sport AND type='Athlete')  OR 
+                                                (school LIKE :school AND sport=:sport AND type='Athlete') OR
+                                                (birthdate LIKE :age AND sport=:sport AND type='Athlete') OR 
+                                                (gender LIKE :gender AND sport=:sport AND type='Athlete')");
                 $query->bindparam(":name", $searchAthlete);
                 $query->bindparam(":gender", $searchGender);
                 $query->bindparam(":school", $searchSchool);

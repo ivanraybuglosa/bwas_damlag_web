@@ -19,13 +19,29 @@
         }else{
             $password = md5($_POST['updatePassword']);
         }
+
+        // File upload path
+        $targetDir = "uploads/";
+        $fileName = basename($_FILES["image"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+
+            // Allow certain file formats
+            $allowTypes = array('jpg','png','jpeg','gif','pdf');
+            if(in_array($fileType, $allowTypes)){
+                // Upload file to server
+                if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
+                    // Insert image file name into database
+                    if($pdo->updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$fileName)){
+                        echo "<script>alert('User Information has been saved.');window.location.href='index.php';</script>";
+                    }else{
+                        echo "<script>alert('User update failed.');window.location.href='editUser.php?id=".$id."';</script>";
+                    }
+                }
+            }
         
 
-        if($pdo->updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at)){
-            echo "<script>alert('User Information has been saved.');window.location.href='index.php';</script>";
-        }else{
-            echo "<script>alert('User update failed.');window.location.href='editUser.php?id=".$id."';</script>";
-        }
+        
     }
 ?>
 <html>
@@ -35,13 +51,19 @@
     </head>
     <body>
         <?php include_once('navbar.php'); ?>
-            <center><h1>Edit User Information</h1></center>
+            <center><h1>Edit Information</h1></center>
 
-        <form method="post" class="update-form">
+        <form method="post" class="update-form" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $user['id']?>">
             <input type="hidden" name="updated_at" value="<?php echo date('Y-m-d H:i:s')?>">
             <hr>
-            <div class="container">
+                <center>
+                <?php $imageURL = 'uploads/'.$user["image"];?>
+                <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="image" />
+                    <h4>Upload image as your profile picture:</h4>
+                    <input type="file" name="image"/><br>
+                </center>
+                <br>
                 <small>Name</small>
                 <input type="text" value="<?php echo $user['name']?>" name="updateName" required>
                 <small>Contact Number</small>
@@ -57,7 +79,7 @@
                     <option value="USA" <?php if($user['school'] == 'USA'){ echo 'selected'; } ?>>University of San Agustin</option>
                 </select>
                 <small>Sport</small> 
-                <select name="updateSchool">
+                <select name="updateSport">
                     <option value="Basketball" <?php if($user['sport'] == 'Basketball'){ echo 'selected'; } ?>>Basketball</option>
                     <option value="Volleyball" <?php if($user['sport'] == 'Volleyball'){ echo 'selected'; } ?>>Volleyball</option>
                     <option value="Football" <?php if($user['sport'] == 'Football'){ echo 'selected'; } ?>>Football</option>
@@ -68,7 +90,6 @@
                 <input type="password" placeholder="Password" name="updatePassword">
                 <hr>  
                 <button class="button" name="update" type="submit">Update</button>
-            </div>
         </form>
     </body>
 </html>

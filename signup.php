@@ -42,7 +42,6 @@
             <input type="hidden" name="type" value="Coach">
             <input type="hidden" name="status" value="Deactivated">
             <hr>
-            <div class="container">
                 <small>Name</small>
                 <input type="text" placeholder="Coach Name" name="name" required>
                 <small>Contact Number</small>
@@ -77,7 +76,6 @@
                 <hr>  
                 <small><a href="signin.php">Already have an account? Sign-in now!<a></small>
                 <button class="button" name="register" type="submit">Signup</button>
-            </div>
         </form>
     </body>
 </html>

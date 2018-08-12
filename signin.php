@@ -32,14 +32,12 @@
                 <img src="images/logo.png" alt="Avatar" class="avatar" style="width:350px; height:300px;">
             </div>
             <form method="post" class="signin-form">
-                <div class="container">
                     <small>Email Address</small>
                     <input type="email" placeholder="Email Address" name="email" required>
                     <small>Password</small>
                     <input type="password" placeholder="Password" name="password" required>
                     <small><a href="signup.php">Don't have an account yet? Register Now!</a></small> 
                     <button class="button" name="login" type="submit">Login</button>
-                </div>
             </form>
         </div>
     </body>
