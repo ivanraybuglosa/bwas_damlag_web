@@ -60,14 +60,10 @@
                     <option value="USA">University of San Agustin</option>
                 </select>
                 <small>Sport</small> 
-                <select name="sport" id="sport">
-                    <?php 
-                        $sports = $pdo->retrieveSports();
-                        if(is_array($sports) && !empty($sports)){
-                            foreach($sports as $sport){
-                    ?>
-                        <option value="<?php echo $sport['sports_name']?>"><?php echo $sport['sports_name']?></option>
-                    <?php } } ?>
+                <select name="sport">
+                    <option value="BasketBall">Basketball</option>
+                    <option value="Volleyball">Volleyball</option>
+                    <option value="Football">Football</option>
                 </select>
                 <small>Email Address</small> 
                 <input type="email" placeholder="Email Address" name="email" required>
