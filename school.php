@@ -58,7 +58,7 @@
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
-                            <td><?php echo $user['sports_name']; ?></td>
+                            <td><?php echo $user['sport']; ?></td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['type']; ?></td>
                             <td>

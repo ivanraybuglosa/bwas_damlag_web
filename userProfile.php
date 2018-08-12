@@ -46,7 +46,7 @@
                     </table>
             </center>
         <?php }else{?>
-            <center><h1><?php echo $user['name']?> - <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?> - <?php echo $user['sports_name']?></h1></center>
+            <center><h1><?php echo $user['name']?> - <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?> - <?php echo $user['sport']?></h1></center>
             <div class="container">
             <center>   
                     <h3>Under Maintenance</h3>

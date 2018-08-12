@@ -77,7 +77,7 @@
                             }else{
                                 echo $searchUser['previous_school'];
                             } ?></td>
-                        <td><?php echo $searchUser['sports_name']; ?></td>
+                        <td><?php echo $searchUser['sport']; ?></td>
                         <td><?php echo $searchUser['gender']; ?></td>
                         <td><?php echo $searchUser['type']; ?></td>
                         <td>
@@ -121,7 +121,7 @@
                             }else{
                                 echo $user['previous_school'];
                             } ?></td>
-                        <td><?php echo $user['sports_name']; ?></td>
+                        <td><?php echo $user['sport']; ?></td>
                         <td><?php echo $user['gender']; ?></td>
                         <td><?php echo $user['type']; ?></td>
                         <td>
