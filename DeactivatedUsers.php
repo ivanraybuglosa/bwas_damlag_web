@@ -11,6 +11,14 @@
         }else{
             echo "<script>alert('User activation failed!');window.location.href='index.php';</script>";
         }
+    }elseif(isset($_POST['delete'])){
+        $id = $_POST['id'];
+
+        if($pdo->deleteUser($id)){
+            echo "<script>alert('User Information has been successfully removed!');window.location.href='index.php';</script>";
+        }else{
+            echo "<script>alert('Unable to remove the user.');window.location.href='index.php';</script>";
+        }
     }
 ?>
 <html>
