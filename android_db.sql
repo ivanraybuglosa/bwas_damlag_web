@@ -7,6 +7,7 @@
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.1.19
 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -97,12 +98,14 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `type` text NOT NULL,
-  `status` text NOT NULL
+  `status` text NOT NULL,
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
+
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_school`, `contact`, `address`, `birthdate`, `gender`, `sport`, `position`, `created_at`, `updated_at`, `type`, `status`) VALUES
 (24, 'Administrator', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', NULL, NULL, NULL, NULL, '1978-12-06', 'Male', NULL, NULL, '2018-07-31 23:07:32', '2018-07-31 23:07:32', 'Admin', 'Activated'),
@@ -118,6 +121,7 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_scho
 (37, 'dasdad', '00924930273acce5928b1f11e4986604', 'dasdad@gmail.com', 'LCC', NULL, '12313131', 'Addresssss', '1978-12-06', 'Male', 'Basketball', NULL, '2018-08-07 22:50:32', '2018-08-07 22:50:32', 'Coach', 'Deactivated'),
 (39, 'Vicmar Joseph Yanson1', '827ccb0eea8a706c4c34a16891f84e7b', 'vicmar.yanson@gmail.com', NULL, 'Bata National High School', '0915733940111', 'Bacolod City', '1996-03-06', 'Male', 'Basketball', 'Point Guard', '2018-08-12 10:08:19', '2018-08-12 18:14:37', 'Athlete', 'Activated'),
 (40, 'V', '0cc175b9c0f1b6a831c399e269772661', 'E@d.com', NULL, 'Abkasa National High School', '1', 'W', '2018-08-14', 'Male', 'Basketball', 'Shooting Guard', '2018-08-12 10:55:02', '2018-08-12 10:55:02', 'Athlete', 'Activated');
+
 
 -- --------------------------------------------------------
 
@@ -196,6 +200,7 @@ ALTER TABLE `football`
 --
 ALTER TABLE `users`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 
 --
 -- AUTO_INCREMENT for table `volleyball`

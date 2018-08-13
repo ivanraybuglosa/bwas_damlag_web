@@ -14,6 +14,8 @@
     <body>
         <?php include_once('navbar.php'); ?>
         <?php if($user['type'] ==  'Coach'){ ?>
+            <?php $imageURL = 'uploads/'.$user["image"];?>
+            <center><img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="image" /></center>
             <center><h1><?php echo $user['name']?> - <?php echo $user['school']?> - <?php echo $user['sport']?></h1></center>
             <div class="container">
             <center>
@@ -33,6 +35,7 @@
                             $athletes = $pdo->fetchAthletes($user['sport'], $user['school']);
                             if(is_array($athletes) && !empty($athletes)){
                                 foreach($athletes as $athlete){
+                                    
                         ?>
                         <tr>
                             <td><?php echo $athlete['name']; ?></td>

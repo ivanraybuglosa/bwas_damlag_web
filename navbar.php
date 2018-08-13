@@ -1,21 +1,22 @@
 
 <nav class="navbar">
+    <div class="container">
     <strong><a class="brand-logo" href="home.php">BWAS DAMLAG</a></strong>
-    <a href="home.php">Home</a>
+    <a href="home.php" class="list">HOME</a>
     <?php 
         if($current_user['type'] == 'Admin'){
     ?>
-        <a href="index.php">Users</a>
+        <a href="index.php" class="list">USERS</a>
     <?php }else{ ?>
-        <a href="index.php"><?php echo $current_user['sport'];?> Athletes</a>
+        <a href="index.php" class="list"><?php echo strtoupper($current_user['sport']);?> ATHLETES</a>
     <?php } ?>
 
     <?php 
         if($current_user['type'] == 'Admin'){
     ?>
         
-        <div class="dropdown">
-            <button class="dropbtn" onclick="sportDropDown()">Sports</button>
+        <div class="dropdown list">
+            <button class="dropbtn" onclick="sportDropDown()">SPORTS</button>
             <div class="dropdown-content" id="dropdown">
                 <a href="sport.php?sport=Basketball">Basketball</a>
                 <a href="sport.php?sport=Football">Football</a>
@@ -23,8 +24,8 @@
             </div>
         </div>
         
-        <div class="dropdown">
-            <button class="dropbtn" onclick="schoolDropdown()">Schools</button>
+        <div class="dropdown list">
+            <button class="dropbtn" onclick="schoolDropdown()">SCHOOLS</button>
             <div class="dropdown-content" id="school-dropdown">
                 <a href="school.php?school=UNOR">UNO-R</a>
                 <a href="school.php?school=LCC">LCC-B</a>
@@ -36,10 +37,10 @@
     <?php }?>
             
         <?php if($current_user['type'] == 'Admin'){ ?>
-            <a href="DeactivatedUsers.php" class="user-profile">Activate Coach Accounts</a>
+            <a href="DeactivatedUsers.php" class="user-profile list">COACH ACTIVATIONS</a>
         <?php } ?>
         
-        <div class="dropdown user-profile">
+        <div class="dropdown user-profile list">
             <button class="dropbtn" onclick="profileDropdown()"><?php echo $current_user['name']?></button>
             <div class="dropdown-content" id="profile-dropdown">
                 <?php 
@@ -54,6 +55,7 @@
                 
             </div> 
         </div>
+    </div>
 </nav>
 
 <script>
