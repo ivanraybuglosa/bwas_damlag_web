@@ -15,6 +15,10 @@ form {
     width: 500px;
 }
 
+.invite-form {
+    display: inline-block;
+}
+
 .delete-form {
     display: inline-block;
 }
@@ -246,9 +250,20 @@ select {
     text-decoration: none;
     color: white;
     background-color: #3470d1;
-    border: 1px solid;
+    border: none;
     padding: 12px 12px;
     border-radius: 5px;
+    text-align: center;
+}
+
+.invite-profile {
+    text-decoration: none;
+    color: white;
+    background-color: #10b92c;
+    border: none;
+    padding: 15px 15px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .padding {
@@ -277,6 +292,13 @@ select {
     width: 200px;
     margin-top: 10px;
     border: none;
-    border-radius: 50%;
-    
+    border-radius: 50%; 
+}
+
+.table-image {
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 50%; 
 }

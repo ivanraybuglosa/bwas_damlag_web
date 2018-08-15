@@ -9,6 +9,7 @@
         <a href="index.php" class="list">USERS</a>
     <?php }else{ ?>
         <a href="index.php" class="list"><?php echo strtoupper($current_user['sport']);?> ATHLETES</a>
+        <a href="invites.php" class="list">SENT INVITES</a>
     <?php } ?>
 
     <?php 

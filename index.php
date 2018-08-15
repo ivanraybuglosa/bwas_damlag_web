@@ -10,6 +10,19 @@
         }else{
             echo "<script>alert('Unable to remove the user.');window.location.href='index.php';</script>";
         }
+    }elseif(isset($_POST['invites'])){
+        $athlete_id = $_POST['athlete_id'];
+        $coach_id = $_POST['coach_id'];
+        $message = $_POST['message'];
+        $created_at = date('Y-m-d H:i s');
+
+        if($pdo->athleteInvites($coach_id,$athlete_id,$message,$created_at)){
+            echo "<script>alert('Invite has been sent!');window.location.href='index.php';</script>";
+        }else{
+            echo "<script>alert('Unable to send invite');window.location.href='index.php';</script>";
+        }
+    }else{
+
     }
 ?>  
 <html>
@@ -54,6 +67,7 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Username</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -70,6 +84,11 @@
                                 foreach($searchUsers as $searchUser){
                         ?>
                         <tr>
+                            <td>
+                                <center>
+                                    <img src="<?php if(empty($searchUser["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
+                                </center>
+                            </td>
                             <td><?php echo $searchUser['name']; ?></td>
                             <td><?php echo $searchUser['email']; ?></td>
                             <td>
@@ -98,6 +117,7 @@
                     <table id="users">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Username</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -106,35 +126,40 @@
                                 <th>Type</th>
                                 <th>Actions</th>
                             <tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                            $users = $pdo->fetchUsers();
-                            if(is_array($users) && !empty($users)){
-                                foreach($users as $user){
-                        ?>
-                        <tr>
-                            <td><?php echo $user['name']; ?></td>
-                            <td><?php echo $user['email']; ?></td>
-                            <td>
-                                <?php if(!empty($user['school'])){
-                                    echo $user['school'];
-                                }else{
-                                    echo $user['previous_school'];
-                                } ?></td>
-                            <td><?php echo $user['sport']; ?></td>
-                            <td><?php echo $user['gender']; ?></td>
-                            <td><?php echo $user['type']; ?></td>
-                            <td>
-                                <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
-                                <form method="post" class="delete-form">
-                                    <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
-                                    <button class="delete-button" type="submit" name="delete">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php } }?>
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                $users = $pdo->fetchUsers();
+                                if(is_array($users) && !empty($users)){
+                                    foreach($users as $user){
+                            ?>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
+                                    </center>
+                                </td>
+                                <td><?php echo $user['name']; ?></td>
+                                <td><?php echo $user['email']; ?></td>
+                                <td>
+                                    <?php if(!empty($user['school'])){
+                                        echo $user['school'];
+                                    }else{
+                                        echo $user['previous_school'];
+                                    } ?></td>
+                                <td><?php echo $user['sport']; ?></td>
+                                <td><?php echo $user['gender']; ?></td>
+                                <td><?php echo $user['type']; ?></td>
+                                <td>
+                                    <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
+                                    <form method="post" class="delete-form">
+                                        <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
+                                        <button class="delete-button" type="submit" name="delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php } }?>
+                        </tbody>
                     </table>
                 <?php } ?>
                 </center>
@@ -188,7 +213,6 @@
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                    <input type="text" name="searchSchool" placeholder="School">
                     <input type="number" name="searchAge" placeholder="Age" min="0" max="100">
                     <button class="search-button" name="search-submit" type="submit">Search</button>
                 </form>
@@ -198,12 +222,12 @@
                         $searchAthlete = $_POST['searchAthlete'];
                         $searchPosition = $_POST['searchPosition'];
                         $searchGender = $_POST['searchGender'];
-                        $searchSchool = $_POST['searchSchool'];
                         $searchAge = $_POST['searchAge'];
                 ?>
-                    <table id="users">
+                    <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Username</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -213,38 +237,46 @@
                                 <th>Address</th>
                                 <th>Actions</th>
                             <tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                            $athletes = $pdo->searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$searchPosition,$current_user['sport']);
-                            if(is_array($athletes) && !empty($athletes)){
-                                foreach($athletes as $athlete){
-                        ?>
-                        <tr>
-                            <td><?php echo $athlete['name']; ?></td>
-                            <td><?php echo $athlete['email']; ?></td>
-                            <td><?php if(empty($athlete['school'])){
-                                echo 'N/A';}
-                            ?></td>
-                            <td><?php echo $athlete['previous_school']; ?></td>
-                            <td><?php echo $athlete['gender']; ?></td>
-                            <td><?php echo $athlete['contact']; ?></td>
-                            <td><?php echo $athlete['address']; ?></td>
-                            <td>
-                                <a class="view-profile" href="userProfile.php?id=<?php echo $athlete['id']?>">View Profile</a>
-                                <form method="post" class="delete-form">
-                                    <input type="hidden" name="id" value="<?php echo $athlete['id']?>"/>
-                                    <button class="delete-button" type="submit" name="delete">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php } }?>
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                $athletes = $pdo->searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$current_user['sport']);
+                                if(is_array($athletes) && !empty($athletes)){
+                                    foreach($athletes as $athlete){
+                            ?>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <img src="<?php if(empty($athlete["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
+                                    </center>
+                                </td>
+                                <td><?php echo $athlete['name']; ?></td>
+                                <td><?php echo $athlete['email']; ?></td>
+                                <td><?php if(empty($athlete['school'])){
+                                    echo 'N/A';}
+                                ?></td>
+                                <td><?php echo $athlete['previous_school']; ?></td>
+                                <td><?php echo $athlete['gender']; ?></td>
+                                <td><?php echo $athlete['contact']; ?></td>
+                                <td><?php echo $athlete['address']; ?></td>
+                                <td width="20%">
+                                    <a class="view-profile" href="userProfile.php?id=<?php echo $athlete['id']?>">View Profile</a>
+                                    <form method="post" class="invite-form">
+                                        <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
+                                        <input type="hidden" value="<?php echo $athlete['id'] ?>" name="athlete_id" />
+                                        <input type="hidden" value="<?php echo $current_user['name']?> invited you for a tryout" name="message" />
+                                        <button class="invite-profile" type="submit" name="invites">Invite</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php } }?>
+                        </tbody>
                     </table>
                 <?php }else{ ?>
-                    <table id="users">
+                    <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Username</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -262,6 +294,12 @@
                                 foreach($users as $user){
                         ?>
                         <tr>
+                            <td>
+                                <center>
+                                    <?php $imageURL = 'uploads/'.$user["image"];?>
+                                    <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="table-image" />
+                                </center>
+                            </td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['email']; ?></td>
                             <td><?php if(empty($user['school'])){
@@ -271,11 +309,13 @@
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
                             <td><?php echo $user['address']; ?></td>
-                            <td>
+                            <td width="20%">
                                 <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
-                                <form method="post" class="delete-form">
-                                    <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
-                                    <button class="delete-button" type="submit" name="delete">Delete</button>
+                                <form method="post" class="invite-form">
+                                    <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
+                                    <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
+                                    <input type="hidden" value="<?php echo $current_user['name']?> invited you for a tryout" name="message" />
+                                    <button class="invite-profile" type="submit" name="invites">Invite</button>
                                 </form>
                             </td>
                         </tr>
