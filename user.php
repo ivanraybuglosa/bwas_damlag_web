@@ -1,13 +1,11 @@
 <?php
-    
+    session_start();
     include_once 'android_db_connect.php';
     
     class User{
         
         private $db;
-        
         private $db_table = "users";
-        
         public function __construct(){
             $this->db = new DbConnect();
         }
@@ -19,7 +17,12 @@
             $result = mysqli_query($this->db->getDb(), $query);
             
             if(mysqli_num_rows($result) > 0){
-                
+                while($row = mysqli_fetch_array($result)) {
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['name'] = $row['name'];
+                    $_SESSION['email'] = $row['email'];
+
+                }
                 mysqli_close($this->db->getDb());
                 
                 return true;
@@ -59,11 +62,13 @@
             
             
             $canUserLogin = $this->isLoginExist($email, $password);
-            
             if($canUserLogin==true){
-                
+                $json['id'] = $_SESSION['id'];
+                $json['name'] = $_SESSION['name'];
+                $json['email'] = $_SESSION['email'];
                 $json['success'] = 1;
                 $json['message'] = "Successfully logged in";
+                
             }else{
                 $json['success'] = 0;
                 $json['message'] = "Incorrect details";
@@ -73,4 +78,6 @@
             return $json;
         }
     }
+    
+
     ?>
