@@ -32,8 +32,9 @@
                 $json['fouls'] = $row['basketball_fouls'];
                 $json['turnover'] = $row['basketball_turnovers'];
                 $json['missedFG'] = $row['basketball_missedFG'];
-            print(json_encode($json));
+            
             }
+            print(json_encode($json));
     }
     
 }

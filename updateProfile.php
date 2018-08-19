@@ -72,17 +72,19 @@
         $gender = $_POST['gender'];
         
     }
+
     if(isset($_POST['school'])){
         
         $school = $_POST['school'];
         
     }
+    
     if(isset($_POST['id'])){
         
         $id = $_POST['id'];
         
     }
-    
+
         $userObject = new User();
         
         $json_update = $userObject->updateProfile($id,$name,$address,$contactNumber,$birthday,$email,$gender,$school);
