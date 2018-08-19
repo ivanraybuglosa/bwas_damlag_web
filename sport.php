@@ -35,7 +35,8 @@
     </head>
     <body>
         <?php include('navbar.php') ?>
-        <center><h1><?php echo $getSport ?></h1>
+        <div class="container">
+            <center><h1><?php echo $getSport ?></h1>
                 <table id="users">
                 <thead>
                         <tr>
@@ -77,5 +78,6 @@
                 </tbody>
             </table>
             </center>
+        </div>
     </body>
 </html>

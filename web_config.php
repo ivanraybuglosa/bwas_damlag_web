@@ -57,9 +57,9 @@
             }
         }
 
-        public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at){
+        public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$image){
             try{
-                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at WHERE id=:id");
+                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at, image=:image WHERE id=:id");
                 $query->bindparam(":id", $id);
                 $query->bindparam(":name", $name);
                 $query->bindparam(":contact", $contact);
@@ -69,6 +69,7 @@
                 $query->bindparam(":email", $email);
                 $query->bindparam(":password", $password);
                 $query->bindparam(":updated_at", $updated_at);
+                $query->bindparam(":image", $image);
                 $query->execute();
                 return true;
             }catch(PDOException $e){
@@ -198,25 +199,21 @@
             }
         }
 
-        public function searchAthlete($searchAthlete,$searchGender,$searchSchool,$searchAge,$sport){
-            // $Athlete = "%$searchAthlete%";
-            // $Gender = "%$searchGender%";
-            // $School = "%$searchSchool%";
+        public function searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$sport){
+            $Athlete = "%$searchAthlete%";
             $now = date('Y-m-d');
-            $date = strtotime($now."-".$searchAge." year");
+            $date = strtotime($now." -".$searchAge." years");
             $age = date('Y-m-d', $date);
             try{
                 $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE name LIKE :name OR 
-                                                school LIKE :school OR
-                                                birthdate LIKE :age OR 
-                                                gender LIKE :gender AND
-                                                sport=:sport AND
-                                                type='Athlete'");
-                $query->bindparam(":name", $searchAthlete);
+                                            WHERE (name LIKE :name AND sport=:sport AND type='Athlete' OR 
+                                                birthdate=:age AND sport=:sport AND type='Athlete' OR 
+                                                gender=:gender AND sport=:sport AND type='Athlete' OR
+                                                position=:position AND sport=:sport AND type='Athlete')");
+                $query->bindparam(":name", $Athlete);
                 $query->bindparam(":gender", $searchGender);
-                $query->bindparam(":school", $searchSchool);
                 $query->bindparam(":age", $age);
+                $query->bindparam(":position", $searchPosition);
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
@@ -263,6 +260,21 @@
                 echo $e->getMessage();
                 return false;
             }
+        }
+
+        public function athleteInvites($coach,$athlete,$message,$created_at){
+            try{
+                $query = $this->db->prepare("INSERT INTO invites(coach_id,athlete_id,message,created_at) VALUES(:coach, :athlete, :message, :created_at)");
+                $query->bindparam(":coach", $coach);
+                $query->bindparam(":athlete", $athlete);
+                $query->bindparam(":message", $message);
+                $query->bindparam(":created_at", $created_at);
+                $query->execute();
+                return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }   
         }
     }
 ?>

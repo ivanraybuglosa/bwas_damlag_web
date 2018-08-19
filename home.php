@@ -107,86 +107,72 @@
     <div class="mySlides fade">
     <div class="numbertext">1 / 14</div>
     <img src="images/1.jpg" style="width:100%">
-    <div class="text">Caption Text</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">2 / 14</div>
     <img src="images/2.jpg" style="width:100%">
-    <div class="text">Caption Two</div>
     </div>
 
 
     <div class="mySlides fade">
     <div class="numbertext">3 / 14</div>
     <img src="images/3.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">4 / 14</div>
     <img src="images/4.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">5 / 14</div>
     <img src="images/5.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">6 / 14</div>
     <img src="images/6.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">7 / 14</div>
     <img src="images/7.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">8 / 14</div>
     <img src="images/8.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">9 / 14</div>
     <img src="images/9.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">10 / 14</div>
     <img src="images/10.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">11 / 14</div>
     <img src="images/11.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">12 / 14</div>
     <img src="images/12.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">13 / 14</div>
     <img src="images/13.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <div class="mySlides fade">
     <div class="numbertext">14 / 14</div>
     <img src="images/14.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
     </div>
 
     <br>

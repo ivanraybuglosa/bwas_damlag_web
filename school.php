@@ -35,7 +35,21 @@
     </head>
     <body>
         <?php include('navbar.php') ?>
-        <center><h1><?php echo $getSchool ?></h1>
+        <div class="container">
+            <center>
+                <h1>
+                    <?php if($getSchool == 'UNOR'){
+                        echo 'University of Negros Occidental - Recoletos';
+                    }elseif($getSchool == 'LCC'){
+                        echo 'La Consolation College - Bacolod';
+                    }elseif($getSchool == 'USLS'){
+                        echo 'University of Saint La Salle';
+                    }elseif($getSchool == 'STI'){
+                        echo 'STI-WEST NEGROS';
+                    }else{
+                        echo 'University of San Agustin';
+                    }?>
+                </h1>
                 <table id="users">
                     <thead>
                             <tr>
@@ -73,5 +87,6 @@
                     </tbody>
                 </table>
             </center>
+        </div>
     </body>
 </html>
