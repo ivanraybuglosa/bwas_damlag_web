@@ -7,17 +7,16 @@
     public function __construct(){
         $this->db = new DbConnect();
     }
-    public function showDashboard($id){
+    public function showDashboard(){
             
-        $query = "select * from basketball INNER JOIN users ON basketball.user_id = users.id WHERE basketball.user_id = '$id' ORDER BY basketball_average DESC";
+        $query = "select * from basketball INNER JOIN users ON basketball.user_id = users.id ORDER BY basketball_average DESC";
             
         $result = mysqli_query($this->db->getDb(), $query);
         
-            while($row =  $result->fetch_assoc()) {
-                $json['name'] = $row['name'];
-                $json['averageScore'] = $['basketball_average'];
-                print(json_encode($json));
+            while($row =  $result->fetch_array()) {
+                $json[] = $row;
             }
+            print(json_encode($json));
     }
     
 }
@@ -28,5 +27,5 @@ if(isset($_POST['id'])){
     
 }
 $userObject = new User();
-$userObject->showDashboard($id);
+$userObject->showDashboard();
 ?>
