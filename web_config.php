@@ -276,5 +276,67 @@
                 return false;
             }   
         }
+
+        public function invitedAthletes($coach_id){
+            try{
+                $query = $this->db->prepare("SELECT * FROM invites INNER JOIN users ON invites.athlete_id=users.id WHERE coach_id=:coach");
+                $query->bindparam(":coach", $coach_id);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function BasketballPlayerStats($athlete_id){
+            try{
+                $query = $this->db->prepare("SELECT * FROM Basketball INNER JOIN users ON basketball.user_id=users.id WHERE user_id=:athlete");
+                $query->bindparam(":athlete", $athlete_id);
+                $query->execute();
+                return $request = $query->fetch();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function VolleyballPlayerStats($athlete_id){
+            try{
+                $query = $this->db->prepare("SELECT * FROM Volleyball INNER JOIN users ON volleyball.user_id=users.id WHERE user_id=:athlete");
+                $query->bindparam(":athlete", $athlete_id);
+                $query->execute();
+                return $request = $query->fetch();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function removeInvite($id){
+            try{
+                $query = $this->db->prepare("DELETE FROM invites WHERE invite_id=:id");
+                $query->bindparam(":id", $id);
+                $query->execute();
+                return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function checkInvite($athlete_id, $coach_id){
+            try{
+                $query = $this->db->prepare("SELECT * FROM invites WHERE athlete_id=:athlete AND coach_id=:coach");
+                $query->bindparam(":athlete", $athlete_id);
+                $query->bindparam(":coach", $coach_id);
+                $query->execute();
+                return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
     }
 ?>

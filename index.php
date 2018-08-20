@@ -10,19 +10,6 @@
         }else{
             echo "<script>alert('Unable to remove the user.');window.location.href='index.php';</script>";
         }
-    }elseif(isset($_POST['invites'])){
-        $athlete_id = $_POST['athlete_id'];
-        $coach_id = $_POST['coach_id'];
-        $message = $_POST['message'];
-        $created_at = date('Y-m-d H:i s');
-
-        if($pdo->athleteInvites($coach_id,$athlete_id,$message,$created_at)){
-            echo "<script>alert('Invite has been sent!');window.location.href='index.php';</script>";
-        }else{
-            echo "<script>alert('Unable to send invite');window.location.href='index.php';</script>";
-        }
-    }else{
-
     }
 ?>  
 <html>
@@ -261,12 +248,6 @@
                                 <td><?php echo $athlete['address']; ?></td>
                                 <td width="20%">
                                     <a class="view-profile" href="userProfile.php?id=<?php echo $athlete['id']?>">View Profile</a>
-                                    <form method="post" class="invite-form">
-                                        <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
-                                        <input type="hidden" value="<?php echo $athlete['id'] ?>" name="athlete_id" />
-                                        <input type="hidden" value="<?php echo $current_user['name']?> invited you for a tryout" name="message" />
-                                        <button class="invite-profile" type="submit" name="invites">Invite</button>
-                                    </form>
                                 </td>
                             </tr>
                             <?php } }?>
@@ -311,12 +292,6 @@
                             <td><?php echo $user['address']; ?></td>
                             <td width="20%">
                                 <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
-                                <form method="post" class="invite-form">
-                                    <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
-                                    <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
-                                    <input type="hidden" value="<?php echo $current_user['name']?> invited you for a tryout" name="message" />
-                                    <button class="invite-profile" type="submit" name="invites">Invite</button>
-                                </form>
                             </td>
                         </tr>
                         <?php } }?>
