@@ -16,14 +16,13 @@
         }else{
             echo "<script>alert('Unable to send invite');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
         }
-    }elseif(isset($_POST['delete-invites'])){
-        $athlete_id = $_POST['athlete_id'];
-        $coach_id = $_POST['coach_id'];
+    }elseif(isset($_POST['delete-invite'])){
+        $invite = $_POST['invite_id'];
 
         if($pdo->deleteInvites($coach_id,$athlete_id)){
-            echo "<script>alert('Invite has been sent!');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
+            echo "<script>alert('Invite has been successfully removed!');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
         }else{
-            echo "<script>alert('Unable to send invite');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
+            echo "<script>alert('Unable to remove invite');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
         }
     }
 ?>
@@ -76,7 +75,7 @@
             <div class="container">
             <center>   
                     <?php 
-                        $check = $pdo>checkInvite($user['id'], $current_user['id']);
+                        $check = $pdo->checkInvite($user['id'], $current_user['id']);
                             if(empty($check)){
                     ?>
                         <form method="post" class="invite-form">
@@ -85,13 +84,16 @@
                             <input type="hidden" value="<?php echo $current_user['name']?> invited you for a tryout" name="message" />
                             <button class="invite-profile" type="submit" name="invites">Invite Athlete</button>
                         </form>
-                    <?php }else{ ?>                
+                    <?php }
+                            else
+                            {
+                        ?>
                         <form method="post" class="invite-form">
-                            <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
-                            <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
-                            <button class="invite-profile" type="submit" name="delete-invites">Remove Invite</button>
+                            <input type="hidden" value="<?php echo $check['invite_id'] ?>" name="invite_id" />
+                            <button class="remove-invite" type="submit" name="delete-invite">Remove Invite</button>
                         </form>
-                    <?php } ?>
+                    <?php } ?>                
+                        
                         
                     <br>
                     <strong><?php echo $user['email']?> -</strong>

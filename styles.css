@@ -266,6 +266,16 @@ select {
     text-align: center;
 }
 
+.remove-invite {
+    text-decoration: none;
+    color: white;
+    background-color: #b91010;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-align: center;
+}
+
 .padding {
     padding: 15px 15px;
 }
@@ -325,4 +335,23 @@ select {
     border: none;
     color: white;
     border-radius: 5px;
+}
+
+.column {
+    float: left;
+    width: 31%;
+    height: 550px;
+    margin: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.top {
+    margin-top: 15px;
+    text-align: center;
 }

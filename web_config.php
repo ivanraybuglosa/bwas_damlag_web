@@ -206,10 +206,10 @@
             $age = date('Y-m-d', $date);
             try{
                 $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE (name LIKE :name AND sport=:sport AND type='Athlete' OR 
-                                                birthdate=:age AND sport=:sport AND type='Athlete' OR 
-                                                gender=:gender AND sport=:sport AND type='Athlete' OR
-                                                position=:position AND sport=:sport AND type='Athlete')");
+                                            WHERE (name LIKE :name OR 
+                                                birthdate=:age OR 
+                                                gender=:gender OR
+                                                position=:position) AND sport=:sport AND type='Athlete'");
                 $query->bindparam(":name", $Athlete);
                 $query->bindparam(":gender", $searchGender);
                 $query->bindparam(":age", $age);
@@ -330,6 +330,18 @@
                 $query = $this->db->prepare("SELECT * FROM invites WHERE athlete_id=:athlete AND coach_id=:coach");
                 $query->bindparam(":athlete", $athlete_id);
                 $query->bindparam(":coach", $coach_id);
+                $query->execute();
+                return $request = $query->fetch();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function deleteInvite($invite_id){
+            try{
+                $query = $this->db->prepare("DELETE FROM invites WHERE invite_id=:invite");
+                $query->bindparam(":invite", $invite_id);
                 $query->execute();
                 return true;
             }catch(PDOException $e){
