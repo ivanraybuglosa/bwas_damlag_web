@@ -206,10 +206,10 @@
             $age = date('Y-m-d', $date);
             try{
                 $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE (name LIKE :name OR 
-                                                birthdate=:age OR 
-                                                gender=:gender OR
-                                                position=:position) AND sport=:sport AND type='Athlete'");
+                                            WHERE (gender=:gender OR
+                                                position=:position OR
+                                                birthdate=:age OR
+                                                name LIKE :name) AND sport=:sport AND type='Athlete'");
                 $query->bindparam(":name", $Athlete);
                 $query->bindparam(":gender", $searchGender);
                 $query->bindparam(":age", $age);

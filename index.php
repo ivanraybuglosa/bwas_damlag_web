@@ -206,10 +206,10 @@
 
                 <?php 
                     if(isset($_POST['search-submit']) && $current_user['type'] == 'Coach'){
-                        echo $searchAthlete = $_POST['searchAthlete'];
-                        echo $searchPosition = $_POST['searchPosition'];
-                        echo $searchGender = $_POST['searchGender'];
-                        echo $searchAge = $_POST['searchAge'];
+                        $searchAthlete = $_POST['searchAthlete'];
+                        $searchPosition = $_POST['searchPosition'];
+                        $searchGender = $_POST['searchGender'];
+                        $searchAge = $_POST['searchAge'];
                 ?>
                     <table id="users" class="table">
                         <thead>
