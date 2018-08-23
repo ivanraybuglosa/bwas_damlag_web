@@ -21,6 +21,7 @@
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['email'] = $row['email'];
+                    $_SESSION['sport'] = $row['sport'];
 
                 }
                 mysqli_close($this->db->getDb());
@@ -66,14 +67,13 @@
                 $json['id'] = $_SESSION['id'];
                 $json['name'] = $_SESSION['name'];
                 $json['email'] = $_SESSION['email'];
+                $json['sport'] = $_SESSION['sport'];
                 $json['success'] = 1;
                 $json['message'] = "Successfully logged in";
                 
             }else{
                 $json['success'] = 0;
                 $json['message'] = "Incorrect details";
-                
-            
             }
             return $json;
         }

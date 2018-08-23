@@ -40,12 +40,9 @@
                 if($current_user['type'] == 'Admin'){?>
                 <center>
                 <h1>List of Activated Users</h1>
-
-
                 <form method="post">
                     <input type="text" name="search" placeholder="Search All Users">
                 </form>
-
                 <?php 
                     if(isset($_POST['search']) && $current_user['type'] == 'Admin'){
                         $search = $_POST['search'];

@@ -16,10 +16,6 @@ class User{
         $fouls = (int)$fouls;
         $turnovers = (int)$turnovers;
         $missedFG = (int)$missedFG;
-
-        
-
-
         $isAvail = $this->isInserted($id);
         if($isAvail == true){
             $average = ($pointsInt+$rebounds+$steals+$assists+$blocks) - ($fouls+$turnovers+$missedFG);
