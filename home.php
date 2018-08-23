@@ -196,30 +196,30 @@
 
 
     <div class="container about">
-    <h1>About Bwas Damlag</h1>
+    <h1>Buas Damlag</h1>
     <hr>
     <p>
-        Sports have become a major business and attraction for the Filipino public. 
-        The print, radio, television, internet, and cinema media have contributed to 
-        the explosive popularity of both professional and collegiate sports. It is not surprising, 
-        therefore, that the popularity of professional and collegiate sports has been reflected in the 
-        sports programs of Filipino schools. The reality is that playing sports in college is very challenging 
-        and very few students end up doing so. University presidents and college coaches have battled over the 
-        academic requirements necessary to receive athletic scholarships, eligibility requirements, and even the 
-        advising of student athletes.
-    </p> 
-    <p>
-	    Understanding the recruitment process can be very helpful to make sure that the athlete can get into the 
-        right college and in the right situation in the end. A regular cause of concern is that when the rest of 
-        the University has little contact with prospective student athletes until late in the recruiting process. 
-        The interests of recruited student athletes and the institutions they attended are better served when recruiting 
-        is grounded in the full process. Without having an experience guide, an athlete can be lost in complicated world 
-        of sports recruitment. To be considered a recruited aspiring athlete, athletes must be approached by a college coach 
-        or representative about participating in that college athletics program, guidelines specify how and when they can be 
-        contacted. Letters, telephone calls, and in person conversations are limited to certain frequency. We thus explore the
-        athletics recruiting of aspiring athletes with a view towards conceptualizing it, giving an approach that improves the 
-        process across universities as a whole by enhancing transparency.
-    </p>
+    <h3>Summary</h3>
+        <p>Helping student athletes continue their academic and sports careers by providing a web and mobile application, 
+            and improve their education. These student athletes are from the town of Bacolod City full of talent and skills 
+            to excel as a varsity and professional sport player in their own respective fields.
+        </p>
+    <h3>Challenge</h3>
+        <p>Bacolod City and its neighboring towns are full of young people full of raw sports talents. However, 
+            these individuals are not provided with full access to sports training and equipment that could better equip them 
+            with the necessary skills and mindset to pursue professional sports and academic careers. Student athletes are given 
+            the basics to sports life- one that is both promising and fulfilling.
+        </p>
+    <h3>Solution</h3>
+        <p>The project aims to provide quality sports and academic life to student athletes. With little or no access to opportunities,
+            the project will help elevate the status of local sports. Not to mention the fact that it will help them improve their
+             academic standing thereby not only helping themselves, but their parents and community as well.
+        </p>
+    <h3>Long-Term Impact</h3>
+        <p>On a long-term basis, this project will help student athletes pursue a College Degree and sports career at the same time. 
+            Taking note the local community adoption process, this project will enable to kickstart a new trend in local sports 
+            development in the Bacolod City. With a strong network already established.
+        </p>
     </div>
     <script>
         var slideIndex = 0;

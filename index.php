@@ -157,7 +157,7 @@
                         if($current_user['sport'] == 'Basketball'){
                     ?>
                         <select name="searchPosition">
-                            <option>Search Position</option>
+                            <option value="">Search Position</option>
                             <option value="Point Guard">Point Guard</option>
                             <option value="Shooting Guard">Shooting Guard</option>
                             <option value="Small Forward">Small Forward</option>
@@ -166,7 +166,7 @@
                         </select>
                     <?php }elseif($current_user['sport'] == 'Volleyball'){ ?>
                         <select name="searchPosition">
-                            <option>Search Position</option>
+                            <option value="">Search Position</option>
                             <option value="Outside hitter">Outside hitter</option>
                             <option value="Right Side Hitter">Right Side Hitter</option>
                             <option value="Opposite Hitter">Opposite Hitter</option>
@@ -178,7 +178,7 @@
 
                     <?php }else{ ?>
                         <select name="searchPosition">
-                            <option>Search Position</option>
+                            <option value="">Search Position</option>
                             <option value="Forward">Forward</option>
                             <option value="Striker">Striker</option>
                             <option value="Left Midfielder">Left Midfielder</option>
@@ -193,7 +193,7 @@
 
                     <?php } ?>
                     <select name="searchGender">
-                        <option>Search Gender</option>
+                        <option value="">Search Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -213,8 +213,8 @@
                             <tr>
                                 <th></th>
                                 <th>Username</th>
+                                <th>Position</th>
                                 <th>E-mail</th>
-                                <th>School</th>
                                 <th>Last School Attended</th>
                                 <th>Gender</th>
                                 <th>Contact Number</th>
@@ -231,19 +231,18 @@
                             <tr>
                                 <td>
                                     <center>
+                                    <?php $imageURL = 'uploads/'.$athlete["image"];?>
                                         <img src="<?php if(empty($athlete["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
                                     </center>
                                 </td>
                                 <td><?php echo $athlete['name']; ?></td>
+                                <td><?php echo $athlete['position'] ?></td>
                                 <td><?php echo $athlete['email']; ?></td>
-                                <td><?php if(empty($athlete['school'])){
-                                    echo 'N/A';}
-                                ?></td>
                                 <td><?php echo $athlete['previous_school']; ?></td>
                                 <td><?php echo $athlete['gender']; ?></td>
                                 <td><?php echo $athlete['contact']; ?></td>
                                 <td><?php echo $athlete['address']; ?></td>
-                                <td width="20%">
+                                <td width="11%">
                                     <a class="view-profile" href="userProfile.php?id=<?php echo $athlete['id']?>">View Profile</a>
                                 </td>
                             </tr>
@@ -256,8 +255,8 @@
                             <tr>
                                 <th></th>
                                 <th>Username</th>
+                                <th>Position</th>
                                 <th>E-mail</th>
-                                <th>School</th>
                                 <th>Last School Attended</th>
                                 <th>Gender</th>
                                 <th>Contact Number</th>
@@ -279,10 +278,8 @@
                                 </center>
                             </td>
                             <td><?php echo $user['name']; ?></td>
+                            <td><?php echo $user['position'] ?></td>
                             <td><?php echo $user['email']; ?></td>
-                            <td><?php if(empty($user['school'])){
-                                echo 'N/A';}
-                            ?></td>
                             <td><?php echo $user['previous_school']; ?></td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>

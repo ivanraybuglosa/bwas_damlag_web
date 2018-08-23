@@ -1,8 +1,9 @@
 
 <nav class="navbar">
     <div class="container">
-    <strong><a class="brand-logo" href="home.php">BWAS DAMLAG</a></strong>
+    <strong><a class="brand-logo" href="home.php">BUAS DAMLAG</a></strong>
     <a href="home.php" class="list">HOME</a>
+    <a href="about.php" class="list">ABOUT US</a>
     <?php 
         if($current_user['type'] == 'Admin'){
     ?>
