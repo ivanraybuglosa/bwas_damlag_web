@@ -200,20 +200,22 @@
         }
 
         public function searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$sport){
-            $Athlete = "%$searchAthlete%";
+            $name = "%".$searchAthlete."%";
+            $gender = "%".$searchGender."%";
+            $position = "%".$searchPosition."%";
             $now = date('Y-m-d');
             $date = strtotime($now." -".$searchAge." years");
             $age = date('Y-m-d', $date);
             try{
                 $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE (gender=:gender OR
-                                                position=:position OR
-                                                birthdate=:age OR
-                                                name LIKE :name) AND sport=:sport AND type='Athlete'");
-                $query->bindparam(":name", $Athlete);
-                $query->bindparam(":gender", $searchGender);
+                                            WHERE (name LIKE :name AND
+                                                gender LIKE :gender AND
+                                                position LIKE :position OR
+                                                birthdate LIKE :age) AND sport=:sport AND type='Athlete'");
+                $query->bindparam(":name", $name);
+                $query->bindparam(":gender", $gender);
                 $query->bindparam(":age", $age);
-                $query->bindparam(":position", $searchPosition);
+                $query->bindparam(":position", $position);
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
@@ -338,7 +340,7 @@
             } 
         }
 
-        public function deleteInvite($invite_id){
+        public function deleteInvites($invite_id){
             try{
                 $query = $this->db->prepare("DELETE FROM invites WHERE invite_id=:invite");
                 $query->bindparam(":invite", $invite_id);

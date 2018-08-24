@@ -18,8 +18,9 @@
         }
     }elseif(isset($_POST['delete-invite'])){
         $invite = $_POST['invite_id'];
+        $athlete_id = $_POST['athlete_id'];
 
-        if($pdo->deleteInvites($coach_id,$athlete_id)){
+        if($pdo->deleteInvites($invite)){
             echo "<script>alert('Invite has been successfully removed!');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
         }else{
             echo "<script>alert('Unable to remove invite');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
@@ -90,18 +91,16 @@
                         ?>
                         <form method="post" class="invite-form">
                             <input type="hidden" value="<?php echo $check['invite_id'] ?>" name="invite_id" />
+                            <input type="hidden" value="<?php echo $user['athlete_id'] ?>" name="athlete_id" />
                             <button class="remove-invite" type="submit" name="delete-invite">Remove Invite</button>
                         </form>
-                    <?php } ?>                
-                        
-                        
+                    <?php } ?>
                     <br>
                     <strong><?php echo $user['email']?> -</strong>
                     <strong><?php echo $user['contact']?> -</strong>
                     <strong><?php echo $user['gender']?> -</strong>
                     <strong><?php echo $user['address']?> -</strong>
                     <strong><?php echo date('F j,Y', strtotime($user['birthdate']))?></strong>
- 
             </center>
         <?php } ?>
         </div>

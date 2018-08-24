@@ -155,11 +155,11 @@
                 <h1>List of Registered Athletes</h1>
 
                 <form method="post">
-                    <input type="text" name="searchAthlete" placeholder="Athlete Name">
+                    <input type="text" name="name" placeholder="Athlete Name">
                     <?php 
                         if($current_user['sport'] == 'Basketball'){
                     ?>
-                        <select name="searchPosition">
+                        <select name="position">
                             <option value="">Search Position</option>
                             <option value="Point Guard">Point Guard</option>
                             <option value="Shooting Guard">Shooting Guard</option>
@@ -168,7 +168,7 @@
                             <option value="Center">Center</option>
                         </select>
                     <?php }elseif($current_user['sport'] == 'Volleyball'){ ?>
-                        <select name="searchPosition">
+                        <select name="position">
                             <option value="">Search Position</option>
                             <option value="Outside hitter">Outside hitter</option>
                             <option value="Right Side Hitter">Right Side Hitter</option>
@@ -180,8 +180,8 @@
                         </select>
 
                     <?php }else{ ?>
-                        <select name="searchPosition">
-                            <option value="">Search Position</option>
+                        <select name="position">
+                            <option value=" ">Search Position</option>
                             <option value="Forward">Forward</option>
                             <option value="Striker">Striker</option>
                             <option value="Left Midfielder">Left Midfielder</option>
@@ -195,21 +195,20 @@
                         </select>
 
                     <?php } ?>
-                    <select name="searchGender">
+                    <select name="gender">
                         <option value="">Search Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                    <input type="number" name="searchAge" placeholder="Age" min="0" max="100">
+                    <input type="number" name="age" placeholder="Age" min="0" max="100">
                     <button class="search-button" name="search-submit" type="submit">Search</button>
                 </form>
-
                 <?php 
                     if(isset($_POST['search-submit']) && $current_user['type'] == 'Coach'){
-                        $searchAthlete = $_POST['searchAthlete'];
-                        $searchPosition = $_POST['searchPosition'];
-                        $searchGender = $_POST['searchGender'];
-                        $searchAge = $_POST['searchAge'];
+                        $searchAthlete = $_POST['name'];
+                        $searchPosition = $_POST['position'];
+                        $searchGender = $_POST['gender'];
+                        $searchAge = $_POST['age'];
                 ?>
                     <table id="users" class="table">
                         <thead>
