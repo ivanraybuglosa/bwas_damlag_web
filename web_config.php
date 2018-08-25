@@ -203,18 +203,24 @@
             $name = "%".$searchAthlete."%";
             $gender = "%".$searchGender."%";
             $position = "%".$searchPosition."%";
-            $now = date('Y-m-d');
-            $date = strtotime($now." -".$searchAge." years");
-            $age = date('Y-m-d', $date);
+                if($searchAge == 1970){
+                    $age_format = "";
+                }else{
+                    $now = date('Y-m-d');
+                    $date = strtotime($now." -".$searchAge." years");
+                    $age_format = date('Y', $date);
+                }
+            
+
             try{
                 $query = $this->db->prepare("SELECT * FROM users
                                             WHERE (name LIKE :name AND
                                                 gender LIKE :gender AND
-                                                position LIKE :position OR
-                                                birthdate LIKE :age) AND sport=:sport AND type='Athlete'");
+                                                position LIKE :position AND
+                                                YEAR(birthdate)=:age) AND sport=:sport AND type='Athlete'");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":gender", $gender);
-                $query->bindparam(":age", $age);
+                $query->bindparam(":age", $age_format);
                 $query->bindparam(":position", $position);
                 $query->bindparam(":sport", $sport);
                 $query->execute();

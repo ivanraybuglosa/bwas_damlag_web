@@ -73,6 +73,7 @@
                         <tr>
                             <td>
                                 <center>
+                                    <?php $imageURL = 'uploads/'.$searchUser["image"];?>
                                     <img src="<?php if(empty($searchUser["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
                                 </center>
                             </td>
@@ -123,6 +124,7 @@
                             <tr>
                                 <td>
                                     <center>
+                                        <?php $imageURL = 'uploads/'.$user["image"];?>
                                         <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
                                     </center>
                                 </td>
@@ -209,7 +211,51 @@
                         $searchPosition = $_POST['position'];
                         $searchGender = $_POST['gender'];
                         $searchAge = $_POST['age'];
+
+                        if($searchAthlete == "" && $searchPosition == "" && $searchGender == "" && $searchAge == 1970){
                 ?>
+                        <table id="users" class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Username</th>
+                                <th>Position</th>
+                                <th>E-mail</th>
+                                <th>Last School Attended</th>
+                                <th>Gender</th>
+                                <th>Contact Number</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            <tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            $users = $pdo->fetchAllAthletes($current_user['sport']);
+                            if(is_array($users) && !empty($users)){
+                                foreach($users as $user){
+                        ?>
+                        <tr>
+                            <td>
+                                <center>
+                                    <?php $imageURL = 'uploads/'.$user["image"];?>
+                                    <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="table-image" />
+                                </center>
+                            </td>
+                            <td><?php echo $user['name']; ?></td>
+                            <td><?php echo $user['position'] ?></td>
+                            <td><?php echo $user['email']; ?></td>
+                            <td><?php echo $user['previous_school']; ?></td>
+                            <td><?php echo $user['gender']; ?></td>
+                            <td><?php echo $user['contact']; ?></td>
+                            <td><?php echo $user['address']; ?></td>
+                            <td width="20%">
+                                <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
+                            </td>
+                        </tr>
+                        <?php } }?>
+                    </tbody>
+                    </table>
+                <?php }else{ ?>
                     <table id="users" class="table">
                         <thead>
                             <tr>
@@ -251,6 +297,7 @@
                             <?php } }?>
                         </tbody>
                     </table>
+                <?php } ?>
                 <?php }else{ ?>
                     <table id="users" class="table">
                         <thead>
