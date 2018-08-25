@@ -41,9 +41,13 @@
         <?php if($current_user['type'] == 'Admin'){ ?>
             <a href="DeactivatedUsers.php" class="user-profile list">COACH ACTIVATIONS</a>
         <?php } ?>
-        
+        <?php $imageURL = 'uploads/'.$current_user["image"];?>
+            <img src="<?php if(empty($current_user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="navbar-image" />
         <div class="dropdown user-profile list">
-            <button class="dropbtn" onclick="profileDropdown()"><?php echo $current_user['name']?></button>
+            
+            <button class="dropbtn" onclick="profileDropdown()">
+                <?php echo $current_user['name']?>
+            </button>
             <div class="dropdown-content" id="profile-dropdown">
                 <?php 
                     if($current_user['type'] == 'Admin'){ ?>

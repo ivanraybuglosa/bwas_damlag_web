@@ -203,12 +203,14 @@
             $name = "%".$searchAthlete."%";
             $gender = "%".$searchGender."%";
             $position = "%".$searchPosition."%";
-                if($searchAge == 1970){
-                    $age_format = "";
+
+            $now = date('Y-m-d');
+            $date = strtotime($now." -".$searchAge." years");
+            $age_format = date('Y', $date);
+                if($age_format == 1970){
+                    $age = "%%";
                 }else{
-                    $now = date('Y-m-d');
-                    $date = strtotime($now." -".$searchAge." years");
-                    $age_format = date('Y', $date);
+                    $age = "%".$age_format."%";
                 }
             
 
@@ -217,10 +219,10 @@
                                             WHERE (name LIKE :name AND
                                                 gender LIKE :gender AND
                                                 position LIKE :position AND
-                                                YEAR(birthdate)=:age) AND sport=:sport AND type='Athlete'");
+                                                YEAR(birthdate) LIKE :age) AND sport=:sport AND type='Athlete'");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":gender", $gender);
-                $query->bindparam(":age", $age_format);
+                $query->bindparam(":age", $age);
                 $query->bindparam(":position", $position);
                 $query->bindparam(":sport", $sport);
                 $query->execute();
@@ -289,6 +291,19 @@
             try{
                 $query = $this->db->prepare("SELECT * FROM invites INNER JOIN users ON invites.athlete_id=users.id WHERE coach_id=:coach");
                 $query->bindparam(":coach", $coach_id);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function schoolAthletes($school, $sport){
+            try{
+                $query = $this->db->prepare("SELECT * FROM users WHERE school=:school AND sport=:sport AND type='Athlete'");
+                $query->bindparam(":sport", $sport);
+                $query->bindparam(":school", $school);
                 $query->execute();
                 return $request = $query->fetchAll();
             }catch(PDOException $e){

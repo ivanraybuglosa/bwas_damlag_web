@@ -244,7 +244,12 @@
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
                             <td><?php echo $user['email']; ?></td>
-                            <td><?php echo $user['previous_school']; ?></td>
+                            <td><?php if(empty($user['previous_school'])){
+                                    echo 'N/A';
+                                }else{
+                                    echo $user['previous_school'];
+                                }?>
+                            </td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
                             <td><?php echo $user['address']; ?></td>
@@ -286,7 +291,12 @@
                                 <td><?php echo $athlete['name']; ?></td>
                                 <td><?php echo $athlete['position'] ?></td>
                                 <td><?php echo $athlete['email']; ?></td>
-                                <td><?php echo $athlete['previous_school']; ?></td>
+                                <td><?php if(empty($athlete['previous_school'])){
+                                    echo 'N/A';
+                                }else{
+                                    echo $athlete['previous_school'];
+                                }?>
+                                </td>
                                 <td><?php echo $athlete['gender']; ?></td>
                                 <td><?php echo $athlete['contact']; ?></td>
                                 <td><?php echo $athlete['address']; ?></td>
@@ -329,7 +339,12 @@
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
                             <td><?php echo $user['email']; ?></td>
-                            <td><?php echo $user['previous_school']; ?></td>
+                            <td><?php if(empty($user['previous_school'])){
+                                    echo 'N/A';
+                                }else{
+                                    echo $user['previous_school'];
+                                }?>
+                            </td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
                             <td><?php echo $user['address']; ?></td>
