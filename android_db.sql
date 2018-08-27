@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2018 at 03:13 AM
+-- Generation Time: Aug 25, 2018 at 12:07 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -94,8 +94,8 @@ CREATE TABLE `invites` (
 --
 
 INSERT INTO `invites` (`invite_id`, `coach_id`, `athlete_id`, `message`, `created_at`) VALUES
-(9, 25, 39, 'Jerome Aledron invited you for a tryout', '2018-08-18 04:44:00'),
-(10, 36, 29, 'asdasdasd invited you for a tryout', '2018-08-18 04:49:00');
+(10, 36, 29, 'asdasdasd invited you for a tryout', '2018-08-18 04:49:00'),
+(11, 25, 31, 'Jerome Aledron invited you for a tryout', '2018-08-24 14:32:00');
 
 -- --------------------------------------------------------
 
@@ -129,10 +129,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_school`, `contact`, `address`, `birthdate`, `gender`, `sport`, `position`, `created_at`, `updated_at`, `type`, `status`, `image`) VALUES
 (24, 'Administrator', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', NULL, NULL, NULL, NULL, '1978-12-06', 'Male', NULL, NULL, '2018-07-31 23:07:32', '2018-07-31 23:07:32', 'Admin', 'Activated', ''),
-(25, 'Jerome Aledron', '39ea2bf6a4d98585851d2bd07f0d13d1', 'jerome@gmail.com', 'UNOR', NULL, '09123131321', 'AddressAddressAddressAddress', '1978-12-06', 'Male', 'Basketball', NULL, '2018-07-31 23:12:23', '2018-08-05 23:42:50', 'Coach', 'Activated', ''),
+(25, 'Jerome Aledron', '39ea2bf6a4d98585851d2bd07f0d13d1', 'jerome@gmail.com', 'UNOR', NULL, '09123131321', 'AddressAddressAddressAddress', '1978-12-06', 'Male', 'Basketball', NULL, '2018-07-31 23:12:23', '2018-08-24 22:33:40', 'Coach', 'Activated', 'E.jpg'),
 (26, 'Ivan Ray Buglosa', '39ea2bf6a4d98585851d2bd07f0d13d1', 'ivan@gmail.com', 'USLS', NULL, '231313131', 'asdadadsa', '1978-12-06', 'Male', 'Volleyball', 'Libero', '2018-08-01 00:24:46', '2018-08-01 00:24:46', 'Athlete', 'Activated', 'E.jpg'),
 (29, 'john wick', '39ea2bf6a4d98585851d2bd07f0d13d1', 'wick@gmail.com', NULL, 'sumag ', '092412421421', 'afdasfsafasfdasfda', '1978-12-06', 'Male', 'Volleyball', 'Libero', '2018-08-02 00:23:54', '2018-08-02 00:23:54', 'Athlete', 'Activated', ''),
-(31, 'Roger Jaime', 'b911af807c2df88d671bd7004c54c1c2', 'Roger@yahoo.com', NULL, 'usls', '4461039', 'Bacolod City ', '1996-10-23', 'Male', 'Basketball', 'Point Guard', '2018-08-03 00:57:30', '2018-08-03 00:57:30', 'Athlete', 'Activated', 'E.jpg'),
+(31, 'Roger Jaime', '39ea2bf6a4d98585851d2bd07f0d13d1', 'Roger@yahoo.com', NULL, 'usls', '4461039', 'Bacolod City ', '1996-10-23', 'Male', 'Football', 'Goal Keeper', '2018-08-03 00:57:30', '2018-08-03 00:57:30', 'Athlete', 'Activated', 'E.jpg'),
 (32, 'Xenon Debulgado', '43c1cb1c1cf84a689b551d8dd1b13190', 'Xenonsky@gmail.com', NULL, 'usls', '1234567890', 'Bacolod City', '1978-12-06', 'Male', 'Football', 'Goal Keeper', '2018-08-03 01:01:35', '2018-08-03 01:01:35', 'Athlete', 'Activated', ''),
 (33, 'coach', '39ea2bf6a4d98585851d2bd07f0d13d1', 'dsadada@gmail.com', 'LCC', NULL, '0912313', 'coach', '1978-12-06', 'Male', 'Volleyball', NULL, '2018-08-05 14:26:41', '2018-08-05 14:26:41', 'Coach', 'Activated', ''),
 (34, 'vicmar yanson', '39ea2bf6a4d98585851d2bd07f0d13d1', 'vicmar@gmail.com', 'USLS', NULL, '09312313132131', 'address', '1978-12-06', 'Male', 'Basketball', NULL, '2018-08-07 22:42:50', '2018-08-07 22:42:50', 'Coach', 'Deactivated', ''),
@@ -140,7 +140,9 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_scho
 (36, 'asdasdasd', '39ea2bf6a4d98585851d2bd07f0d13d1', 'asdasd@gmail.com', 'LCC', NULL, '2313131321', 'address', '1978-12-06', 'Male', 'Football', NULL, '2018-08-07 22:48:26', '2018-08-07 22:48:26', 'Coach', 'Activated', ''),
 (37, 'dasdad', '00924930273acce5928b1f11e4986604', 'dasdad@gmail.com', 'LCC', NULL, '12313131', 'Addresssss', '1978-12-06', 'Male', 'Basketball', NULL, '2018-08-07 22:50:32', '2018-08-07 22:50:32', 'Coach', 'Deactivated', ''),
 (39, 'Vicmar Joseph Yanson1', '827ccb0eea8a706c4c34a16891f84e7b', 'vicmar.yanson@gmail.com', NULL, 'Bata National High School', '0915733940111', 'Bacolod City', '1996-03-06', 'Male', 'Basketball', 'Point Guard', '2018-08-12 10:08:19', '2018-08-12 18:14:37', 'Athlete', 'Activated', ''),
-(40, 'V', '39ea2bf6a4d98585851d2bd07f0d13d1', 'E@d.com', 'UNOR', 'Abkasa National High School', '1', 'W', '2018-08-14', 'Male', 'Basketball', 'Shooting Guard', '2018-08-12 10:55:02', '2018-08-16 00:17:52', 'Athlete', 'Activated', 'logo.png');
+(40, 'V', '39ea2bf6a4d98585851d2bd07f0d13d1', 'E@d.com', 'UNOR', 'Abkasa National High School', '1', 'W', '2018-08-14', 'Male', 'Basketball', 'Shooting Guard', '2018-08-12 10:55:02', '2018-08-16 00:17:52', 'Athlete', 'Activated', 'logo.png'),
+(41, 'Ivan Ray Buglosa', '39ea2bf6a4d98585851d2bd07f0d13d1', 'ivan123@gmail.com', 'UNOR', NULL, '09213131', 'Address', '2018-07-29', 'Male', 'Basketball', NULL, '2018-08-25 11:03:33', '2018-08-25 11:03:33', 'Coach', 'Activated', ''),
+(42, 'volleyball coach', '39ea2bf6a4d98585851d2bd07f0d13d1', 'volleyball@gmail.com', 'USLS', NULL, '23131321', 'address', '2018-08-02', 'Female', 'Volleyball', NULL, '2018-08-25 12:14:22', '2018-08-25 12:14:22', 'Coach', 'Activated', '');
 
 -- --------------------------------------------------------
 
@@ -157,15 +159,16 @@ CREATE TABLE `volleyball` (
   `volleyball_service_ace` int(2) NOT NULL,
   `volleyball_digs` int(2) NOT NULL,
   `volleyball_blocks` int(2) NOT NULL,
-  `volleyball_average` int(5) NOT NULL
+  `volleyball_average` int(5) NOT NULL,
+  `volleyball_total_games_played` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `volleyball`
 --
 
-INSERT INTO `volleyball` (`volleyball_id`, `user_id`, `volleyball_position`, `volleyball_kills`, `volleyball_assists`, `volleyball_service_ace`, `volleyball_digs`, `volleyball_blocks`, `volleyball_average`) VALUES
-(1, 26, 'Libero', 5, 7, 6, 8, 9, 10);
+INSERT INTO `volleyball` (`volleyball_id`, `user_id`, `volleyball_position`, `volleyball_kills`, `volleyball_assists`, `volleyball_service_ace`, `volleyball_digs`, `volleyball_blocks`, `volleyball_average`, `volleyball_total_games_played`) VALUES
+(1, 26, 'Libero', 5, 7, 6, 8, 9, 10, 0);
 
 --
 -- Indexes for dumped tables
@@ -221,13 +224,13 @@ ALTER TABLE `football`
 -- AUTO_INCREMENT for table `invites`
 --
 ALTER TABLE `invites`
-  MODIFY `invite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `invite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `volleyball`

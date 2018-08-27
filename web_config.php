@@ -200,20 +200,30 @@
         }
 
         public function searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$sport){
-            $Athlete = "%$searchAthlete%";
+            $name = "%".$searchAthlete."%";
+            $gender = "%".$searchGender."%";
+            $position = "%".$searchPosition."%";
+
             $now = date('Y-m-d');
             $date = strtotime($now." -".$searchAge." years");
-            $age = date('Y-m-d', $date);
+            $age_format = date('Y', $date);
+                if($age_format == 1970){
+                    $age = "%%";
+                }else{
+                    $age = "%".$age_format."%";
+                }
+            
+
             try{
                 $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE (gender=:gender OR
-                                                position=:position OR
-                                                birthdate=:age OR
-                                                name LIKE :name) AND sport=:sport AND type='Athlete'");
-                $query->bindparam(":name", $Athlete);
-                $query->bindparam(":gender", $searchGender);
+                                            WHERE (name LIKE :name AND
+                                                gender LIKE :gender AND
+                                                position LIKE :position AND
+                                                YEAR(birthdate) LIKE :age) AND sport=:sport AND type='Athlete'");
+                $query->bindparam(":name", $name);
+                $query->bindparam(":gender", $gender);
                 $query->bindparam(":age", $age);
-                $query->bindparam(":position", $searchPosition);
+                $query->bindparam(":position", $position);
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
@@ -289,6 +299,19 @@
             } 
         }
 
+        public function schoolAthletes($school, $sport){
+            try{
+                $query = $this->db->prepare("SELECT * FROM users WHERE school=:school AND sport=:sport AND type='Athlete'");
+                $query->bindparam(":sport", $sport);
+                $query->bindparam(":school", $school);
+                $query->execute();
+                return $request = $query->fetchAll();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
         public function BasketballPlayerStats($athlete_id){
             try{
                 $query = $this->db->prepare("SELECT * FROM Basketball INNER JOIN users ON basketball.user_id=users.id WHERE user_id=:athlete");
@@ -338,7 +361,7 @@
             } 
         }
 
-        public function deleteInvite($invite_id){
+        public function deleteInvites($invite_id){
             try{
                 $query = $this->db->prepare("DELETE FROM invites WHERE invite_id=:invite");
                 $query->bindparam(":invite", $invite_id);

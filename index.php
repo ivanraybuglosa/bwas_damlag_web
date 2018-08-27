@@ -70,6 +70,7 @@
                         <tr>
                             <td>
                                 <center>
+                                    <?php $imageURL = 'uploads/'.$searchUser["image"];?>
                                     <img src="<?php if(empty($searchUser["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
                                 </center>
                             </td>
@@ -120,6 +121,7 @@
                             <tr>
                                 <td>
                                     <center>
+                                        <?php $imageURL = 'uploads/'.$user["image"];?>
                                         <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
                                     </center>
                                 </td>
@@ -152,11 +154,11 @@
                 <h1>List of Registered Athletes</h1>
 
                 <form method="post">
-                    <input type="text" name="searchAthlete" placeholder="Athlete Name">
+                    <input type="text" name="name" placeholder="Athlete Name">
                     <?php 
                         if($current_user['sport'] == 'Basketball'){
                     ?>
-                        <select name="searchPosition">
+                        <select name="position">
                             <option value="">Search Position</option>
                             <option value="Point Guard">Point Guard</option>
                             <option value="Shooting Guard">Shooting Guard</option>
@@ -165,7 +167,7 @@
                             <option value="Center">Center</option>
                         </select>
                     <?php }elseif($current_user['sport'] == 'Volleyball'){ ?>
-                        <select name="searchPosition">
+                        <select name="position">
                             <option value="">Search Position</option>
                             <option value="Outside hitter">Outside hitter</option>
                             <option value="Right Side Hitter">Right Side Hitter</option>
@@ -177,8 +179,8 @@
                         </select>
 
                     <?php }else{ ?>
-                        <select name="searchPosition">
-                            <option value="">Search Position</option>
+                        <select name="position">
+                            <option value=" ">Search Position</option>
                             <option value="Forward">Forward</option>
                             <option value="Striker">Striker</option>
                             <option value="Left Midfielder">Left Midfielder</option>
@@ -192,22 +194,70 @@
                         </select>
 
                     <?php } ?>
-                    <select name="searchGender">
+                    <select name="gender">
                         <option value="">Search Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                    <input type="number" name="searchAge" placeholder="Age" min="0" max="100">
+                    <input type="number" name="age" placeholder="Age" min="0" max="100">
                     <button class="search-button" name="search-submit" type="submit">Search</button>
                 </form>
-
                 <?php 
                     if(isset($_POST['search-submit']) && $current_user['type'] == 'Coach'){
-                        $searchAthlete = $_POST['searchAthlete'];
-                        $searchPosition = $_POST['searchPosition'];
-                        $searchGender = $_POST['searchGender'];
-                        $searchAge = $_POST['searchAge'];
+                        $searchAthlete = $_POST['name'];
+                        $searchPosition = $_POST['position'];
+                        $searchGender = $_POST['gender'];
+                        $searchAge = $_POST['age'];
+
+                        if($searchAthlete == "" && $searchPosition == "" && $searchGender == "" && $searchAge == 1970){
                 ?>
+                        <table id="users" class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Username</th>
+                                <th>Position</th>
+                                <th>E-mail</th>
+                                <th>Last School Attended</th>
+                                <th>Gender</th>
+                                <th>Contact Number</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            <tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            $users = $pdo->fetchAllAthletes($current_user['sport']);
+                            if(is_array($users) && !empty($users)){
+                                foreach($users as $user){
+                        ?>
+                        <tr>
+                            <td>
+                                <center>
+                                    <?php $imageURL = 'uploads/'.$user["image"];?>
+                                    <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="table-image" />
+                                </center>
+                            </td>
+                            <td><?php echo $user['name']; ?></td>
+                            <td><?php echo $user['position'] ?></td>
+                            <td><?php echo $user['email']; ?></td>
+                            <td><?php if(empty($user['previous_school'])){
+                                    echo 'N/A';
+                                }else{
+                                    echo $user['previous_school'];
+                                }?>
+                            </td>
+                            <td><?php echo $user['gender']; ?></td>
+                            <td><?php echo $user['contact']; ?></td>
+                            <td><?php echo $user['address']; ?></td>
+                            <td width="20%">
+                                <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
+                            </td>
+                        </tr>
+                        <?php } }?>
+                    </tbody>
+                    </table>
+                <?php }else{ ?>
                     <table id="users" class="table">
                         <thead>
                             <tr>
@@ -238,7 +288,12 @@
                                 <td><?php echo $athlete['name']; ?></td>
                                 <td><?php echo $athlete['position'] ?></td>
                                 <td><?php echo $athlete['email']; ?></td>
-                                <td><?php echo $athlete['previous_school']; ?></td>
+                                <td><?php if(empty($athlete['previous_school'])){
+                                    echo 'N/A';
+                                }else{
+                                    echo $athlete['previous_school'];
+                                }?>
+                                </td>
                                 <td><?php echo $athlete['gender']; ?></td>
                                 <td><?php echo $athlete['contact']; ?></td>
                                 <td><?php echo $athlete['address']; ?></td>
@@ -249,6 +304,7 @@
                             <?php } }?>
                         </tbody>
                     </table>
+                <?php } ?>
                 <?php }else{ ?>
                     <table id="users" class="table">
                         <thead>
@@ -280,7 +336,12 @@
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
                             <td><?php echo $user['email']; ?></td>
-                            <td><?php echo $user['previous_school']; ?></td>
+                            <td><?php if(empty($user['previous_school'])){
+                                    echo 'N/A';
+                                }else{
+                                    echo $user['previous_school'];
+                                }?>
+                            </td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
                             <td><?php echo $user['address']; ?></td>
