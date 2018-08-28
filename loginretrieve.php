@@ -19,10 +19,8 @@
     }
     
     $userObject = new User();
-    
     // Login
     
-        
         $hashed_password = md5($password);
         
         $json_array = $userObject->loginUsers($email, $hashed_password);
