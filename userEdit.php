@@ -19,29 +19,33 @@
         }else{
             $password = md5($_POST['updatePassword']);
         }
-
         // File upload path
         $targetDir = "uploads/";
         $fileName = basename($_FILES["image"]["name"]);
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+        if(empty($fileName)){
 
+            if($pdo->updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at)){
+                echo "<script>alert('User Information has been saved.');window.location.href='index.php';</script>";
+            }else{
+                echo "<script>alert('User update failed.');window.location.href='editUser.php?id=".$id."';</script>";
+            }
+        }else{
             // Allow certain file formats
             $allowTypes = array('jpg','png','jpeg','gif','pdf');
             if(in_array($fileType, $allowTypes)){
                 // Upload file to server
                 if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
                     // Insert image file name into database
-                    if($pdo->updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$fileName)){
+                    if($pdo->updateUserImage($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$fileName)){
                         echo "<script>alert('User Information has been saved.');window.location.href='index.php';</script>";
                     }else{
                         echo "<script>alert('User update failed.');window.location.href='editUser.php?id=".$id."';</script>";
                     }
                 }
             }
-        
-
-        
+        }
     }
 ?>
 <html>
@@ -82,7 +86,6 @@
                 <select name="updateSport">
                     <option value="Basketball" <?php if($user['sport'] == 'Basketball'){ echo 'selected'; } ?>>Basketball</option>
                     <option value="Volleyball" <?php if($user['sport'] == 'Volleyball'){ echo 'selected'; } ?>>Volleyball</option>
-                    <option value="Football" <?php if($user['sport'] == 'Football'){ echo 'selected'; } ?>>Football</option>
                 </select>
                 <small>Email Address</small> 
                 <input type="email" value="<?php echo $user['email']?>" name="updateEmail" required>

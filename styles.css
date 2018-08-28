@@ -317,14 +317,6 @@ select {
     margin-top: 10px;
 }
 
-.navbar-image {
-    height: 40px;
-    width: 40px;
-    border: none;
-    border-radius: 50%;
-    margin-top: 10px;
-    margin-left: 250px; 
-}
 
 
 .border-box {
@@ -367,4 +359,10 @@ select {
 .top {
     margin-top: 15px;
     text-align: center;
+}
+
+.youtube-link {
+    height: 500px;
+    width: 1000px;
+    margin-top: 30px;
 }
