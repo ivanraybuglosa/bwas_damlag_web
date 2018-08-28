@@ -1,14 +1,14 @@
 
 <nav class="navbar">
     <div class="container">
-    <strong><a class="brand-logo" href="home.php">BUAS DAMLAG</a></strong>
-    <a href="home.php" class="list">HOME</a>
-    <a href="about.php" class="list">ABOUT US</a>
     <?php 
         if($current_user['type'] == 'Admin'){
     ?>
         <a href="index.php" class="list">USERS</a>
     <?php }else{ ?>
+        <strong><a class="brand-logo" href="home.php">BUAS DAMLAG</a></strong>
+        <a href="home.php" class="list">HOME</a>
+        <a href="about.php" class="list">ABOUT US</a>
         <a href="index.php" class="list"><?php echo strtoupper($current_user['sport']);?> ATHLETES</a>
         <a href="invites.php" class="list">SENT INVITES</a>
     <?php } ?>
@@ -21,7 +21,6 @@
             <button class="dropbtn" onclick="sportDropDown()">SPORTS</button>
             <div class="dropdown-content" id="dropdown">
                 <a href="sport.php?sport=Basketball">Basketball</a>
-                <a href="sport.php?sport=Football">Football</a>
                 <a href="sport.php?sport=Volleyball">Volleyball</a>
             </div>
         </div>
@@ -42,10 +41,8 @@
             <a href="DeactivatedUsers.php" class="user-profile list">COACH ACTIVATIONS</a>
         <?php } ?>
         <?php $imageURL = 'uploads/'.$current_user["image"];?>
-            <img src="<?php if(empty($current_user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="navbar-image" />
         <div class="dropdown user-profile list">
-            
-            <button class="dropbtn" onclick="profileDropdown()">
+            <button class="dropbtn profile-dropdown" onclick="profileDropdown()">
                 <?php echo $current_user['name']?>
             </button>
             <div class="dropdown-content" id="profile-dropdown">

@@ -3,6 +3,15 @@
     include_once('authentication.php');
     $getSchool = $_GET['school'];
 
+    if(isset($_POST['delete'])){
+        $id = $_POST['id'];
+
+        if($pdo->deleteUser($id)){
+            echo "<script>alert('User Information has been successfully removed!');window.location.href='sport.php?sport=".$getSchool."';</script>";
+        }else{
+            echo "<script>alert('Unable to remove the user.');window.location.href='sport.php?sport=".$getSchool."'';</script>";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

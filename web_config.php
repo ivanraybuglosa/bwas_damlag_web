@@ -57,7 +57,27 @@
             }
         }
 
-        public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$image){
+        public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at){
+            try{
+                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at, image=:image WHERE id=:id");
+                $query->bindparam(":id", $id);
+                $query->bindparam(":name", $name);
+                $query->bindparam(":contact", $contact);
+                $query->bindparam(":address", $address);
+                $query->bindparam(":school", $school);
+                $query->bindparam(":sport", $sport);
+                $query->bindparam(":email", $email);
+                $query->bindparam(":password", $password);
+                $query->bindparam(":updated_at", $updated_at);
+                $query->execute();
+                return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function updateUserImage($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$image){
             try{
                 $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at, image=:image WHERE id=:id");
                 $query->bindparam(":id", $id);
@@ -353,6 +373,18 @@
                 $query = $this->db->prepare("SELECT * FROM invites WHERE athlete_id=:athlete AND coach_id=:coach");
                 $query->bindparam(":athlete", $athlete_id);
                 $query->bindparam(":coach", $coach_id);
+                $query->execute();
+                return $request = $query->fetch();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function userImage($id){
+            try{
+                $query = $this->db->prepare("SELECT image FROM users WHERE id=:id");
+                $query->bindparam(":id", $id);
                 $query->execute();
                 return $request = $query->fetch();
             }catch(PDOException $e){

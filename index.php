@@ -66,7 +66,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $searchUsers = $pdo->searchUser($search);
+                            $searchUsers = $pdo->searchUser($search, strtolower($current_user['sport']));
                             if(is_array($searchUsers) && !empty($searchUsers)){
                                 foreach($searchUsers as $searchUser){
                         ?>
@@ -88,7 +88,7 @@
                             <td><?php echo $searchUser['sport']; ?></td>
                             <td><?php echo $searchUser['gender']; ?></td>
                             <td><?php echo $searchUser['type']; ?></td>
-                            <td>
+                            <td width="20%">
                                 <a class="view-profile" href="userProfile.php?id=<?php echo $searchUser['id']?>">View Profile</a>
                                 <form method="post" class="delete-form">
                                     <input type="hidden" name="id" value="<?php echo $searchUser['id']?>"/>
@@ -139,7 +139,7 @@
                                 <td><?php echo $user['sport']; ?></td>
                                 <td><?php echo $user['gender']; ?></td>
                                 <td><?php echo $user['type']; ?></td>
-                                <td>
+                                <td width="20%">
                                     <a class="view-profile" href="userProfile.php?id=<?php echo $user['id']?>">View Profile</a>
                                     <form method="post" class="delete-form">
                                         <input type="hidden" name="id" value="<?php echo $user['id']?>"/>
@@ -300,7 +300,7 @@
                                 <td><?php echo $athlete['gender']; ?></td>
                                 <td><?php echo $athlete['contact']; ?></td>
                                 <td><?php echo $athlete['address']; ?></td>
-                                <td width="11%">
+                                <td width="20%">
                                     <a class="view-profile" href="userProfile.php?id=<?php echo $athlete['id']?>">View Profile</a>
                                 </td>
                             </tr>
