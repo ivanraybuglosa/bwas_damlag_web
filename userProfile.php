@@ -279,12 +279,13 @@
 
             <?php } ?>
         <?php }else{?>
-            <?php if($current_user['type'] == 'Coach'){ ?>
+           
                 <?php $imageURL = 'uploads/'.$user["image"];?>
                 <center><img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="image" /></center>
                 <center><h1><?php echo $user['name']?> - <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?> - <?php echo $user['sport']?> Athlete</h1></center>
                 <div class="container">
                 <center>   
+                <?php if($current_user['type'] == 'Coach'){ ?>
                         <?php 
                             $check = $pdo->checkInvite($user['id'], $current_user['id']);
                                 if(empty($check)){
@@ -305,21 +306,24 @@
                                 <button class="remove-invite" type="submit" name="delete-invite">Remove Invite</button>
                             </form>
                         <?php } ?>
+                        <?php } ?>
                         <br>
                         <strong><?php echo $user['position']?> -</strong>
                         <strong><?php echo $user['email']?> -</strong>
                         <strong><?php echo $user['contact']?> -</strong>
                         <strong><?php echo $user['gender']?> -</strong>
                         <strong><?php echo $user['address']?> -</strong>
+                        
                         <strong><?php echo date('F j,Y', strtotime($user['birthdate']))?></strong>
-                
-                        <iframe class="youtube-link" id="ytplayer" type="text/html"
-                        src="https://www.youtube.com/embed/<?php echo $user['youtube'] ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
-                        frameborder="0" allowfullscreen></iframe> 
+                        <?php if(!empty($user['youtube'])){?>
+                            <iframe class="youtube-link" id="ytplayer" type="text/html"
+                            src="<?php echo $user['youtube'] ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                            frameborder="0" allowfullscreen></iframe> 
+                        <?php } ?>
                 </center>
 
                  
-            <?php } ?>
+           
         <?php } ?>
         </div>
     </body>
