@@ -60,8 +60,6 @@
 
         
         public function loginUsers($email, $password){
-            
-            
             $canUserLogin = $this->isLoginExist($email, $password);
             if($canUserLogin==true){
                 $json['id'] = $_SESSION['id'];
@@ -70,7 +68,6 @@
                 $json['sport'] = $_SESSION['sport'];
                 $json['success'] = 1;
                 $json['message'] = "Successfully logged in";
-                
             }else{
                 $json['success'] = 0;
                 $json['message'] = "Incorrect details";

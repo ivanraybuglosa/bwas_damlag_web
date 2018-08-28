@@ -9,7 +9,7 @@
     }
     public function showProfile($id){
             
-        $query = "select * from ".$this->db_table." INNER JOIN basketball ON users.id = basketball.user_id WHERE users.id = '$id'";
+        $query = "select * from ".$this->db_table." INNER JOIN volleyball ON users.id = volleyball.user_id WHERE users.id = '$id'";
         
         $result = mysqli_query($this->db->getDb(), $query);
         $rows=mysqli_num_rows($result);
@@ -24,20 +24,20 @@
                 $json['gender'] = $row['gender'];
                 $json['position'] = $row['position'];
                 $json['sport'] = $row['sport'];
-                $json['points'] = $row['basketball_points'];
-                $json['assists'] = $row['basketball_assists'];
-                $json['rebounds'] = $row['basketball_rebounds'];
-                $json['blocks'] = $row['basketball_blocks'];
-                $json['steals'] = $row['basketball_steals'];
-                $json['minutes'] = $row['basketball_minutes_played'];
-                $json['fouls'] = $row['basketball_fouls'];
-                $json['turnover'] = $row['basketball_turnovers'];
-                $json['missedFG'] = $row['basketball_missedFG'];
+                $json['kills'] = $row['volleyball_kills'];
+                $json['assists'] = $row['volleyball_assists'];
+                $json['service_ace'] = $row['volleyball_service_ace'];
+                $json['digs'] = $row['volleyball_digs'];
+                $json['blocks'] = $row['volleyball_blocks'];
+                $json['games'] = $row['volleyball_total_games_played'];
             
             }
             print(json_encode($json));
         }else{
-            while($row =  $result->fetch_assoc()) {
+            $query1 = "select * from ".$this->db_table." WHERE id = '$id'";
+        
+            $result1 = mysqli_query($this->db->getDb(), $query1);
+            while($row =  $result1->fetch_assoc()) {
                 $json['name'] = $row['name'];
                 $json['email'] = $row['email'];
                 $json['contactNumber'] = $row['contact'];
@@ -46,20 +46,18 @@
                 $json['school'] = $row['previous_school'];
                 $json['gender'] = $row['gender'];
                 $json['position'] = $row['position'];
-                $json['sport'] = 'n/a';
-                $json['points'] = 'n/a';
+                $json['sport'] = $row['sport'];
+                $json['kills'] = 'n/a';
                 $json['assists'] = 'n/a';
-                $json['rebounds'] = 'n/a';
+                $json['service_ace'] = 'n/a';
+                $json['digs'] = 'n/a';
                 $json['blocks'] = 'n/a';
-                $json['steals'] = 'n/a';
-                $json['minutes'] = 'n/a';
-                $json['fouls'] = 'n/a';
-                $json['turnover'] = 'n/a';
-                $json['missedFG'] = 'n/a';
+                $json['games'] = 'n/a';
             
             }
             print(json_encode($json));
         }
+            
     }
     
 }
