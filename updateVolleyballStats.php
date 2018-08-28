@@ -7,8 +7,7 @@ class User{
     public function __construct(){
         $this->db = new DbConnect();
     }
-    public function updateVolleyballStats($id,$position,$points,$kills,$assists,$serviceAce,$digs,$blocks,$totalGames){
-        $points = (int)$points;
+    public function updateVolleyballStats($id,$position,$kills,$assists,$serviceAce,$digs,$blocks,$totalGames){
         $kills = (int)$kills;
         $assists = (int)$assists;
         $serviceAce = (int)$serviceAce;
@@ -31,11 +30,11 @@ class User{
             $json['name'] = $row['name'];
             $json['email'] = $row['email'];
             $json['id']=$id;
-            $json['message']="Volleyball Stats Updated";
+            $json['message']="Volleyball Stats Updated";]
         }else{
             $average = ($kills+$assists+$serviceAce+$digs+$blocks) / $totalGames;
-            $query = "INSERT into volleyball (volleyball_position,volleyball_kills, volleyball_assists, volleyball_service_ace, volleyball_digs, volleyball_blocks, volleyball_total_games_played, volleyball_average,`user_id`) 
-            values ('$position','$kills', '$assists','$serviceAce', '$digs', '$totalGames', '$average', '$id')";
+            $query = "INSERT INTO `volleyball`(`user_id`, `volleyball_position`, `volleyball_kills`, `volleyball_assists`, `volleyball_service_ace`, `volleyball_digs`, `volleyball_blocks`, `volleyball_average`, `volleyball_total_games_played`) 
+            VALUES ('$id','$position','$kills','$assists','$serviceAce','$digs','$blocks','$average','$totalGames')";
             $result = mysqli_query($this->db->getDb(), $query);
             $query2 = "SELECT name, email FROM users WHERE id = $id";
             $result2 = mysqli_query($this->db->getDb(), $query2);
@@ -67,7 +66,6 @@ class User{
 }
     $position = "";
     $kills = "";
-    $points = "";
     $assists = "";
     $serviceAce = "";
     $blocks = "";
@@ -90,14 +88,9 @@ class User{
         $assists = $_POST['assists'];
         
     }
-    if(isset($_POST['serviceAce'])){
+    if(isset($_POST['service'])){
         
-        $serviceAce = $_POST['serviceAce'];
-        
-    }
-    if(isset($_POST['points'])){
-        
-        $points = $_POST['points'];
+        $serviceAce = $_POST['service'];
         
     }
     if(isset($_POST['digs'])){
@@ -123,7 +116,7 @@ class User{
 
     $userObject = new User();
 
-    $updateJson = $userObject->updateVolleyballStats($id,$position,$points,$kills,$assists,$serviceAce,$digs,$blocks,$totalGames);
+    $updateJson = $userObject->updateVolleyballStats($id,$position,$kills,$assists,$serviceAce,$digs,$blocks,$totalGames);
     
     echo json_encode($updateJson);
 
