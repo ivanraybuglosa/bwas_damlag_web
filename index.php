@@ -63,7 +63,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $searchUsers = $pdo->searchUser($search, strtolower($current_user['sport']));
+                            $searchUsers = $pdo->searchUser($search);
                             if(is_array($searchUsers) && !empty($searchUsers)){
                                 foreach($searchUsers as $searchUser){
                         ?>

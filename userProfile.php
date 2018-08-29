@@ -315,9 +315,16 @@
                         <strong><?php echo $user['address']?> -</strong>
                         
                         <strong><?php echo date('F j,Y', strtotime($user['birthdate']))?></strong>
-                        <?php if(!empty($user['youtube'])){?>
+
+
+                        
+                        <?php if(!empty($user['youtube'])){
+                            $url = $user['youtube'];
+                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                            $youtube = $matches[1];
+                        ?>
                             <iframe class="youtube-link" id="ytplayer" type="text/html"
-                            src="<?php echo $user['youtube'] ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                            src="https://www.youtube.com/embed/<?php echo $youtube ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
                             frameborder="0" allowfullscreen></iframe> 
                         <?php } ?>
                 </center>

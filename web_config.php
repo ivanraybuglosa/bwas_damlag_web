@@ -147,8 +147,9 @@
         }
 
         public function fetchAllAthletes($sport){
+            $sportLow = strtolower($sport);
             try{
-                $query = $this->db->prepare("SELECT * FROM users WHERE sport=:sport AND type='Athlete'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN $sportLow ON users.id=".$sportLow.".user_id WHERE sport=:sport AND type='Athlete' ORDER BY ".$sportLow."_average DESC");
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();

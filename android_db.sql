@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2018 at 07:40 PM
+-- Generation Time: Aug 29, 2018 at 02:36 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -100,6 +100,29 @@ INSERT INTO `invites` (`invite_id`, `coach_id`, `athlete_id`, `message`, `create
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `question`
+--
+
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL,
+  `test_id` int(11) NOT NULL,
+  `question` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -139,8 +162,8 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `school`, `previous_scho
 (35, 'vicmar yanson', '1990-08-07', 'yanson@gmail.com', 'USLS', NULL, '09321313132', 'dadasdsa', '1978-12-06', 'Male', 'Football', 'Center Defender', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Athlete', 'Activated', '', ''),
 (36, 'asdasdasd', '39ea2bf6a4d98585851d2bd07f0d13d1', 'asdasd@gmail.com', 'LCC', NULL, '2313131321', 'address', '1978-12-06', 'Male', 'Football', NULL, '2018-08-07 22:48:26', '2018-08-07 22:48:26', 'Coach', 'Activated', '', ''),
 (37, 'dasdad', '00924930273acce5928b1f11e4986604', 'dasdad@gmail.com', 'LCC', NULL, '12313131', 'Addresssss', '1978-12-06', 'Male', 'Basketball', NULL, '2018-08-07 22:50:32', '2018-08-07 22:50:32', 'Coach', 'Deactivated', '', ''),
-(39, 'Vicmar Joseph Yanson1', '827ccb0eea8a706c4c34a16891f84e7b', 'vicmar.yanson@gmail.com', NULL, 'Bata National High School', '0915733940111', 'Bacolod City', '1996-03-06', 'Male', 'Basketball', 'Point Guard', '2018-08-12 10:08:19', '2018-08-12 18:14:37', 'Athlete', 'Activated', '', 'iAaC9dL9LXU'),
-(43, 'Jerome dasda', '39ea2bf6a4d98585851d2bd07f0d13d1', 'jerome@gmail.com', 'UNOR', NULL, '12313', 'Address', '2018-08-14', 'Male', 'Basketball', NULL, '2018-08-28 22:59:11', '2018-08-28 23:33:48', 'Coach', 'Activated', 'E.jpg', 'sadaadaaa');
+(39, 'Vicmar Joseph Yanson1', '827ccb0eea8a706c4c34a16891f84e7b', 'vicmar.yanson@gmail.com', NULL, 'Bata National High School', '0915733940111', 'Bacolod City', '1996-03-06', 'Male', 'Basketball', 'Point Guard', '2018-08-12 10:08:19', '2018-08-12 18:14:37', 'Athlete', 'Activated', '', 'https://www.youtube.com/watch?v=B2IhiRDYl7c'),
+(43, 'Jerome dasda', '39ea2bf6a4d98585851d2bd07f0d13d1', 'jerome@gmail.com', 'UNOR', NULL, '12313', 'Address', '2018-08-14', 'Male', 'Basketball', NULL, '2018-08-28 22:59:11', '2018-08-28 23:33:48', 'Coach', 'Activated', 'E.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -191,6 +214,18 @@ ALTER TABLE `invites`
   ADD PRIMARY KEY (`invite_id`);
 
 --
+-- Indexes for table `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -223,6 +258,18 @@ ALTER TABLE `football`
 --
 ALTER TABLE `invites`
   MODIFY `invite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `question`
+--
+ALTER TABLE `question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
