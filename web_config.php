@@ -207,11 +207,18 @@
             }
         }
 
-        public function searchUser($search){
-            $searched = "%$search%";
+        public function searchUser($search,$type,$sport){
+            $searched = "%".$search."%";
+            $type = "%".$type."%";
+            $sport = "%".$sport."%";
             try{
-                $query = $this->db->prepare("SELECT * FROM users WHERE name LIKE :name AND type != 'Admin'");
+                $query = $this->db->prepare("SELECT * FROM users WHERE (name LIKE :name AND 
+                                                                        type LIKE :type AND
+                                                                        sport LIKE :sport) AND 
+                                                                        type != 'Admin'");
                 $query->bindparam(":name", $searched);
+                $query->bindparam(":type", $type);
+                $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $result = $query->fetchAll();
             }catch(PDOException $e){

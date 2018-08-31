@@ -18,7 +18,7 @@
         <link href="styles.css" rel="stylesheet" />
         <style> 
             input[type=text], input[type=number], select{
-                width: 200px;
+                width: 250px;
                 box-sizing: border-box;
                 border: 2px solid #ccc;
                 border-radius: 4px;
@@ -41,11 +41,24 @@
                 <center>
                 <h1>List of Activated Users</h1>
                 <form method="post">
-                    <input type="text" name="search" placeholder="Search All Users">
+                    <input type="text" name="search" placeholder="Search Users">
+                    <select name="type">
+                            <option value="">Select User Type</option>
+                            <option value="Coach">Coach</option>
+                            <option value="Athlete">Athlete</option>
+                    </select>
+                    <select name="sport">
+                            <option value="">Select Sport</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Volleyball">Volleyball</option>
+                    </select>
+                    <button class="search-button" name="search-submit" type="submit">Search</button>
                 </form>
                 <?php 
                     if(isset($_POST['search']) && $current_user['type'] == 'Admin'){
                         $search = $_POST['search'];
+                        $type = $_POST['type'];
+                        $sport = $_POST['sport'];
                 ?>
 
                     <table id="users" class="table">
@@ -63,7 +76,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $searchUsers = $pdo->searchUser($search);
+                            $searchUsers = $pdo->searchUser($search,$type,$sport);
                             if(is_array($searchUsers) && !empty($searchUsers)){
                                 foreach($searchUsers as $searchUser){
                         ?>

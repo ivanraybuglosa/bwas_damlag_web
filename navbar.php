@@ -17,7 +17,7 @@
         if($current_user['type'] == 'Admin'){
     ?>
         
-        <div class="dropdown list">
+        <!-- <div class="dropdown list">
             <button class="dropbtn" onclick="sportDropDown()">SPORTS</button>
             <div class="dropdown-content" id="dropdown">
                 <a href="sport.php?sport=Basketball">Basketball</a>
@@ -34,7 +34,7 @@
                 <a href="school.php?school=STI">STI-WEST NEGROS</a>
                 <a href="school.php?school=CSAB">CSAB</a>
             </div>
-        </div>
+        </div> -->
     <?php }?>
             
         <?php if($current_user['type'] == 'Admin'){ ?>
