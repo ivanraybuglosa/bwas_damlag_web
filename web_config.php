@@ -10,7 +10,7 @@
         //Query methods
         public function login($email,$password){
             try{
-                $query = $this->db->prepare("SELECT email FROM users WHERE email = :email AND password = :password");
+                $query = $this->db->prepare("SELECT email FROM users WHERE email = :email AND password = :password AND type != 'Athlete'");
                 $query->bindparam(":email", $email);
                 $query->bindparam(":password", $password);
                 $query->execute();
@@ -207,18 +207,30 @@
             }
         }
 
-        public function searchUser($search,$type,$sport){
+        public function searchUser($search,$type,$sport,$age){
             $searched = "%".$search."%";
             $type = "%".$type."%";
             $sport = "%".$sport."%";
+
+            $now = date('Y-m-d');
+            $date = strtotime($now." -".$age." years");
+            $age_format = date('Y', $date);
+                if($age_format == 1970){
+                    $age = "%%";
+                }else{
+                    $age = "%".$age_format."%";
+                }
+
             try{
                 $query = $this->db->prepare("SELECT * FROM users WHERE (name LIKE :name AND 
                                                                         type LIKE :type AND
-                                                                        sport LIKE :sport) AND 
+                                                                        sport LIKE :sport AND
+                                                                        YEAR(birthdate) LIKE :age) AND 
                                                                         type != 'Admin'");
                 $query->bindparam(":name", $searched);
                 $query->bindparam(":type", $type);
                 $query->bindparam(":sport", $sport);
+                $query->bindparam(":age", $age);
                 $query->execute();
                 return $result = $query->fetchAll();
             }catch(PDOException $e){

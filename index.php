@@ -52,6 +52,7 @@
                             <option value="Basketball">Basketball</option>
                             <option value="Volleyball">Volleyball</option>
                     </select>
+                    <input type="number" name="age" placeholder="Age" min="0" max="100">
                     <button class="search-button" name="search-submit" type="submit">Search</button>
                 </form>
                 <?php 
@@ -59,6 +60,7 @@
                         $search = $_POST['search'];
                         $type = $_POST['type'];
                         $sport = $_POST['sport'];
+                        $age = $_POST['age'];
                 ?>
 
                     <table id="users" class="table">
@@ -76,7 +78,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $searchUsers = $pdo->searchUser($search,$type,$sport);
+                            $searchUsers = $pdo->searchUser($search,$type,$sport,$age);
                             if(is_array($searchUsers) && !empty($searchUsers)){
                                 foreach($searchUsers as $searchUser){
                         ?>
