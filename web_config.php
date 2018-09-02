@@ -207,30 +207,22 @@
             }
         }
 
-        public function searchUser($search,$type,$sport,$age){
+        public function searchUser($search,$type,$sport,$gender){
             $searched = "%".$search."%";
             $type = "%".$type."%";
             $sport = "%".$sport."%";
-
-            $now = date('Y-m-d');
-            $date = strtotime($now." -".$age." years");
-            $age_format = date('Y', $date);
-                if($age_format == 1970){
-                    $age = "%%";
-                }else{
-                    $age = "%".$age_format."%";
-                }
+            $gender = "%".$gender."%";
 
             try{
                 $query = $this->db->prepare("SELECT * FROM users WHERE (name LIKE :name AND 
                                                                         type LIKE :type AND
                                                                         sport LIKE :sport AND
-                                                                        YEAR(birthdate) LIKE :age) AND 
+                                                                        gender LIKE :gender) AND 
                                                                         type != 'Admin'");
                 $query->bindparam(":name", $searched);
                 $query->bindparam(":type", $type);
                 $query->bindparam(":sport", $sport);
-                $query->bindparam(":age", $age);
+                $query->bindparam(":gender", $gender);
                 $query->execute();
                 return $result = $query->fetchAll();
             }catch(PDOException $e){
