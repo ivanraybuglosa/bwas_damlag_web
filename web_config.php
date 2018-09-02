@@ -211,7 +211,7 @@
             $searched = "%".$search."%";
             $type = "%".$type."%";
             $sport = "%".$sport."%";
-            $gender = "%".$gender."%";
+            $gender = $gender."%";
 
             try{
                 $query = $this->db->prepare("SELECT * FROM users WHERE (name LIKE :name AND 

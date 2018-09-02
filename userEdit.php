@@ -22,6 +22,8 @@
         // File upload path
         $targetDir = "uploads/";
         $fileName = basename($_FILES["image"]["name"]);
+        $prefix = "https://buasdamlag.000webhostapp.com/uploads/";
+        $file = $prefix.$fileName;
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
         if(empty($fileName)){
@@ -38,7 +40,7 @@
                 // Upload file to server
                 if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)){
                     // Insert image file name into database
-                    if($pdo->updateUserImage($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$fileName)){
+                    if($pdo->updateUserImage($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at,$file)){
                         echo "<script>alert('User Information has been saved.');window.location.href='index.php';</script>";
                     }else{
                         echo "<script>alert('User update failed.');window.location.href='editUser.php?id=".$id."';</script>";
