@@ -89,8 +89,7 @@
                         <tr>
                             <td>
                                 <center>
-                                    <?php $imageURL = 'uploads/'.$searchUser["image"];?>
-                                    <img src="<?php if(empty($searchUser["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
+                                    <img src="<?php if(empty($searchUser["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $searchUser["image"]; };?>" class="table-image" />
                                 </center>
                             </td>
                             <td><?php echo $searchUser['name']; ?></td>
@@ -140,8 +139,7 @@
                             <tr>
                                 <td>
                                     <center>
-                                        <?php $imageURL = 'uploads/'.$user["image"];?>
-                                        <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
+                                        <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png' ;}else{ echo $user["image"];};?>" class="table-image" />
                                     </center>
                                 </td>
                                 <td><?php echo $user['name']; ?></td>
@@ -253,8 +251,7 @@
                         <tr>
                             <td>
                                 <center>
-                                    <?php $imageURL = 'uploads/'.$user["image"];?>
-                                    <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="table-image" />
+                                    <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
                                 </center>
                             </td>
                             <td><?php echo $user['name']; ?></td>
@@ -300,8 +297,7 @@
                             <tr>
                                 <td>
                                     <center>
-                                    <?php $imageURL = 'uploads/'.$athlete["image"];?>
-                                        <img src="<?php if(empty($athlete["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="table-image" />
+                                        <img src="<?php if(empty($athlete["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $athlete["image"];};?>" class="table-image" />
                                     </center>
                                 </td>
                                 <td><?php echo $athlete['name']; ?></td>
@@ -348,8 +344,7 @@
                         <tr>
                             <td>
                                 <center>
-                                    <?php $imageURL = 'uploads/'.$user["image"];?>
-                                    <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;}?>" class="table-image" />
+                                    <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
                                 </center>
                             </td>
                             <td><?php echo $user['name']; ?></td>

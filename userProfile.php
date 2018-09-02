@@ -38,7 +38,7 @@
         <?php include_once('navbar.php'); ?>
         <?php if($user['type'] ==  'Coach'){ ?>
             <?php $imageURL = 'uploads/'.$user["image"];?>
-            <center><img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="image" /></center>
+            <center><img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];};?>" class="image" /></center>
             <center><h1><?php echo $user['name']?> - <?php echo $user['school']?> - <?php echo $user['sport']?></h1></center>
             <?php if($current_user['sport'] == 'Basketball'){?>
                 
@@ -47,9 +47,7 @@
 
             <?php } ?>
         <?php }else{?>
-           
-                <?php $imageURL = 'uploads/'.$user["image"];?>
-                <center><img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="image" /></center>
+                <center><img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];};?>" class="image" /></center>
                 <center><h1><?php echo $user['name']?> - <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?> - <?php echo $user['sport']?> Athlete</h1></center>
                 <div class="container">
                 <center>   

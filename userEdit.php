@@ -64,8 +64,7 @@
             <input type="hidden" name="updated_at" value="<?php echo date('Y-m-d H:i:s')?>">
             <hr>
                 <center>
-                <?php $imageURL = 'uploads/'.$user["image"];?>
-                <img src="<?php if(empty($user["image"])){ echo 'uploads/default.png';}else{ echo $imageURL;};?>" class="image" />
+                <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];};?>" class="image" />
                     <h4>Upload image as your profile picture:</h4>
                     <input type="file" name="image"/><br>
                 </center>
