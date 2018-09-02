@@ -59,7 +59,7 @@
 
         public function updateUser($id,$name,$contact,$address,$school,$sport,$email,$password,$updated_at){
             try{
-                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at, image=:image WHERE id=:id");
+                $query = $this->db->prepare("UPDATE users SET name=:name, contact=:contact, address=:address, school=:school, sport=:sport, email=:email, password=:password, updated_at=:updated_at WHERE id=:id");
                 $query->bindparam(":id", $id);
                 $query->bindparam(":name", $name);
                 $query->bindparam(":contact", $contact);
