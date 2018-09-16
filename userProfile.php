@@ -8,8 +8,14 @@
     if(isset($_POST['invites'])){
         $athlete_id = $_POST['athlete_id'];
         $coach_id = $_POST['coach_id'];
-        $message = $_POST['message'];
         $created_at = date('Y-m-d H:i s');
+        $coach_name = $_POST['coach_name'];
+
+        if($_POST['message'] == ""){
+            $message = $coach_name. "has invited you for a tryout.";
+        }else{
+            $message = $_POST['message'];
+        }
 
         if($pdo->athleteInvites($coach_id,$athlete_id,$message,$created_at)){
             echo "<script>alert('Invite has been sent!');window.location.href='userProfile.php?id=".$athlete_id."';</script>";
@@ -39,48 +45,28 @@
         <?php if($user['type'] ==  'Coach'){ ?>
             <?php $imageURL = 'uploads/'.$user["image"];?>
             <center><img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];};?>" class="image" /></center>
-            <center><h1><?php echo $user['name']?> - <?php echo $user['school']?> - <?php echo $user['sport']?></h1></center>
-            <?php if($current_user['sport'] == 'Basketball'){?>
-                
-
-
-
-            <?php } ?>
+                <center>
+                        <strong>Name: <?php echo $user['name']?></strong><br>
+                        <strong>Address: <?php echo $user['address']?></strong><br>
+                        <strong>Contact Number: <?php echo $user['contact']?></strong><br>
+                        <strong>Email: <?php echo $user['email']?></strong><br>
+                        <strong>Last School Attended: <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?></strong><br>                          
+                        <strong>Gender: <?php echo $user['gender']?></strong><br>
+                        <strong>User Type: <?php echo $user['type']?></strong><br>
+                    </center>
         <?php }else{?>
                 <center><img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];};?>" class="image" /></center>
-                <center><h1><?php echo $user['name']?> - <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?> - <?php echo $user['sport']?> Athlete</h1></center>
                 <div class="container">
                 <center>   
-                <?php if($current_user['type'] == 'Coach'){ ?>
-                        <?php 
-                            $check = $pdo->checkInvite($user['id'], $current_user['id']);
-                                if(empty($check)){
-                        ?>
-                            <form method="post" class="invite-form">
-                                <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
-                                <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
-                                <input type="hidden" value="<?php echo $current_user['name']?> invited you for a tryout" name="message" />
-                                <button class="invite-profile" type="submit" name="invites">Invite Athlete</button>
-                            </form>
-                        <?php }
-                                else
-                                {
-                            ?>
-                            <form method="post" class="invite-form">
-                                <input type="hidden" value="<?php echo $check['invite_id'] ?>" name="invite_id" />
-                                <input type="hidden" value="<?php echo $user['athlete_id'] ?>" name="athlete_id" />
-                                <button class="remove-invite" type="submit" name="delete-invite">Remove Invite</button>
-                            </form>
-                        <?php } ?>
-                        <?php } ?>
-                        <br>
-                        <strong><?php echo $user['position']?> -</strong>
-                        <strong><?php echo $user['email']?> -</strong>
-                        <strong><?php echo $user['contact']?> -</strong>
-                        <strong><?php echo $user['gender']?> -</strong>
-                        <strong><?php echo $user['address']?> -</strong>
-                        
-                        <strong><?php echo date('F j,Y', strtotime($user['birthdate']))?></strong>
+                    <center>
+                        <strong>Name: <?php echo $user['name']?></strong><br>
+                        <strong>Address: <?php echo $user['address']?></strong><br>
+                        <strong>Contact Number: <?php echo $user['contact']?></strong><br>
+                        <strong>Email: <?php echo $user['email']?></strong><br>
+                        <strong>Last School Attended: <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?></strong><br>                        
+                        <strong>Gender: <?php echo $user['gender']?></strong><br>
+                        <strong>User Type: <?php echo $user['type']?></strong><br>
+                    </center>
 
 
                         
@@ -93,11 +79,61 @@
                             src="https://www.youtube.com/embed/<?php echo $youtube ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
                             frameborder="0" allowfullscreen></iframe> 
                         <?php } ?>
-                </center>
-
+                        </center>
+                        </div>
+                <?php 
+                    if($user['sport'] == 'Basketball'){
+                        $player = $pdo->BasketballPlayerStats($user['id'])
+                ?>
+                    <div class="container" align="center">
+                        <h2>Average Player Statistics per game</h2>
+                        <strong>Position: <?php echo $player['basketball_position']?></strong></br>
+                        <strong>Rebounds: <?php echo $player['basketball_rebounds']?></strong></br>
+                        <strong>Steals: <?php echo $player['basketball_steals']?></strong></br>
+                        <strong>Assists: <?php echo $player['basketball_assists']?></strong></br>
+                        <strong>Blocks: <?php echo $player['basketball_blocks']?></strong></br>
+                        <strong>Minutes Played: <?php echo $player['basketball_minutes_played']?></strong></br>
+                        <strong>Fouls: <?php echo $player['basketball_fouls']?></strong></br>
+                        <strong>Turnovers: <?php echo $player['basketball_turnovers']?></strong></br>
+                        <strong>Points: <?php echo $player['basketball_points']?></strong></br>
+                        <strong>Missed Field Goals: <?php echo $player['basketball_missedFG']?></strong></br>
+                    </div>
+                <?php } ?>
+                        
+                <?php if($current_user['type'] == 'Coach'){ ?>
+                    <center>
+                        
+                        <?php 
+                            $check = $pdo->checkInvite($user['id'], $current_user['id']);
+                                if(empty($check)){
+                        ?>
+                            
+                            <form method="post" class="invite-form">
+                                <small>Message:</small><br>
+                                <textarea name="message" rows="4" cols="50" placeholder="Enter your message"></textarea>
+                                <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
+                                <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
+                                <input type="hidden" value="<?php echo $current_user['name'] ?>" name="coach_name" /><br>
+                                <button class="invite-profile" type="submit" name="invites">Invite Athlete</button>
+                            </form>
+                        <?php }
+                                else
+                                {
+                            ?>
+                            <form method="post" class="invite-form">
+                                <input type="hidden" value="<?php echo $check['invite_id'] ?>" name="invite_id" />
+                                <input type="hidden" value="<?php echo $user['athlete_id'] ?>" name="athlete_id" />
+                                <button class="remove-invite" type="submit" name="delete-invite">Remove Invite</button>
+                            </form>
+                        <?php } ?>
+                    </center>
+                <?php } ?>
+                        <br>
+                        
+            
                  
            
         <?php } ?>
-        </div>
+        
     </body>
 </html>

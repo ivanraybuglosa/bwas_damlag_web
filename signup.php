@@ -5,7 +5,7 @@
         $contact = $_POST['contact'];
         $address = $_POST['address'];
         $school = $_POST['school'];
-        $sport = $_POST['sport'];
+        $sport = "Basketball";
         $email = $_POST['email'];
         $birthdate = $_POST['birthdate'];
         $gender = $_POST['gender'];
@@ -58,11 +58,11 @@
                     <option value="STI">STI-WEST NEGROS</option>
                     <option value="USA">University of San Agustin</option>
                 </select>
-                <small>Sport</small> 
-                <select name="sport">
+                <!-- <small>Sport</small>  -->
+                <!-- <select name="sport">
                     <option value="Basketball">Basketball</option>
                     <option value="Volleyball">Volleyball</option>
-                </select>
+                </select> -->
                 <small>Email Address</small> 
                 <input type="email" placeholder="Email Address" name="email" required>
                 <small>Password</small>

@@ -74,6 +74,7 @@
                                 <th>Username</th>
                                 <th>E-mail</th>
                                 <th>School</th>
+                                <th>Age</th>
                                 <th>Sport</th>
                                 <th>Gender</th>
                                 <th>Type</th>
@@ -100,6 +101,14 @@
                                 }else{
                                     echo $searchUser['previous_school'];
                                 } ?></td>
+                            <td>
+                                <?php 
+                                    $now = new Datetime();
+                                    $birthdate = new Datetime($searchUser['birthdate']);
+                                    $age = $now->diff($birthdate);
+                                    echo $age->y;
+                                ?>
+                            </td>
                             <td><?php echo $searchUser['sport']; ?></td>
                             <td><?php echo $searchUser['gender']; ?></td>
                             <td><?php echo $searchUser['type']; ?></td>
@@ -124,6 +133,7 @@
                                 <th>Username</th>
                                 <th>E-mail</th>
                                 <th>School</th>
+                                <th>Age</th>
                                 <th>Sport</th>
                                 <th>Gender</th>
                                 <th>Type</th>
@@ -150,6 +160,14 @@
                                     }else{
                                         echo $user['previous_school'];
                                     } ?></td>
+                                <td>
+                                    <?php 
+                                        $now = new Datetime();
+                                        $birthdate = new Datetime($user['birthdate']);
+                                        $age = $now->diff($birthdate);
+                                        echo $age->y;
+                                    ?>
+                                </td>
                                 <td><?php echo $user['sport']; ?></td>
                                 <td><?php echo $user['gender']; ?></td>
                                 <td><?php echo $user['type']; ?></td>
@@ -236,6 +254,7 @@
                                 <th>Position</th>
                                 <th>E-mail</th>
                                 <th>Last School Attended</th>
+                                <th>Age</th>
                                 <th>Gender</th>
                                 <th>Contact Number</th>
                                 <th>Address</th>
@@ -263,6 +282,14 @@
                                     echo $user['previous_school'];
                                 }?>
                             </td>
+                            <td>
+                                <?php 
+                                    $now = new Datetime();
+                                    $birthdate = new Datetime($user['birthdate']);
+                                    $age = $now->diff($birthdate);
+                                    echo $age->y;
+                                ?>
+                            </td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
                             <td><?php echo $user['address']; ?></td>
@@ -282,6 +309,7 @@
                                 <th>Position</th>
                                 <th>E-mail</th>
                                 <th>Last School Attended</th>
+                                <th>Age</th>
                                 <th>Gender</th>
                                 <th>Contact Number</th>
                                 <th>Address</th>
@@ -309,6 +337,14 @@
                                     echo $athlete['previous_school'];
                                 }?>
                                 </td>
+                                <td>
+                                    <?php 
+                                        $now = new Datetime();
+                                        $birthdate = new Datetime($athlete['birthdate']);
+                                        $age = $now->diff($birthdate);
+                                        echo $age->y;
+                                    ?>
+                                </td>
                                 <td><?php echo $athlete['gender']; ?></td>
                                 <td><?php echo $athlete['contact']; ?></td>
                                 <td><?php echo $athlete['address']; ?></td>
@@ -329,6 +365,7 @@
                                 <th>Position</th>
                                 <th>E-mail</th>
                                 <th>Last School Attended</th>
+                                <th>Age</th>
                                 <th>Gender</th>
                                 <th>Contact Number</th>
                                 <th>Address</th>
@@ -355,6 +392,14 @@
                                 }else{
                                     echo $user['previous_school'];
                                 }?>
+                            </td>
+                            <td>
+                                <?php 
+                                    $now = new Datetime();
+                                    $birthdate = new Datetime($user['birthdate']);
+                                    $age = $now->diff($birthdate);
+                                    echo $age->y;
+                                ?>
                             </td>
                             <td><?php echo $user['gender']; ?></td>
                             <td><?php echo $user['contact']; ?></td>
