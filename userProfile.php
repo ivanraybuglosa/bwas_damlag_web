@@ -67,7 +67,31 @@
                         <strong>Gender: <?php echo $user['gender']?></strong><br>
                         <strong>User Type: <?php echo $user['type']?></strong><br>
                     </center>
-
+                    
+                    <?php 
+                    if($user['sport'] == 'Basketball'){
+                        $player = $pdo->BasketballPlayerStats($user['id'])
+                ?>
+                    <br>
+                    <table id="users" class="table">
+                        <thead>
+                            <th>Position</th>
+                            <th>Rebounds</th>
+                            <th>Steals</th>
+                            <th>Assists</th>
+                            <th>Blocks</th>
+                            <th>Points</th>
+                        </thead>
+                        <tbody>
+                            <td><?php echo $player['basketball_position']?></td>
+                            <td><?php echo $player['basketball_rebounds']?></td>
+                            <td><?php echo $player['basketball_steals']?></td>
+                            <td><?php echo $player['basketball_assists']?></td>
+                            <td><?php echo $player['basketball_blocks']?></td>
+                            <td><?php echo $player['basketball_points']?></td>
+                        </tbody>
+                    </table>
+                <?php } ?>
 
                         
                         <?php if(!empty($user['youtube'])){
@@ -81,24 +105,7 @@
                         <?php } ?>
                         </center>
                         </div>
-                <?php 
-                    if($user['sport'] == 'Basketball'){
-                        $player = $pdo->BasketballPlayerStats($user['id'])
-                ?>
-                    <div class="container" align="center">
-                        <h2>Average Player Statistics per game</h2>
-                        <strong>Position: <?php echo $player['basketball_position']?></strong></br>
-                        <strong>Rebounds: <?php echo $player['basketball_rebounds']?></strong></br>
-                        <strong>Steals: <?php echo $player['basketball_steals']?></strong></br>
-                        <strong>Assists: <?php echo $player['basketball_assists']?></strong></br>
-                        <strong>Blocks: <?php echo $player['basketball_blocks']?></strong></br>
-                        <strong>Minutes Played: <?php echo $player['basketball_minutes_played']?></strong></br>
-                        <strong>Fouls: <?php echo $player['basketball_fouls']?></strong></br>
-                        <strong>Turnovers: <?php echo $player['basketball_turnovers']?></strong></br>
-                        <strong>Points: <?php echo $player['basketball_points']?></strong></br>
-                        <strong>Missed Field Goals: <?php echo $player['basketball_missedFG']?></strong></br>
-                    </div>
-                <?php } ?>
+                
                         
                 <?php if($current_user['type'] == 'Coach'){ ?>
                     <center>
@@ -110,7 +117,7 @@
                             
                             <form method="post" class="invite-form">
                                 <small>Message:</small><br>
-                                <textarea name="message" rows="4" cols="50" placeholder="Enter your message"></textarea>
+                                <textarea name="message" rows="4" cols="50" placeholder="Enter your message" required></textarea>
                                 <input type="hidden" value="<?php echo $current_user['id'] ?>" name="coach_id" />
                                 <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
                                 <input type="hidden" value="<?php echo $current_user['name'] ?>" name="coach_name" /><br>

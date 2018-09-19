@@ -70,8 +70,9 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th></th>
-                                <th>Username</th>
+                                <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
                                 <th>Age</th>
@@ -84,10 +85,13 @@
                     <tbody>
                         <?php 
                             $searchUsers = $pdo->searchUser($search,$type,$sport,$gender);
+                            $rank = 0;
                             if(is_array($searchUsers) && !empty($searchUsers)){
                                 foreach($searchUsers as $searchUser){
+                                    $rank += 1;
                         ?>
                         <tr>
+                            <td><?php echo $rank ?></td>
                             <td>
                                 <center>
                                     <img src="<?php if(empty($searchUser["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $searchUser["image"]; };?>" class="table-image" />
@@ -129,8 +133,9 @@
                     <table id="users">
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th></th>
-                                <th>Username</th>
+                                <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
                                 <th>Age</th>
@@ -143,10 +148,13 @@
                         <tbody>
                             <?php 
                                 $users = $pdo->fetchUsers();
+                                $rank = 0;
                                 if(is_array($users) && !empty($users)){
                                     foreach($users as $user){
+                                        $rank +=1;
                             ?>
                             <tr>
+                                <td><?php echo $rank ?></td>
                                 <td>
                                     <center>
                                         <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png' ;}else{ echo $user["image"];};?>" class="table-image" />
@@ -249,8 +257,9 @@
                         <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th></th>
-                                <th>Username</th>
+                                <th>Name</th>
                                 <th>Position</th>
                                 <th>E-mail</th>
                                 <th>Last School Attended</th>
@@ -264,10 +273,13 @@
                     <tbody>
                         <?php 
                             $users = $pdo->fetchAllAthletes($current_user['sport']);
+                            $rank = 0;
                             if(is_array($users) && !empty($users)){
                                 foreach($users as $user){
+                                    $rank += 1;
                         ?>
                         <tr>
+                            <td><?php echo $rank ?></td>
                             <td>
                                 <center>
                                     <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
@@ -304,8 +316,9 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th></th>
-                                <th>Username</th>
+                                <th>Name</th>
                                 <th>Position</th>
                                 <th>E-mail</th>
                                 <th>Last School Attended</th>
@@ -319,10 +332,13 @@
                         <tbody>
                             <?php 
                                 $athletes = $pdo->searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$current_user['sport']);
+                                $rank = 0;
                                 if(is_array($athletes) && !empty($athletes)){
                                     foreach($athletes as $athlete){
+                                        $rank += 1;
                             ?>
                             <tr>
+                                <td><?php echo $rank ?></td>
                                 <td>
                                     <center>
                                         <img src="<?php if(empty($athlete["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $athlete["image"];};?>" class="table-image" />
@@ -360,8 +376,9 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th></th>
-                                <th>Username</th>
+                                <th>Name</th>
                                 <th>Position</th>
                                 <th>E-mail</th>
                                 <th>Last School Attended</th>
@@ -375,10 +392,13 @@
                     <tbody>
                         <?php 
                             $users = $pdo->fetchAllAthletes($current_user['sport']);
+                            $rank = 0;
                             if(is_array($users) && !empty($users)){
                                 foreach($users as $user){
+                                    $rank += 1;
                         ?>
                         <tr>
+                            <td><?php echo $rank ?></td>
                             <td>
                                 <center>
                                     <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
