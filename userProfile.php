@@ -66,13 +66,31 @@
                         <strong>Last School Attended: <?php if(!empty($user['school'])){ echo $user['school'];}else{echo $user['previous_school'];} ?></strong><br>                        
                         <strong>Gender: <?php echo $user['gender']?></strong><br>
                         <strong>User Type: <?php echo $user['type']?></strong><br>
+                        <strong>GPA: <?php echo $user['gpa']?></strong><br>
                     </center>
                     
                     <?php 
                     if($user['sport'] == 'Basketball'){
-                        $player = $pdo->BasketballPlayerStats($user['id'])
+                        
                 ?>
                     <br>
+                    <h1>Player's Health</h1>
+                    <table id="users" class="table">
+                        <thead>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Medical History</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><?php echo $user['height']?> ft.</td>
+                            <td><?php echo $user['weight']?> lbs.</td>
+                            <td><?php echo $user['medical_history']?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h1>Player Statistics</h1>
                     <table id="users" class="table">
                         <thead>
                             <th>Position</th>
@@ -81,26 +99,30 @@
                             <th>Assists</th>
                             <th>Blocks</th>
                             <th>Points</th>
+                            <th>Tournament</th>
                         </thead>
                         <tbody>
-                            <td><?php echo $player['basketball_position']?></td>
-                            <td><?php echo $player['basketball_rebounds']?></td>
-                            <td><?php echo $player['basketball_steals']?></td>
-                            <td><?php echo $player['basketball_assists']?></td>
-                            <td><?php echo $player['basketball_blocks']?></td>
-                            <td><?php echo $player['basketball_points']?></td>
+                        <?php 
+                            $stats = $pdo->BasketballPlayerStats($user['id']);
+                            if(is_array($stats) && !empty($stats)){
+                                foreach($stats as $stat){
+                        ?>
+                        <tr>
+                            <td><?php echo $stat['basketball_position']?></td>
+                            <td><?php echo $stat['basketball_rebounds']?></td>
+                            <td><?php echo $stat['basketball_steals']?></td>
+                            <td><?php echo $stat['basketball_assists']?></td>
+                            <td><?php echo $stat['basketball_blocks']?></td>
+                            <td><?php echo $stat['basketball_points']?></td>
+                            <td><?php echo $stat['tournament_Name']?></td>
+                        </tr>
+                        <?php }} ?>
                         </tbody>
                     </table>
+                    <br>
                 <?php } ?>
-
-                        
-                        <?php if(!empty($user['youtube'])){
-                            $url = $user['youtube'];
-                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-                            $youtube = $matches[1];
-                        ?>
-                            <iframe class="youtube-link" id="ytplayer" type="text/html"
-                            src="https://www.youtube.com/embed/<?php echo $youtube ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                            <iframe class="youtube-link" type="text/html"
+                            src=<?php echo $user['youtube'] ?>
                             frameborder="0" allowfullscreen></iframe> 
                         <?php } ?>
                         </center>
@@ -139,8 +161,6 @@
                         
             
                  
-           
-        <?php } ?>
         
     </body>
 </html>

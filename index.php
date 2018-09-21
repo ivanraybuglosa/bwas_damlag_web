@@ -70,8 +70,9 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
-                                <th>Rank</th>
                                 <th></th>
+                                <th>Average</th>
+                                <th>Rank</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -91,12 +92,13 @@
                                     $rank += 1;
                         ?>
                         <tr>
-                            <td><?php echo $rank ?></td>
                             <td>
                                 <center>
                                     <img src="<?php if(empty($searchUser["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $searchUser["image"]; };?>" class="table-image" />
                                 </center>
                             </td>
+                            <td><?php echo $searchUser['ranking_average'] ?></td>
+                            <td><?php echo $rank ?></td>
                             <td><?php echo $searchUser['name']; ?></td>
                             <td><?php echo $searchUser['email']; ?></td>
                             <td>
@@ -133,8 +135,9 @@
                     <table id="users">
                         <thead>
                             <tr>
-                                <th>Rank</th>
                                 <th></th>
+                                <th>Average</th>
+                                <th>Rank</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -154,12 +157,13 @@
                                         $rank +=1;
                             ?>
                             <tr>
-                                <td><?php echo $rank ?></td>
                                 <td>
                                     <center>
                                         <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png' ;}else{ echo $user["image"];};?>" class="table-image" />
                                     </center>
                                 </td>
+                                <td><?php echo $rank ?></td>
+                                <td><?php echo $user['ranking_average']; ?></td>
                                 <td><?php echo $user['name']; ?></td>
                                 <td><?php echo $user['email']; ?></td>
                                 <td>
@@ -257,8 +261,9 @@
                         <table id="users" class="table">
                         <thead>
                             <tr>
-                                <th>Rank</th>
                                 <th></th>
+                                <th>Average</th>
+                                <th>Rank</th>
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>E-mail</th>
@@ -279,12 +284,13 @@
                                     $rank += 1;
                         ?>
                         <tr>
-                            <td><?php echo $rank ?></td>
                             <td>
                                 <center>
                                     <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
                                 </center>
                             </td>
+                            <td><?php echo $user['ranking_average']; ?></td>
+                            <td><?php echo $rank ?></td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
                             <td><?php echo $user['email']; ?></td>
@@ -316,8 +322,9 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
-                                <th>Rank</th>
                                 <th></th>
+                                <th>Average</th>
+                                <th>Rank</th>
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>E-mail</th>
@@ -338,12 +345,13 @@
                                         $rank += 1;
                             ?>
                             <tr>
-                                <td><?php echo $rank ?></td>
                                 <td>
                                     <center>
                                         <img src="<?php if(empty($athlete["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $athlete["image"];};?>" class="table-image" />
                                     </center>
                                 </td>
+                                <td><?php echo $athlete['ranking_average'] ?></td>
+                                <td><?php echo $rank ?></td>
                                 <td><?php echo $athlete['name']; ?></td>
                                 <td><?php echo $athlete['position'] ?></td>
                                 <td><?php echo $athlete['email']; ?></td>
@@ -376,8 +384,9 @@
                     <table id="users" class="table">
                         <thead>
                             <tr>
-                                <th>Rank</th>
                                 <th></th>
+                                <th>Average</th>
+                                <th>Rank</th>
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>E-mail</th>
@@ -398,12 +407,13 @@
                                     $rank += 1;
                         ?>
                         <tr>
-                            <td><?php echo $rank ?></td>
                             <td>
                                 <center>
                                     <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
                                 </center>
                             </td>
+                            <td><?php echo $user['ranking_average']; ?></td>
+                            <td><?php echo $rank ?></td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
                             <td><?php echo $user['email']; ?></td>

@@ -124,7 +124,7 @@
 
         public function fetchUsers(){
             try{
-                $query = $this->db->prepare("SELECT * FROM users WHERE type!='Admin'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id = rankings.user_id WHERE users.type!='Admin' ORDER BY rankings.ranking_average DESC");
                 $query->execute();
                 return $request = $query->fetchAll();
             }catch(Exception $e){
@@ -149,7 +149,7 @@
         public function fetchAllAthletes($sport){
             $sportLow = strtolower($sport);
             try{
-                $query = $this->db->prepare("SELECT * FROM users INNER JOIN $sportLow ON users.id=".$sportLow.".user_id WHERE sport=:sport AND type='Athlete' ORDER BY ".$sportLow."_average DESC");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id = rankings.user_id WHERE sport=:sport AND type='Athlete' ORDER BY rankings.ranking_average DESC");
                 $query->bindparam(":sport", $sport);
                 $query->execute();
                 return $request = $query->fetchAll();
@@ -214,11 +214,11 @@
             $gender = $gender."%";
 
             try{
-                $query = $this->db->prepare("SELECT * FROM users WHERE (name LIKE :name AND 
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id = rankings.user_id WHERE (name LIKE :name AND 
                                                                         type LIKE :type AND
                                                                         sport LIKE :sport AND
                                                                         gender LIKE :gender) AND 
-                                                                        type != 'Admin'");
+                                                                        type != 'Admin' ORDER BY rankings.ranking_average DESC ");
                 $query->bindparam(":name", $searched);
                 $query->bindparam(":type", $type);
                 $query->bindparam(":sport", $sport);
@@ -247,11 +247,11 @@
             
 
             try{
-                $query = $this->db->prepare("SELECT * FROM users
-                                            WHERE (name LIKE :name AND
-                                                gender LIKE :gender AND
-                                                position LIKE :position AND
-                                                YEAR(birthdate) LIKE :age) AND sport=:sport AND type='Athlete'");
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id=rankings.user_id
+                                            WHERE (users.name LIKE :name AND
+                                                users.gender LIKE :gender AND
+                                                users.position LIKE :position AND
+                                                YEAR(users.birthdate) LIKE :age) AND users.sport=:sport AND users.type='Athlete' ORDER BY rankings.ranking_average DESC");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":gender", $gender);
                 $query->bindparam(":age", $age);
@@ -349,7 +349,7 @@
                 $query = $this->db->prepare("SELECT * FROM Basketball INNER JOIN users ON basketball.user_id=users.id WHERE user_id=:athlete");
                 $query->bindparam(":athlete", $athlete_id);
                 $query->execute();
-                return $request = $query->fetch();
+                return $request = $query->fetchAll();
             }catch(PDOException $e){
                 echo $e->getMessage();
                 return false;
@@ -411,6 +411,18 @@
                 $query->bindparam(":invite", $invite_id);
                 $query->execute();
                 return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            } 
+        }
+
+        public function tournaments($id){
+            try{
+                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id = rankings.user_id WHERE users.id=:id");
+                $query->bindparam(":id", $id);
+                $query->execute();
+                return $request = $query->fetchAll();
             }catch(PDOException $e){
                 echo $e->getMessage();
                 return false;
