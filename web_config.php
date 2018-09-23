@@ -346,7 +346,7 @@
 
         public function BasketballPlayerStats($athlete_id){
             try{
-                $query = $this->db->prepare("SELECT * FROM Basketball INNER JOIN users ON basketball.user_id=users.id WHERE user_id=:athlete");
+                $query = $this->db->prepare("SELECT * FROM Basketball INNER JOIN users ON basketball.user_id=users.id WHERE users.id=:athlete");
                 $query->bindparam(":athlete", $athlete_id);
                 $query->execute();
                 return $request = $query->fetchAll();

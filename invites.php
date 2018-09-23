@@ -44,11 +44,10 @@
                                     
                                     if(is_array($invited) && !empty($invited)){
                                         foreach($invited as $invites){
-                                        $player = $pdo->BasketballPlayerStats($invites['id']);
                                 ?>
                                 <tr>
                                     <td>
-                                        <?php echo $player['name']?>
+                                        <?php echo $invites['name']?>
                                     </td>
                                     <td width=15%>
                                         <form method="post">

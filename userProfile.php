@@ -120,17 +120,13 @@
                         </tbody>
                     </table>
                     <br>
-                <?php } ?>
-                            <iframe class="youtube-link" type="text/html"
+                    <iframe class="youtube-link" type="text/html"
                             src=<?php echo $user['youtube'] ?>
                             frameborder="0" allowfullscreen></iframe> 
                         <?php } ?>
                         </center>
                         </div>
-                
-                        
-                <?php if($current_user['type'] == 'Coach'){ ?>
-                    <center>
+                        <center>
                         
                         <?php 
                             $check = $pdo->checkInvite($user['id'], $current_user['id']);
@@ -156,8 +152,13 @@
                             </form>
                         <?php } ?>
                     </center>
-                <?php } ?>
                         <br>
+                <?php } ?>
+                            
+                
+                        
+               
+                    
                         
             
                  
