@@ -127,8 +127,9 @@
                         </center>
                         </div>
                         <center>
-                        
-                        <?php 
+                            
+                        <?php
+                            if($current_user['type'] == 'Coach'){ 
                             $check = $pdo->checkInvite($user['id'], $current_user['id']);
                                 if(empty($check)){
                         ?>
@@ -153,7 +154,7 @@
                         <?php } ?>
                     </center>
                         <br>
-                <?php } ?>
+                <?php }} ?>
                             
                 
                         

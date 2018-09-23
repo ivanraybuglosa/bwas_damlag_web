@@ -47,11 +47,6 @@
                             <option value="Coach">Coach</option>
                             <option value="Athlete">Athlete</option>
                     </select>
-                    <select name="sport">
-                            <option value="">Select Sport</option>
-                            <option value="Basketball">Basketball</option>
-                            <option value="Volleyball">Volleyball</option>
-                    </select>
                     <select name="gender">
                             <option value="">Select Gender</option>
                             <option value="Male">Male</option>
@@ -63,7 +58,7 @@
                     if(isset($_POST['search']) && $current_user['type'] == 'Admin'){
                         $search = $_POST['search'];
                         $type = $_POST['type'];
-                        $sport = $_POST['sport'];
+                        $sport = "Basketball";
                         $gender = $_POST['gender'];
                 ?>
 
@@ -71,8 +66,8 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Average</th>
-                                <th>Rank</th>
+                                <th>Rank Points</th>
+                                <th>Rank Points</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -97,8 +92,6 @@
                                     <img src="<?php if(empty($searchUser["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $searchUser["image"]; };?>" class="table-image" />
                                 </center>
                             </td>
-                            <td><?php echo $searchUser['ranking_average'] ?></td>
-                            <td><?php echo $rank ?></td>
                             <td><?php echo $searchUser['name']; ?></td>
                             <td><?php echo $searchUser['email']; ?></td>
                             <td>
@@ -136,8 +129,6 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Average</th>
-                                <th>Rank</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -162,8 +153,6 @@
                                         <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png' ;}else{ echo $user["image"];};?>" class="table-image" />
                                     </center>
                                 </td>
-                                <td><?php echo $rank ?></td>
-                                <td><?php echo $user['ranking_average']; ?></td>
                                 <td><?php echo $user['name']; ?></td>
                                 <td><?php echo $user['email']; ?></td>
                                 <td>
@@ -202,9 +191,6 @@
 
                 <form method="post">
                     <input type="text" name="name" placeholder="Athlete Name">
-                    <?php 
-                        if($current_user['sport'] == 'Basketball'){
-                    ?>
                         <select name="position">
                             <option value="">Search Position</option>
                             <option value="Point Guard">Point Guard</option>
@@ -213,34 +199,6 @@
                             <option value="Power Forward">Power Forward</option>
                             <option value="Center">Center</option>
                         </select>
-                    <?php }elseif($current_user['sport'] == 'Volleyball'){ ?>
-                        <select name="position">
-                            <option value="">Search Position</option>
-                            <option value="Outside hitter">Outside hitter</option>
-                            <option value="Right Side Hitter">Right Side Hitter</option>
-                            <option value="Opposite Hitter">Opposite Hitter</option>
-                            <option value="Setter">Setter</option>
-                            <option value="Middle Blocker">Middle Blocker</option>
-                            <option value="Libero">Libero</option>
-                            <option value="Defensive Specialist">Defensive Specialist</option>
-                        </select>
-
-                    <?php }else{ ?>
-                        <select name="position">
-                            <option value=" ">Search Position</option>
-                            <option value="Forward">Forward</option>
-                            <option value="Striker">Striker</option>
-                            <option value="Left Midfielder">Left Midfielder</option>
-                            <option value="Defensive Midfielder">Defensive Midfielder</option>
-                            <option value="FemRight Midfielderale">Right Midfielder</option>
-                            <option value="Left Back">Left Back</option>
-                            <option value="Sweeper">Sweeper</option>
-                            <option value="Stopper">Stopper</option>
-                            <option value="Right back">Right back</option>
-                            <option value="Goal Keeper">Goal Keeper</option>
-                        </select>
-
-                    <?php } ?>
                     <select name="gender">
                         <option value="">Search Gender</option>
                         <option value="Male">Male</option>
@@ -262,7 +220,7 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Average</th>
+                                <th>Rank Points</th>
                                 <th>Rank</th>
                                 <th>Name</th>
                                 <th>Position</th>
@@ -323,7 +281,7 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Average</th>
+                                <th>Rank Points</th>
                                 <th>Rank</th>
                                 <th>Name</th>
                                 <th>Position</th>
@@ -385,7 +343,7 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Average</th>
+                                <th>Rank Points</th>
                                 <th>Rank</th>
                                 <th>Name</th>
                                 <th>Position</th>

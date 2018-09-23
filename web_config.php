@@ -124,7 +124,7 @@
 
         public function fetchUsers(){
             try{
-                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id = rankings.user_id WHERE users.type!='Admin' ORDER BY rankings.ranking_average DESC");
+                $query = $this->db->prepare("SELECT * FROM users WHERE users.type!='Admin'");
                 $query->execute();
                 return $request = $query->fetchAll();
             }catch(Exception $e){
@@ -214,11 +214,11 @@
             $gender = $gender."%";
 
             try{
-                $query = $this->db->prepare("SELECT * FROM users INNER JOIN rankings ON users.id = rankings.user_id WHERE (name LIKE :name AND 
+                $query = $this->db->prepare("SELECT * FROM users WHERE (name LIKE :name AND 
                                                                         type LIKE :type AND
                                                                         sport LIKE :sport AND
                                                                         gender LIKE :gender) AND 
-                                                                        type != 'Admin' ORDER BY rankings.ranking_average DESC ");
+                                                                        type != 'Admin'");
                 $query->bindparam(":name", $searched);
                 $query->bindparam(":type", $type);
                 $query->bindparam(":sport", $sport);
