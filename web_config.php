@@ -231,18 +231,22 @@
             }
         }
 
-        public function searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$sport){
+        public function searchAthlete($searchAthlete,$searchGender,$startAge,$endAge,$searchPosition,$sport){
             $name = "%".$searchAthlete."%";
             $gender = "%".$searchGender."%";
             $position = "%".$searchPosition."%";
 
             $now = date('Y-m-d');
-            $date = strtotime($now." -".$searchAge." years");
-            $age_format = date('Y', $date);
-                if($age_format == 1970){
-                    $age = "%%";
+            $startDate = strtotime($now." -".$startAge." years");
+            $endDate = strtotime($now." -".$endAge." years");
+            $startAge_format = date('Y', $startDate);
+            $endAge_format = date('Y', $endDate);
+                if($startAge_format == 1970 && $endAge_format == 1970){
+                    $finalStartAge = 1970;
+                    $finalEndAge = 3000;
                 }else{
-                    $age = "%".$age_format."%";
+                    $finalStartAge = $startAge_format;
+                    $finalEndAge = $endAge_format;
                 }
             
 
@@ -251,10 +255,9 @@
                                             WHERE (users.name LIKE :name AND
                                                 users.gender LIKE :gender AND
                                                 users.position LIKE :position AND
-                                                YEAR(users.birthdate) LIKE :age) AND users.sport=:sport AND users.type='Athlete' ORDER BY rankings.ranking_average DESC");
+                                                (YEAR(users.birthdate) BETWEEN ".$finalEndAge." AND ".$finalStartAge.")) AND users.sport=:sport AND users.type='Athlete' ORDER BY rankings.ranking_average DESC");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":gender", $gender);
-                $query->bindparam(":age", $age);
                 $query->bindparam(":position", $position);
                 $query->bindparam(":sport", $sport);
                 $query->execute();

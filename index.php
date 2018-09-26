@@ -66,8 +66,6 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Rank Points</th>
-                                <th>Rank Points</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>School</th>
@@ -204,7 +202,9 @@
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
-                    <input type="number" name="age" placeholder="Age" min="0" max="100">
+                    <br>
+                    <input type="number" name="startAge" placeholder="Start Age Filter" min="0" max="100">
+                    <input type="number" name="endAge" placeholder="End Age Filter" min="0" max="100">
                     <button class="search-button" name="search-submit" type="submit">Search</button>
                 </form>
                 <?php 
@@ -212,9 +212,10 @@
                         $searchAthlete = $_POST['name'];
                         $searchPosition = $_POST['position'];
                         $searchGender = $_POST['gender'];
-                        $searchAge = $_POST['age'];
+                        $startAge = $_POST['startAge'];
+                        $endAge = $_POST['endAge'];
 
-                        if($searchAthlete == "" && $searchPosition == "" && $searchGender == "" && $searchAge == 1970){
+                        if($searchAthlete == "" && $searchPosition == "" && $searchGender == "" && $startAge == 1970 && $endAge == 1970){
                 ?>
                         <table id="users" class="table">
                         <thead>
@@ -296,7 +297,7 @@
                         </thead>
                         <tbody>
                             <?php 
-                                $athletes = $pdo->searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$current_user['sport']);
+                                $athletes = $pdo->searchAthlete($searchAthlete,$searchGender,$startAge,$endAge,$searchPosition,$current_user['sport']);
                                 $rank = 0;
                                 if(is_array($athletes) && !empty($athletes)){
                                     foreach($athletes as $athlete){
