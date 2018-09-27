@@ -100,6 +100,7 @@
                             <th>Blocks</th>
                             <th>Points</th>
                             <th>Tournament</th>
+                            <th>Awards</th>
                         </thead>
                         <tbody>
                         <?php 
@@ -115,14 +116,14 @@
                             <td><?php echo $stat['basketball_blocks']?></td>
                             <td><?php echo $stat['basketball_points']?></td>
                             <td><?php echo $stat['tournament_Name']?></td>
+                            <td><?php echo $stat['awards']?></td>
                         </tr>
                         <?php }} ?>
                         </tbody>
                     </table>
                     <br>
-                    <iframe class="youtube-link" type="text/html"
-                            src=<?php echo $user['youtube'] ?>
-                            frameborder="0" allowfullscreen></iframe> 
+                    <iframe class="youtube-link" src="<?php echo $user['youtube']?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <!-- <iframe class="youtube-link" src="https://www.youtube.com/embed/Wq1l8yEYpv4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
                         <?php } ?>
                         </center>
                         </div>
