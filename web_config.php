@@ -231,28 +231,23 @@
             }
         }
 
-        public function searchAthlete($searchAthlete,$searchGender,$searchAge,$searchPosition,$sport){
+        public function searchAthlete($searchAthlete,$searchGender,$startAge,$endAge,$searchPosition,$sport){
             $name = "%".$searchAthlete."%";
             $gender = "%".$searchGender."%";
             $position = "%".$searchPosition."%";
 
             $now = date('Y-m-d');
-            if($searchAge == "0-10"){
-                $startAge = date('Y',strtotime($now.'-10 years'));
-                $endAge = date('Y', strtotime($now));
-            }elseif($searchAge == '11-20'){
-                $startAge = date('Y', strtotime($now.'-20 years'));
-                $endAge = date('Y', strtotime($now.'-11 years'));
-            }elseif($searchAge == '21-30'){
-                $startAge = date('Y',strtotime($now.'-30 years'));
-                $endAge = date('Y',strtotime($now.'-21 years'));
-            }elseif($searchAge == '31-100'){
-                $startAge = date('Y',strtotime($now.'-100 years'));
-                $endAge = date('Y',strtotime($now.'-31 years'));
-            }else{
-                $startAge = date('Y',strtotime($now.'-100 years'));
-                $endAge = date('Y', strtotime($now));
-            }
+            $startDate = strtotime($now." -".$startAge." years");
+            $endDate = strtotime($now." -".$endAge." years");
+            $startAge_format = date('Y', $startDate);
+            $endAge_format = date('Y', $endDate);
+                if($startAge_format == 1970 && $endAge_format == 1970){
+                    $finalStartAge = 1970;
+                    $finalEndAge = 3000;
+                }else{
+                    $finalStartAge = $startAge_format;
+                    $finalEndAge = $endAge_format;
+                }
             
             
 
@@ -261,7 +256,7 @@
                                             WHERE (users.name LIKE :name AND
                                                 users.gender LIKE :gender AND
                                                 users.position LIKE :position AND
-                                                (YEAR(users.birthdate) BETWEEN ".$startAge." AND ".$endAge.")) AND users.sport=:sport AND users.type='Athlete' ORDER BY rankings.ranking_average DESC");
+                                                (YEAR(users.birthdate) BETWEEN ".$finalEndAge." AND ".$finalStartAge.")) AND users.sport=:sport AND users.type='Athlete' ORDER BY rankings.ranking_average DESC");
                 $query->bindparam(":name", $name);
                 $query->bindparam(":gender", $gender);
                 $query->bindparam(":position", $position);
@@ -355,7 +350,7 @@
 
         public function BasketballPlayerStats($athlete_id){
             try{
-                $query = $this->db->prepare("SELECT * FROM Basketball INNER JOIN users ON basketball.user_id=users.id WHERE users.id=:athlete");
+                $query = $this->db->prepare("SELECT * FROM basketball INNER JOIN users ON basketball.user_id=users.id WHERE users.id=:athlete");
                 $query->bindparam(":athlete", $athlete_id);
                 $query->execute();
                 return $request = $query->fetchAll();

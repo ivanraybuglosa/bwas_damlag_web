@@ -149,7 +149,7 @@
                             ?>
                             <form method="post" class="invite-form">
                                 <input type="hidden" value="<?php echo $check['invite_id'] ?>" name="invite_id" />
-                                <input type="hidden" value="<?php echo $user['athlete_id'] ?>" name="athlete_id" />
+                                <input type="hidden" value="<?php echo $user['id'] ?>" name="athlete_id" />
                                 <button class="remove-invite" type="submit" name="delete-invite">Remove Invite</button>
                             </form>
                         <?php } ?>
