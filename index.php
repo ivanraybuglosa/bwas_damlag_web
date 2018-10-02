@@ -251,7 +251,13 @@
                                     <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
                                 </center>
                             </td>
-                            <td><?php echo $user['ranking_average']; ?></td>
+                            <td><?php
+                                    if(empty($user['ranking_average'])){
+                                        echo 'N/A';
+                                    }else{
+                                        echo $user['ranking_average'];
+                                    } ?>
+                            </td>
                             <td><?php echo $rank ?></td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
@@ -312,7 +318,13 @@
                                         <img src="<?php if(empty($athlete["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $athlete["image"];};?>" class="table-image" />
                                     </center>
                                 </td>
-                                <td><?php echo $athlete['ranking_average'] ?></td>
+                                <td><?php
+                                    if(empty($athlete['ranking_average'])){
+                                        echo 'N/A';
+                                    }else{
+                                        echo $athlete['ranking_average'];
+                                    } ?>
+                            </td>
                                 <td><?php echo $rank ?></td>
                                 <td><?php echo $athlete['name']; ?></td>
                                 <td><?php echo $athlete['position'] ?></td>
@@ -374,7 +386,13 @@
                                     <img src="<?php if(empty($user["image"])){ echo 'https://buasdamlag.000webhostapp.com/uploads/default.png';}else{ echo $user["image"];}?>" class="table-image" />
                                 </center>
                             </td>
-                            <td><?php echo $user['ranking_average']; ?></td>
+                            <td><?php
+                                    if(empty($user['ranking_average'])){
+                                        echo 'N/A';
+                                    }else{
+                                        echo $user['ranking_average'];
+                                    } ?>
+                            </td>
                             <td><?php echo $rank ?></td>
                             <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['position'] ?></td>
